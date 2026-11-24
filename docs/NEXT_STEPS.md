@@ -142,3 +142,21 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Contrastar precios EODHD con una fuente independiente y ampliar después la validación de histórico/ajustes sólo con autorización expresa.
 
 **Siguiente acción exacta:** actualizar el repositorio con `git pull`, ejecutar el comando Alpaca IEX indicado y adjuntar únicamente el JSON nuevo. No ejecutar el modo completo.
+
+---
+
+## Estado tras prueba Alpaca IEX — 24-11-2026
+
+- [x] El titular ejecutó el modo aislado `--alpaca-only` con credenciales disponibles.
+- [x] Alpaca Basic con `feed=iex` devolvió 6/6 símbolos USA (NVDA, MSFT, META, AMZN, JNJ y SPY) en una petición agrupada.
+- [x] EODHD quedó omitido: 0 llamadas y 0 consumo de cuota en esta ejecución.
+- [x] Registrar el resultado y sus límites en `docs/DATA_SOURCES.md`, sección 16.
+- [ ] Contrastar el contador real de EODHD con el consumo de la primera ejecución (12 llamadas estimadas); no repetir la prueba para ello.
+- [ ] Comparar OHLC/cierres de EODHD y Alpaca IEX en fechas comunes con una tercera fuente independiente; no comparar volúmenes IEX con SIP.
+- [ ] Revisar profundidad histórica, ajustes corporativos y huecos, mediante una prueba acotada y autorizada.
+- [ ] Cerrar la revisión de licencias y derechos de uso antes de seleccionar proveedor o iniciar integración.
+
+**Decisión provisional:** EODHD sigue siendo candidato para cobertura multi-mercado; Alpaca Basic IEX es candidato complementario para los seis activos USA probados. Ninguno queda aprobado para producción: cobertura de API no equivale a exactitud, continuidad ni licencia de uso.
+
+**Siguiente paso recomendado:** realizar la comparación independiente de precios para los seis símbolos USA usando los datos ya obtenidos, evitando nuevas llamadas EODHD si no son necesarias. Antes de consumir otra cuota, definir exactamente fuente, fechas y número de peticiones.
+
