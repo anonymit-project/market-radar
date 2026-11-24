@@ -17,9 +17,8 @@
       </a>
       <div class="workspace-label">ESPACIO PERSONAL</div>
       <nav class="side-nav" aria-label="Navegación principal">
-        <button class="nav-item active" data-page="overview"><span class="nav-icon">◫</span> Visión general</button>
-        <button class="nav-item" data-page="radar"><span class="nav-icon">◎</span> Radar de oportunidades <em class="nav-count">4</em></button>
-        <button class="nav-item" data-page="portfolio"><span class="nav-icon">▥</span> Mi cartera</button>
+        <button class="nav-item active" data-page="radar"><span class="nav-icon">◎</span> Radar de oportunidades <em class="nav-count">4</em></button>
+        <button class="nav-item" data-page="history"><span class="nav-icon">◷</span> Histórico de señales</button>
         <button class="nav-item" data-page="assets"><span class="nav-icon">⌕</span> Universo de activos</button>
         <button class="nav-item" data-page="news"><span class="nav-icon">◷</span> Noticias y alertas <em class="nav-count muted">3</em></button>
       </nav>
@@ -38,72 +37,6 @@
       </header>
 
       <div class="page-wrap">
-        <section class="page active" id="page-overview">
-          <div class="page-heading">
-            <div><div class="eyebrow">LUNES, 24 NOVIEMBRE 2026 <span class="fake-label">FECHA SIMULADA</span></div><h1>Buenos días. Este es tu radar.</h1><p>Una visión clara del mercado y de las oportunidades que merecen atención.</p></div>
-            <button class="button button-light" id="refreshDemo">↻ <span>Actualizar vista</span></button>
-          </div>
-          <div class="market-strip">
-            <div class="market-intro"><span class="market-symbol">◉</span><span><b>Mercados globales</b><small>Resumen de referencia</small></span></div>
-            <div class="market-index"><small>S&P 500</small><b>6.842,16</b><span class="positive">▲ 0,84%</span></div>
-            <div class="market-index"><small>NASDAQ 100</small><b>25.184,70</b><span class="positive">▲ 1,12%</span></div>
-            <div class="market-index"><small>EURO STOXX 50</small><b>5.612,38</b><span class="negative">▼ 0,21%</span></div>
-            <div class="market-index"><small>BITCOIN</small><b>94.280 €</b><span class="positive">▲ 2,36%</span></div>
-            <span class="strip-note">Valores ficticios</span>
-          </div>
-
-          <div class="stat-grid">
-            <article class="stat-card"><div class="stat-top"><span>Oportunidades activas</span><span class="stat-icon violet">◎</span></div><div class="stat-value">04 <span class="stat-change positive">+2 hoy</span></div><div class="stat-foot">2 compra · 1 vigilancia · 1 rebote</div></article>
-            <article class="stat-card"><div class="stat-top"><span>Activos monitorizados</span><span class="stat-icon blue">⌕</span></div><div class="stat-value">12 <span class="stat-change">Universo v1</span></div><div class="stat-foot">Acciones, ETF y cripto</div></article>
-            <article class="stat-card"><div class="stat-top"><span>Cambios relevantes</span><span class="stat-icon amber">↗</span></div><div class="stat-value">03 <span class="stat-change amber-text">Últimas 24 h</span></div><div class="stat-foot">Eventos y movimientos simulados</div></article>
-            <article class="stat-card"><div class="stat-top"><span>Calidad media de señal</span><span class="stat-icon green">✳</span></div><div class="stat-value">82<span class="value-unit">/100</span><span class="stat-change positive">Alta</span></div><div class="stat-foot">Puntuación ilustrativa, no validada</div></article>
-          </div>
-
-          <div class="content-grid">
-            <article class="panel chart-panel">
-              <div class="panel-heading"><div><div class="panel-kicker">MERCADO DE REFERENCIA</div><h2>Evolución del mercado</h2><p>Índice S&amp;P 500 · Serie ilustrativa</p></div><div class="select-like">S&amp;P 500 <span>⌄</span></div></div>
-              <div class="chart-summary"><strong>6.842,16</strong><span class="positive">▲ 0,84% <small>hoy</small></span></div>
-              <div class="chart-area">
-                <div class="y-labels"><span>6.900</span><span>6.800</span><span>6.700</span><span>6.600</span></div>
-                <svg class="main-chart" viewBox="0 0 760 220" preserveAspectRatio="none" role="img" aria-label="Gráfico simulado de evolución del S&P 500"><defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#7768ed" stop-opacity=".22"/><stop offset="100%" stop-color="#7768ed" stop-opacity="0"/></linearGradient></defs><path class="chart-fill" d="M0 176 C28 164 40 172 68 151 S108 160 130 135 S171 145 197 121 S235 129 263 110 S300 121 328 96 S370 111 395 89 S431 104 458 74 S499 87 524 66 S565 79 589 51 S628 68 653 42 S697 55 724 27 L760 35 L760 220 L0 220Z"/><path class="chart-line" d="M0 176 C28 164 40 172 68 151 S108 160 130 135 S171 145 197 121 S235 129 263 110 S300 121 328 96 S370 111 395 89 S431 104 458 74 S499 87 524 66 S565 79 589 51 S628 68 653 42 S697 55 724 27 L760 35"/><line x1="0" y1="110" x2="760" y2="110" class="chart-grid"/><line x1="0" y1="165" x2="760" y2="165" class="chart-grid"/><circle cx="724" cy="27" r="5" class="chart-point"/></svg>
-              </div>
-              <div class="x-labels"><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span><span>15:00</span><span>16:00</span></div>
-              <div class="chart-periods"><button class="period active">1D</button><button class="period">1S</button><button class="period">1M</button><button class="period">3M</button><button class="period">1A</button><span>Actualización simulada</span></div>
-            </article>
-
-            <article class="panel radar-panel">
-              <div class="panel-heading"><div><div class="panel-kicker">SELECCIÓN DEL SISTEMA</div><h2>En el radar</h2><p>Oportunidades destacadas</p></div><button class="text-link" data-page="radar">Ver todas →</button></div>
-              <div class="opportunity-list">
-                <button class="opportunity-row" data-asset="NVDA"><span class="asset-logo logo-nvda">N</span><span class="opportunity-main"><b>NVIDIA <small>NVDA</small></b><small>Rebote tras corrección</small></span><span class="signal-score"><b>91</b><small>/100</small></span><span class="signal-tag buy">Compra</span></button>
-                <button class="opportunity-row" data-asset="ASML"><span class="asset-logo logo-asml">A</span><span class="opportunity-main"><b>ASML <small>ASML</small></b><small>Fortaleza relativa</small></span><span class="signal-score"><b>86</b><small>/100</small></span><span class="signal-tag watch">Vigilar</span></button>
-                <button class="opportunity-row" data-asset="MSFT"><span class="asset-logo logo-msft">M</span><span class="opportunity-main"><b>Microsoft <small>MSFT</small></b><small>Impulso de tendencia</small></span><span class="signal-score"><b>83</b><small>/100</small></span><span class="signal-tag buy">Compra</span></button>
-                <button class="opportunity-row" data-asset="BTC"><span class="asset-logo logo-btc">₿</span><span class="opportunity-main"><b>Bitcoin <small>BTC/USD</small></b><small>Volatilidad elevada</small></span><span class="signal-score"><b>74</b><small>/100</small></span><span class="signal-tag neutral">Rebote</span></button>
-              </div>
-              <div class="panel-footer-note"><span class="status-dot"></span> 4 señales activas · Última revisión 09:42</div>
-            </article>
-          </div>
-
-          <div class="bottom-grid">
-            <article class="panel">
-              <div class="panel-heading"><div><div class="panel-kicker">UNIVERSO V1</div><h2>Activos destacados</h2></div><button class="text-link" data-page="assets">Ver universo →</button></div>
-              <div class="mini-table">
-                <div class="mini-head"><span>ACTIVO</span><span>PRECIO</span><span>VARIACIÓN</span><span>SEÑAL</span></div>
-                <button class="mini-row" data-asset="NVDA"><span><i class="asset-dot nvda-dot"></i><b>NVIDIA</b><small>NVDA</small></span><b>182,40 $</b><span class="positive">+2,84%</span><em class="signal-tag buy">Compra</em></button>
-                <button class="mini-row" data-asset="MSFT"><span><i class="asset-dot msft-dot"></i><b>Microsoft</b><small>MSFT</small></span><b>528,16 $</b><span class="positive">+1,28%</span><em class="signal-tag buy">Compra</em></button>
-                <button class="mini-row" data-asset="META"><span><i class="asset-dot meta-dot"></i><b>Meta</b><small>META</small></span><b>672,30 $</b><span class="negative">−0,42%</span><em class="signal-tag neutral">Neutral</em></button>
-                <button class="mini-row" data-asset="JNJ"><span><i class="asset-dot jnj-dot"></i><b>Johnson &amp; Johnson</b><small>JNJ</small></span><b>168,92 $</b><span class="positive">+0,64%</span><em class="signal-tag watch">Vigilar</em></button>
-              </div>
-            </article>
-            <article class="panel news-panel">
-              <div class="panel-heading"><div><div class="panel-kicker">INTELIGENCIA DE EVENTOS</div><h2>Últimas novedades</h2></div><button class="text-link" data-page="news">Ver noticias →</button></div>
-              <div class="news-item"><span class="news-type event">EVENTO</span><div><b>Sector semiconductores</b><p>El índice sectorial acelera tras una sesión positiva.</p><small>Hace 18 min · Impacto potencial positivo</small></div></div>
-              <div class="news-item"><span class="news-type alert">ALERTA</span><div><b>Bitcoin · volatilidad</b><p>Movimiento superior al umbral configurado.</p><small>Hace 42 min · Requiere seguimiento</small></div></div>
-              <div class="news-item"><span class="news-type info">INFO</span><div><b>Microsoft · tendencia</b><p>Mejora del indicador de fortaleza relativa.</p><small>Hace 1 h · Señal técnica</small></div></div>
-            </article>
-          </div>
-          <div class="bottom-disclaimer">Los datos, precios, señales, puntuaciones y acontecimientos de esta demostración son inventados y no representan el mercado real. No constituyen recomendaciones de inversión.</div>
-        </section>
-
         <section class="page" id="page-radar">
           <div class="page-heading"><div><div class="eyebrow">DETECCIÓN DE OPORTUNIDADES</div><h1>Radar de oportunidades</h1><p>Señales ordenadas por calidad, urgencia y horizonte temporal.</p></div><span class="demo-chip">4 SEÑALES SIMULADAS</span></div>
           <div class="filter-row"><div class="filter-pills"><button class="filter active">Todas <b>4</b></button><button class="filter">Compra</button><button class="filter">Vigilar</button><button class="filter">Rebote</button></div><div class="select-like">Todos los horizontes <span>⌄</span></div></div>
@@ -116,15 +49,35 @@
           <div class="bottom-disclaimer">Ejemplo visual de señales y niveles ficticios. No hay motor de análisis detrás de estas tarjetas.</div>
         </section>
 
-        <section class="page" id="page-portfolio">
-          <div class="page-heading"><div><div class="eyebrow">SEGUIMIENTO PERSONAL</div><h1>Mi cartera virtual</h1><p>Una vista secundaria para seguir una cartera de ejemplo, sin conexión con ningún broker.</p></div><span class="demo-chip">CARTERA FICTICIA</span></div>
-          <div class="portfolio-summary">
-            <article class="panel portfolio-total"><small>VALOR TOTAL SIMULADO</small><strong>28.460,80 €</strong><span class="positive">▲ 1.284,20 € <b>(+4,72%)</b> desde el inicio</span><div class="portfolio-meta"><span>Capital inicial <b>27.176,60 €</b></span><span>Posiciones <b>5</b></span></div></article>
-            <article class="panel allocation-panel"><div class="panel-heading"><div><div class="panel-kicker">DISTRIBUCIÓN</div><h2>Asignación por activo</h2></div></div><div class="allocation-content"><div class="donut"><div><b>100%</b><small>Invertido</small></div></div><div class="allocation-legend"><span><i class="legend-dot purple"></i>NVIDIA <b>28%</b></span><span><i class="legend-dot blue"></i>Microsoft <b>24%</b></span><span><i class="legend-dot cyan"></i>SPY <b>22%</b></span><span><i class="legend-dot orange"></i>ASML <b>16%</b></span><span><i class="legend-dot green"></i>Bitcoin <b>10%</b></span></div></div></article>
+        <section class="page" id="page-history">
+          <div class="page-heading"><div><div class="eyebrow">SEGUIMIENTO Y VALIDACIÓN</div><h1>Histórico de señales</h1><p>Registro cronológico e inmutable de lo que propuso el radar y de lo que ocurrió después.</p></div><span class="demo-chip">RESULTADOS FICTICIOS</span></div>
+          <div class="stat-grid history-stats">
+            <article class="stat-card"><div class="stat-top"><span>Señales emitidas</span><span class="stat-icon violet">◎</span></div><div class="stat-value">128</div><div class="stat-foot">Todas conservadas, incluidas las fallidas</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Objetivo alcanzado</span><span class="stat-icon green">↗</span></div><div class="stat-value">61,4%</div><div class="stat-foot">Muestra ficticia · señales cerradas</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Rentabilidad media</span><span class="stat-icon blue">%</span></div><div class="stat-value positive">+3,8%</div><div class="stat-foot">Antes de costes · ejemplo simulado</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Notificadas por Telegram</span><span class="stat-icon amber">➤</span></div><div class="stat-value">94%</div><div class="stat-foot">Entrega simulada · no conectado</div></article>
           </div>
-          <article class="panel portfolio-chart-panel"><div class="panel-heading"><div><div class="panel-kicker">EVOLUCIÓN</div><h2>Rendimiento de la cartera</h2><p>Rentabilidad acumulada · Datos inventados</p></div><div class="chart-summary"><strong class="positive">+4,72%</strong></div></div><div class="portfolio-line"><svg viewBox="0 0 900 170" preserveAspectRatio="none"><defs><linearGradient id="portfolioFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#21a58b" stop-opacity=".18"/><stop offset="100%" stop-color="#21a58b" stop-opacity="0"/></linearGradient></defs><path d="M0 142 C40 132 52 145 92 126 S150 133 180 118 S232 127 274 102 S335 116 365 92 S416 104 454 84 S510 92 548 66 S600 84 640 57 S702 70 740 42 S810 48 900 20 L900 170 L0 170Z" fill="url(#portfolioFill)"/><path d="M0 142 C40 132 52 145 92 126 S150 133 180 118 S232 127 274 102 S335 116 365 92 S416 104 454 84 S510 92 548 66 S600 84 640 57 S702 70 740 42 S810 48 900 20" fill="none" stroke="#20a58a" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div><div class="x-labels"><span>JUN</span><span>JUL</span><span>AGO</span><span>SEP</span><span>OCT</span><span>NOV</span></div></article>
-          <article class="panel"><div class="panel-heading"><div><div class="panel-kicker">POSICIONES</div><h2>Activos en cartera</h2></div><button class="button button-light" disabled>＋ Añadir posición</button></div><div class="table-scroll"><table><thead><tr><th>ACTIVO</th><th>UNIDADES</th><th>PRECIO MEDIO</th><th>PRECIO ACTUAL</th><th>VALOR</th><th>RENTABILIDAD</th></tr></thead><tbody><tr><td><b>NVIDIA</b><small>NVDA</small></td><td>12</td><td>164,20 $</td><td>182,40 $</td><td>2.188,80 $</td><td class="positive">+11,08%</td></tr><tr><td><b>Microsoft</b><small>MSFT</small></td><td>5</td><td>501,00 $</td><td>528,16 $</td><td>2.640,80 $</td><td class="positive">+5,42%</td></tr><tr><td><b>SPDR S&amp;P 500</b><small>SPY</small></td><td>8</td><td>648,00 $</td><td>662,10 $</td><td>5.296,80 $</td><td class="positive">+2,17%</td></tr><tr><td><b>ASML</b><small>ASML</small></td><td>3</td><td>672,00 €</td><td>684,20 €</td><td>2.052,60 €</td><td class="positive">+1,82%</td></tr><tr><td><b>Bitcoin</b><small>BTC</small></td><td>0,08</td><td>89.400 $</td><td>94.280 $</td><td>7.542,40 $</td><td class="positive">+5,46%</td></tr></tbody></table></div></article>
-          <div class="bottom-disclaimer">Cartera de ejemplo creada exclusivamente para evaluar la interfaz. No representa posiciones reales.</div>
+          <article class="panel history-performance">
+            <div class="panel-heading"><div><div class="panel-kicker">EVALUACIÓN POR HORIZONTE</div><h2>¿Qué ocurrió después de cada señal?</h2><p>Rentabilidad observada en ventanas fijas desde la emisión y comparación con benchmark.</p></div><span class="demo-chip">DATOS DE EJEMPLO</span></div>
+            <div class="table-scroll"><table><thead><tr><th>HORIZONTE</th><th>SEÑALES EVALUABLES</th><th>RENT. MEDIA</th><th>BENCHMARK</th><th>ALPHA</th><th>OBJETIVO</th></tr></thead><tbody>
+              <tr><td><b>1 día</b></td><td>118</td><td class="positive">+0,6%</td><td>+0,2%</td><td class="positive">+0,4 pp</td><td>—</td></tr>
+              <tr><td><b>5 días</b></td><td>109</td><td class="positive">+1,4%</td><td>+0,7%</td><td class="positive">+0,7 pp</td><td>—</td></tr>
+              <tr><td><b>10 días</b></td><td>96</td><td class="positive">+2,1%</td><td>+1,1%</td><td class="positive">+1,0 pp</td><td>—</td></tr>
+              <tr><td><b>30 días</b></td><td>72</td><td class="positive">+3,8%</td><td>+2,4%</td><td class="positive">+1,4 pp</td><td>—</td></tr>
+              <tr><td><b>90 días</b></td><td>31</td><td class="positive">+7,2%</td><td>+5,1%</td><td class="positive">+2,1 pp</td><td>—</td></tr>
+            </tbody></table></div>
+            <p class="history-note">Las ventanas aún no completadas deben aparecer como «pendientes», nunca como cero ni excluirse silenciosamente. La comparación debe usar el benchmark y el precio de referencia definidos al emitir la señal.</p>
+          </article>
+          <article class="panel history-ledger">
+            <div class="panel-heading"><div><div class="panel-kicker">LEDGER DE SEÑALES</div><h2>Registro de actividad</h2><p>Incluye la alerta original, la entrega y la evolución posterior. Los ejemplos no representan resultados reales.</p></div><div class="select-like">Todas las señales <span>⌄</span></div></div>
+            <div class="table-scroll"><table><thead><tr><th>EMISIÓN</th><th>ACTIVO / SEÑAL</th><th>PRECIO REF.</th><th>NIVELES</th><th>TELEGRAM</th><th>ESTADO</th><th>1D</th><th>5D</th><th>10D</th><th>30D</th><th>90D</th></tr></thead><tbody>
+              <tr><td>24 nov · 09:15</td><td><b>NVIDIA · Compra moderada</b><small>Score 91 · Corto plazo</small></td><td>182,40 $</td><td><small>Entrada ≤184 $</small><small>Obj. 198 $ · Stop 174 $</small></td><td><span class="signal-tag buy">Enviada</span><small>09:16</small></td><td><span class="signal-tag watch">Activa</span></td><td class="positive">+0,8%</td><td class="positive">+2,1%</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>21 nov · 16:05</td><td><b>ASML · Compra fuerte</b><small>Score 89 · Medio plazo</small></td><td>684,20 €</td><td><small>Entrada ≤690 €</small><small>Obj. 735 € · Stop 655 €</small></td><td><span class="signal-tag buy">Enviada</span><small>16:06</small></td><td><span class="signal-tag buy">Objetivo</span></td><td class="positive">+1,2%</td><td class="positive">+4,4%</td><td class="positive">+7,1%</td><td class="positive">+7,1%</td><td>—</td></tr>
+              <tr><td>18 nov · 10:30</td><td><b>Bitcoin · Compra moderada</b><small>Score 78 · Corto plazo</small></td><td>91.200 $</td><td><small>Entrada ≤92.000 $</small><small>Obj. 98.000 $ · Stop 88.000 $</small></td><td><span class="signal-tag buy">Enviada</span><small>10:31</small></td><td><span class="signal-tag neutral">Stop alcanzado</span></td><td class="negative">−0,4%</td><td class="negative">−3,5%</td><td class="negative">−3,5%</td><td class="negative">−3,5%</td><td>—</td></tr>
+              <tr><td>14 nov · 14:20</td><td><b>Microsoft · Vigilancia</b><small>Score 72 · Medio plazo</small></td><td>520,10 $</td><td><small>Entrada ≤515 $</small><small>Obj. 560 $ · Stop 495 $</small></td><td><span class="signal-tag neutral">No enviada</span><small>No era señal activa</small></td><td><span class="signal-tag neutral">Entrada no alcanzada</span></td><td class="positive">+0,2%</td><td class="positive">+1,0%</td><td class="positive">+2,4%</td><td class="positive">+3,1%</td><td class="positive">+5,6%</td></tr>
+            </tbody></table></div>
+          </article>
+          <div class="bottom-disclaimer">Maqueta con resultados inventados. En producción, cada señal se conservará con su versión de reglas, evidencia, precio y hora de emisión; las evaluaciones posteriores se añadirán sin alterar el registro original. Rentabilidades, costes, dividendos, divisa y benchmark deberán tratarse de forma consistente.</div>
         </section>
 
         <section class="page" id="page-assets">
