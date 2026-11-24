@@ -79,7 +79,7 @@ El usuario confirma incluir obligatoriamente NVIDIA, Microsoft y Meta. Se propon
 | 2 | Microsoft | MSFT | EE. UU.; software/cloud |
 | 3 | Meta Platforms | META | EE. UU.; plataformas/publicidad/IA |
 | 4 | Amazon | AMZN | EE. UU.; comercio/cloud |
-| 5 | Core Natural Resources | CNR | EE. UU.; carbón térmico y metalúrgico; seguimiento de alto riesgo cíclico |
+| 5 | Johnson & Johnson | JNJ | EE. UU.; salud; diversificación sectorial |
 | 6 | ASML | ASML (Euronext Amsterdam) | Europa; semiconductores/equipamiento |
 | 7 | SAP | SAP (Xetra) | Europa; software empresarial |
 | 8 | Banco Santander | SAN (BME Madrid) | Europa; banca |
@@ -90,10 +90,11 @@ El usuario confirma incluir obligatoriamente NVIDIA, Microsoft y Meta. Se propon
 
 Los símbolos exactos por proveedor pueden variar; resolver ticker, MIC/bolsa, moneda y tipo de instrumento antes de comparar datos. No confundir el ticker estadounidense CNR con otros instrumentos homónimos.
 
-### Criterio sobre Core Natural Resources (CNR)
-CNR se incluye para vigilarla, no como componente «core» ni como apuesta de largo plazo aprobada. Es una compañía expuesta a carbón térmico y metalúrgico, precios de materias primas, demanda de acero/energía, regulación climática, riesgos operativos mineros, transporte, deuda y transición energética. La empresa también explora líneas nuevas (incluidas tierras raras), pero no deben valorarse como negocio consolidado sin evidencia de ingresos, márgenes y escala. Su 10-Q y comunicaciones de 2026 enumeran expresamente volatilidad de precios, demanda, regulación, operaciones, reservas y riesgos de integración. El radar deberá tratarla como caso cíclico/especial y exigir margen de seguridad, balance, generación de caja a través del ciclo y valoración conservadora antes de emitir una señal positiva.
+### Criterio de diversificación sectorial: Johnson & Johnson (JNJ)
 
-Fuente primaria: SEC, 10-Q de Core Natural Resources para el trimestre finalizado el 30-09-2026: https://www.sec.gov/Archives/edgar/data/1710366/000171036626000068/cnr-20260930.htm ; resultados Q3 2026: https://www.sec.gov/Archives/edgar/data/1710366/000171036626000067/cnrq32026er-exhibit991.htm
+Se sustituye CNR por JNJ en el universo inicial. El objetivo es incorporar el sector salud como referencia no tecnológica y evitar que el conjunto de prueba dependa de una minera de carbón cíclica y de alto riesgo. La inclusión de JNJ es para monitorización y validación de datos, no una recomendación de compra ni una conclusión sobre su valoración.
+
+CNR puede incorporarse más adelante si se decide analizar específicamente materias primas, energía o transición energética.
 
 ### Cadencia operativa v1
 - No se exige intradía ni streaming/WebSocket.
