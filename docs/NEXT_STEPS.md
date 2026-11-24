@@ -288,3 +288,17 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [x] Comprobar que Other Application Usage (categoría que incluye análisis cuantitativo) aparece sin tarifa publicada para Xetra Post-Trade; no asumir que la tarifa Entry cubre screening/señales.
 - [x] Confirmar que Market Radar no encaja en «simple analytics» según la FAQ DBAG por generar análisis técnico y señales.
 - [x] Decisión: descartar Xetra para screening automatizado salvo nueva licencia pública clara y asumible. No contactar al proveedor.
+
+
+## Actualización documental — fuentes post-trade europeas (24-11-2026)
+
+- [x] Investigar SIX Swiss Exchange, Nasdaq Nordic/Baltic, LSE/UK venues, BME y otros mercados europeos con documentación oficial.
+- [x] Identificar NGM como fuente adicional de post-trade CSV gratuito para uso no comercial.
+- [x] Separar fuentes con transacciones aptas potencialmente para OHLCV de fuentes que sólo publican cierre/último precio.
+- [x] Documentar arquitectura por adaptadores y barras venue-specific en docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md.
+- [ ] Validar documentalmente esquema y flags de Nasdaq Nordic/Baltic y NGM, sin descargar ficheros.
+- [ ] Resolver retención raw y derechos de automatización para cada fuente antes de ingesta recurrente.
+- [ ] Mantener BME y LSEG bloqueados hasta que la documentación pública resuelva uso non-display/derived y retención.
+- [ ] No descargar muestras, crear cuentas, ejecutar APIs ni consumir cuotas sin autorización expresa posterior.
+
+**Siguiente prioridad:** Euronext como piloto principal; Nasdaq Nordic/Baltic como segundo candidato; NGM tercero. SIX Historical Prices no se utilizará para generar OHLCV. La validación técnica de cualquier feed queda para una fase posterior y acotada, con autorización expresa.
