@@ -638,3 +638,21 @@ Ese factor produce 268.71 para el 23 nov., 269.1279 para el 20 nov. y 265.8144 p
 
 **Siguiente paso recomendado:** resolver la semántica de ajustes y dividendos de JNJ y, en paralelo, validar la cobertura histórica EODHD de varios años con una muestra acotada. No hacer nuevas llamadas API hasta definir símbolos, fechas y consumo máximo de la prueba.
 
+
+
+---
+
+## 18. Prueba acotada de profundidad histórica EODHD — autorizada, pendiente de ejecución
+
+El usuario ha autorizado una prueba adicional de exactamente cuatro peticiones para NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC. El modo `--history-sample` consulta barras diarias desde 2025-11-24 hasta 2026-11-24, conserva todas las barras devueltas y registra número de barras y primera/última fecha.
+
+**Límites de ejecución:**
+- Máximo cuatro peticiones EODHD, una por símbolo; sin reintentos ni paginación.
+- Alpaca queda expresamente omitido.
+- Ventana fija de un año; no ampliar fechas ni hacer consultas adicionales.
+- Consumo estimado: cuatro unidades. Si se suman a las 12 llamadas iniciales del mismo día, serían 16/20 según la cuota documental; el contador real de la cuenta prevalece.
+- El resultado todavía no está disponible. No inferir cobertura histórica ni continuidad hasta revisar el JSON generado por el titular.
+
+**Objetivo de evaluación:** profundidad realmente devuelta, continuidad observable, fechas inicial/final, huecos y consistencia de OHLC/adjustedClose en cuatro clases de activo/mercado. Una muestra anual no demuestra acceso a más de un año, exactitud independiente ni derechos de almacenamiento/uso.
+
+Instrucciones exactas y comando: [PROVIDER_VALIDATION_WINDOWS.md](PROVIDER_VALIDATION_WINDOWS.md), sección 4C.
