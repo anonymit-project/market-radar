@@ -84,8 +84,16 @@ Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso i
 
 
 ## Próximo paso — validar universo y cuotas gratuitas
-- [ ] Resolver ticker/MIC/bolsa/moneda de los 12 instrumentos definidos en PRODUCT_SPEC.md.
-- [ ] Construir matriz de cobertura por proveedor y endpoint para una descarga EOD diaria; medir créditos/llamadas para 12 instrumentos.
-- [ ] Evaluar fuentes de eventos para una segunda ejecución selectiva, sin descarga completa.
-- [ ] Diseñar el comportamiento de abstención cuando falten datos, haya retraso excesivo o discrepancias.
-- [ ] Sólo tras autorización expresa, ejecutar llamadas de prueba con cuotas gratuitas.
+- [x] Definir un universo de 12 instrumentos con sustitución de CNR por JNJ para incorporar salud.
+- [x] Construir matriz documental preliminar de cobertura, endpoints, profundidad histórica y consumo EOD por proveedor (DATA_SOURCES.md, sección 13).
+- [x] Evaluar GDELT + fuentes primarias para una segunda ejecución selectiva, sin volver a descargar precios.
+- [ ] Confirmar mediante prueba los símbolos/MIC, cobertura real y moneda de los 12 instrumentos; los símbolos de referencia no equivalen a validación de endpoint.
+- [ ] Diseñar y probar el comportamiento de abstención ante datos ausentes, retrasados, desajustados o discrepantes.
+- [ ] Obtener autorización expresa antes de ejecutar llamadas API con cuotas gratuitas o usar credenciales personales.
+
+
+## Próximo paso — prueba técnica limitada de cobertura
+
+La investigación documental apunta a EODHD Free como primer candidato (12 llamadas teóricas para 12 símbolos, sobre 20 diarias), con Alpaca Basic para contraste de acciones/ETF USA y FMP o Alpha Vantage como contraste alternativo. Esta hipótesis no equivale a proveedor aprobado.
+
+**Bloqueo:** no ejecutar llamadas API, crear cuentas, utilizar credenciales ni consumir cuotas sin autorización expresa del usuario. Tras recibirla, realizar una prueba acotada, registrar endpoints, símbolos exactos, respuestas, errores, timestamps, ajustes, histórico y consumo real, y comparar resultados sin activar planes de pago.
