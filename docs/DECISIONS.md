@@ -230,3 +230,14 @@ El carácter privado/no comercial de Market Radar no se tratará como exención 
 ## Decisión — Xetra para el Explorador (24-11-2026)
 
 Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque los ficheros delayed se descargan gratis con 15 minutos de retraso, la política DBAG separa acceso de uso non-display. Market Radar realiza análisis técnico y genera señales, excluidos de simple analytics. La lista de precios v11_01 publica 480 €/mes Entry para Xetra Post-Trade en la categoría tarifada por Device Access, pero deja vacía la columna Other Application Usage; no hay tarifa pública identificada que habilite claramente el uso requerido. No contactar al proveedor ni asumir que la tarifa de 480 € cubre este caso.
+
+
+## Fuentes europeas post-trade adicionales — 24-11-2026
+
+- Nasdaq Nordic/Baltic se incorpora como candidato fuerte para OHLCV por venue: CSV, 15 min de retraso, ficheros cada minuto y uso no comercial gratuito; la ventana publicada es 48 h, no permiso de retención indefinida. Esquema, flags y completitud pendientes.
+- NGM se incorpora como candidato secundario: CSV, 15 min de retraso, 72 h de disponibilidad y uso no comercial gratuito; cobertura y campos transaccionales pendientes.
+- SIX Historical Prices no sirve para construir OHLCV completo: ofrece cierre y turnover, no el tape de operaciones. SIX MDDX es un producto licenciado.
+- LSEG/TRADEcho y BME siguen bloqueados por incertidumbre sobre non-display/automatización y retención.
+- Euronext sigue siendo la prioridad inicial; no se presume autorización de retención indefinida de raw.
+- Arquitectura propuesta: adaptadores por venue, normalización de flags/correcciones/deduplicación, OHLCV venue-specific y quality gate; no llamar consolidado al volumen parcial.
+- Detalle y fuentes: docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md.
