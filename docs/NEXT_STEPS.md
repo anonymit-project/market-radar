@@ -177,3 +177,15 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 
 **Siguiente paso recomendado:** diseñar una prueba histórica EODHD acotada para medir profundidad, continuidad y consistencia de ajustes en varios activos, con símbolos, fechas y consumo máximo definidos antes de ejecutarla.
 
+
+
+## Próximo paso — muestra histórica EODHD (24-11-2026)
+
+- [x] Definir cuatro instrumentos representativos: NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC.
+- [x] Preparar modo aislado `--history-sample`: ventana 2025-11-24 a 2026-11-24, cuatro peticiones exactas, sin Alpaca, reintentos ni paginación.
+- [x] Documentar el comando y el límite de cuota en `docs/PROVIDER_VALIDATION_WINDOWS.md`.
+- [ ] El titular comprueba que el contador EODHD permite al menos cuatro llamadas adicionales y ejecuta una sola vez `node .\scripts\validate-providers.mjs --history-sample`.
+- [ ] El titular adjunta sólo el JSON de resultados; nunca `.env.local` ni claves.
+- [ ] Analizar barras devueltas, primera/última fecha, continuidad, huecos y ajustes; registrar conclusiones en DATA_SOURCES.md.
+
+**Siguiente acción exacta:** tras `git pull`, revisar el contador de EODHD y ejecutar el comando anterior una vez. No ejecutar otros modos del script ese día para evitar consumo accidental.
