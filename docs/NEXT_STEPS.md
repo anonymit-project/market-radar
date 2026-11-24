@@ -11,12 +11,12 @@
 ## Fase 1 — Validación de fuentes de datos (actual)
 1. Crear una matriz por activo/bolsa/endpoint para EODHD, Twelve Data, FMP, Massive, Alpaca, Finnhub, Alpha Vantage, Stooq y fuentes primarias.
 2. Verificar documentación oficial, planes, cuotas, histórico, frescura y cobertura.
-3. Analizar licencias de uso interno, display a tres usuarios, derivados, almacenamiento, redistribución y uso con IA.
-4. Solicitar aclaración comercial por escrito a proveedores finalistas.
+3. Analizar licencias de uso personal del titular, automatización, almacenamiento, derivados, alertas y uso con IA.
+4. Documentar cláusulas ambiguas; sólo solicitar aclaraciones no comerciales/materiales si no pueden resolverse con fuentes oficiales, sin enviar consultas sin autorización.
 5. Ejecutar pruebas reproducibles con un conjunto común de símbolos USA/EU/ETF/cripto, sólo tras autorización para consumir cuotas o usar credenciales.
 6. Comparar calidad OHLCV, ajustes, latencia, huecos, símbolos deslistados y news metadata.
 7. Elaborar coste mensual realista con frecuencia y universo definidos.
-**Entregable:** matriz de resultados, scripts de prueba, evidencias, riesgos y recomendación respaldada. Sin contratación.
+**Entregable:** matriz de resultados, scripts de prueba, evidencias, riesgos y recomendación respaldada. Objetivo de coste cero; sin contratación.
 
 ## Fase 2 — Viabilidad de Event Intelligence
 - Seleccionar fuentes autorizadas y flujo de fuentes primarias.
@@ -45,7 +45,7 @@
 **Entregable:** informe de validación y decisión de continuar/no continuar.
 
 ## Fase 6 — Dashboard y notificaciones
-Sólo tras validar fases anteriores: PWA, autenticación de tres usuarios, histórico, estadísticas, carteras virtuales, Telegram y email.
+Sólo tras validar fases anteriores: PWA privada para un usuario, histórico, estadísticas, cartera virtual individual (si se mantiene), Telegram y email.
 
 ## Condiciones de avance
 No saltar de fase por entusiasmo. Cada fase debe terminar con evidencias, decisiones, costes y riesgos. No contratar ni publicar datos a usuarios hasta confirmar licencias.
@@ -67,13 +67,14 @@ Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso i
 - [ ] Reevaluar EODHD, Twelve Data, FMP, Massive, Alpaca, Finnhub, Alpha Vantage y Stooq bajo licencias personales/individuales.
 - [ ] Para cada proveedor, verificar expresamente: dashboard privado del titular; API/automatización; almacenamiento local y caché; histórico y backtesting; indicadores/señales no compartidos; alertas Telegram/email al titular; procesamiento por LLM; retención y borrado al cancelar; derechos de exchange.
 - [ ] Verificar fuentes de noticias: GDELT como candidato de metadatos con atribución; Marketaux y APIs de noticias según licencia individual.
-- [ ] Consultar por escrito sólo los puntos materiales que no queden resueltos en términos/documentación oficial. No enviar las antiguas consultas de licencias multiusuario.
+- [ ] Consultar por escrito sólo los puntos materiales que no queden resueltos en términos/documentación oficial, previa autorización del usuario. No enviar las antiguas consultas de licencias multiusuario.
 - [ ] Comparar cobertura USA/EU/ETF/cripto, granularidad, latencia, histórico, cuotas y coste para el universo y frecuencia previstos.
+- [ ] Priorizar opciones gratuitas; no estudiar ni contratar planes de pago hasta que el sistema gratuito funcione y se hayan medido sus limitaciones.
 - [ ] No ejecutar pruebas API, consumir cuotas ni usar credenciales hasta autorización expresa.
 
 **Criterio de salida:** shortlist de proveedor(es) cuyo uso individual cubra el caso real, con restricciones, coste, fuentes subyacentes y evidencia oficial documentados. Ningún proveedor queda aprobado hasta terminar esa evaluación. No iniciar desarrollo antes.
 
-**Siguiente paso:** rehacer la comparación de licencias y capacidades con EODHD como candidato prioritario para históricos y backtesting personal, contrastándolo con Twelve Data, FMP y Massive. Después evaluar feeds especializados (Alpaca/Finnhub) y alternativas gratuitas.
+**Siguiente paso:** definir un universo mínimo de prueba (símbolos USA, Europa, ETF y cripto) y una frecuencia de actualización realista para que la ingesta quepa en cuotas gratuitas. Después, con autorización expresa, ejecutar pruebas reproducibles sin activar planes de pago.
 
 ## Regla de continuidad
 Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
