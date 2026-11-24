@@ -129,3 +129,16 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 **Siguiente acción exacta del titular:** descargar/actualizar el repositorio, seguir [la guía Windows](PROVIDER_VALIDATION_WINDOWS.md), ejecutar el script una sola vez y adjuntar el JSON generado. No enviar claves, archivo `.env.local` ni capturas que las muestren.
 
 **Restricciones vigentes:** no contratar, activar pruebas de pago, crear cuentas en nombre del titular, compartir credenciales ni descargar históricos masivos. Esta preparación no selecciona proveedor ni inicia el desarrollo de la aplicación.
+
+
+## Estado tras primera prueba local — 24-11-2026
+
+- [x] El titular ejecutó el harness y aportó el JSON: EODHD aceptó 12/12 símbolos; Alpaca SIP devolvió HTTP 403 por restricción de suscripción.
+- [x] Registrar los resultados observados y sus límites en `docs/DATA_SOURCES.md`.
+- [x] Modificar el harness para permitir una ejecución exclusiva de Alpaca con feed IEX mediante `--alpaca-only`, sin llamadas a EODHD.
+- [x] Documentar el modo aislado en `docs/PROVIDER_VALIDATION_WINDOWS.md`.
+- [ ] El titular ejecuta una vez `node .\\scripts\\validate-providers.mjs --alpaca-only` y aporta el JSON resultante.
+- [ ] Contrastar la cuota real consumida en EODHD con su contador; no repetir la prueba EODHD para ello si el panel ya muestra el consumo.
+- [ ] Contrastar precios EODHD con una fuente independiente y ampliar después la validación de histórico/ajustes sólo con autorización expresa.
+
+**Siguiente acción exacta:** actualizar el repositorio con `git pull`, ejecutar el comando Alpaca IEX indicado y adjuntar únicamente el JSON nuevo. No ejecutar el modo completo.
