@@ -556,3 +556,29 @@ Hasta completar esos puntos, EODHD sigue siendo primer candidato documental y Al
 - No se ha validado aún el uso de datos en automatizaciones, almacenamiento persistente ni procesamiento por LLM; siguen sujetos a los términos del plan y sus fuentes subyacentes.
 
 **Pendiente:** ejecutar una sola vez `node .\\scripts\\validate-providers.mjs --alpaca-only` desde PowerShell y aportar el nuevo JSON. No ejecutar el modo completo para esta comprobación, porque volvería a consumir hasta 12 llamadas EODHD.
+
+---
+
+## 16. Resultado de la prueba Alpaca Basic con IEX (24-11-2026)
+
+**Evidencia:** informe aportado por el titular: `validation-results/provider-validation-2026-11-24T11-54-56-212Z.json`. Modo `alpaca-only-iex`; ventana 2026-11-17 a 2026-11-24.
+
+| Proveedor | Resultado observado | Peticiones | Lectura |
+|---|---|---:|---|
+| Alpaca Basic, feed IEX | 6/6 símbolos aceptados (NVDA, MSFT, META, AMZN, JNJ y SPY); 0 ausentes | 1 agrupada | Acceso técnico EOD diario confirmado para los seis símbolos USA probados mediante IEX. |
+| EODHD | Omitido expresamente | 0 | El modo aislado respetó el límite y no consumió cuota EODHD. |
+
+Parámetros: `timeframe=1Day`, `feed=iex`, `adjustment=raw`; hasta tres barras por símbolo; sin reintentos ni paginación. No se detectó página adicional.
+
+**Interpretación y límites:**
+- Alpaca Basic queda confirmado como candidato técnico complementario para barras diarias de esos seis activos USA; no como proveedor aprobado para producción.
+- IEX sólo representa operaciones reportadas por ese centro de negociación. Sus volúmenes no son comparables directamente con el volumen consolidado SIP. Los precios también deben contrastarse antes de confiar en ellos.
+- La muestra de tres barras no valida precisión, cobertura intradía, histórico profundo, ajustes corporativos ni continuidad.
+- Esta prueba no cubre los cuatro instrumentos europeos ni BTC/ETH.
+- Sigue pendiente revisar derechos de uso, almacenamiento, automatización, derivados y procesamiento por LLM bajo los términos aplicables y los derechos de mercado.
+- La ejecución anterior sin claves no realizó llamadas; la prueba válida es la del informe de las 11:54:55Z.
+
+**Estado conjunto:** EODHD devolvió 12/12 símbolos en la primera prueba; Alpaca IEX devolvió 6/6 símbolos USA en esta segunda prueba aislada. Son resultados iniciales de cobertura técnica, no una comparación de exactitud ni una decisión de arquitectura.
+
+**Siguiente validación recomendada:** comparar EODHD y Alpaca IEX para los seis símbolos USA en fechas comunes, verificando OHLC y cierres con una tercera fuente independiente. No comparar volúmenes IEX con volúmenes consolidados. Después, evaluar histórico y ajustes corporativos. No repetir consultas EODHD ni consumir nuevas cuotas hasta definir una prueba concreta.
+
