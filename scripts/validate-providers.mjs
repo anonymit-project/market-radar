@@ -257,7 +257,15 @@ const report = {
 console.log("Market Radar — prueba limitada de proveedores");
 console.log("Ventana consultada: " + from + " a " + to + (historySampleOnly ? " (muestra histórica EOD)" : " (barras diarias recientes)") + ".");
 console.log("No se mostrarán claves ni URLs con credenciales.");
-if (alpacaOnlyIex) {
+if (historySampleOnly) {
+  if (eodhdToken) {
+    console.log("EODHD: iniciando exactamente cuatro consultas históricas...");
+    report.providers.push(await testEodhdHistory(eodhdToken, from, to));
+  } else {
+    report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Falta EODHD_API_TOKEN en .env.local o en el entorno.") });
+  }
+  report.providers.push({ provider: "Alpaca", ...emptyProvider("skipped", "Modo --history-sample: Alpaca no se consulta.") });
+} else if (alpacaOnlyIex) {
   report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Modo --alpaca-only: EODHD no se consulta ni consume cuota.") });
 } else if (eodhdToken) {
   console.log("EODHD: iniciando hasta 12 consultas individuales...");
@@ -265,7 +273,9 @@ if (alpacaOnlyIex) {
 } else {
   report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Falta EODHD_API_TOKEN en .env.local o en el entorno.") });
 }
-if (alpacaKey && alpacaSecret) {
+if (historySampleOnly) {
+  report.providers.push({ provider: "Alpaca", ...emptyProvider("skipped", "Modo --history-sample: Alpaca no se consulta.") });
+} else if (alpacaKey && alpacaSecret) {
   const feed = alpacaOnlyIex ? "iex" : "sip";
   console.log("Alpaca: iniciando una consulta agrupada para seis símbolos USA (feed " + feed.toUpperCase() + ")...");
   report.providers.push(await testAlpaca(alpacaKey, alpacaSecret, from, to, feed));
