@@ -10,7 +10,7 @@
 - Calendarios, splits, dividendos, ajustes y símbolos deslistados.
 - Cuotas por minuto/día, pesos de endpoint, concurrencia y límites de WebSocket.
 - Precio mensual real, facturación anual, impuestos y add-ons.
-- Derechos de almacenamiento, caché, uso interno, visualización a tres usuarios, derivados, redistribución y uso con IA.
+- Derechos de almacenamiento, caché, uso interno, uso privado individual del titular, derivados, redistribución y uso con IA.
 - Fiabilidad, SLA, soporte, estabilidad de esquemas y pruebas reproducibles.
 
 ## 2. Proveedores de mercado
@@ -360,3 +360,113 @@ Fuente primaria: SEC, 10-Q de Core Natural Resources para el trimestre finalizad
 - Si una fuente gratuita no aporta precio fresco o histórico suficiente, etiquetar la carencia y abstenerse; nunca presentar dato retrasado como cotización ejecutable.
 
 **Implicación para proveedores gratuitos:** la comparación debe cubrir los 12 instrumentos con una sola actualización EOD diaria, no streaming. Medir número de llamadas/créditos por símbolo, resolución de identificadores y cobertura histórica real. Para la segunda ejecución, preferir sólo fuentes de eventos/noticias y no volver a descargar todo el histórico. No ejecutar estas llamadas hasta autorización expresa.
+
+
+---
+
+## 13. Matriz documental de cobertura y consumo EOD — 24-11-2026
+
+**Alcance de esta revisión:** documentación pública oficial; no se han ejecutado llamadas API, usado credenciales, creado cuentas ni consumido cuotas. Las cifras son límites publicados y estimaciones teóricas, no resultados de pruebas. Ningún proveedor queda aprobado.
+
+### 13.1 Universo de prueba actualizado
+
+Se sustituye CNR por **Johnson & Johnson (JNJ)**. El objetivo es incorporar salud como sector defensivo y evitar que el único ejemplo no tecnológico sea una minera de carbón de alto riesgo cíclico. CNR no queda descartada para siempre: simplemente deja de ser necesaria en esta primera validación.
+
+| # | Instrumento | Símbolo de referencia | Mercado / sector |
+|---:|---|---|---|
+| 1 | NVIDIA | NVDA | Nasdaq / semiconductores |
+| 2 | Microsoft | MSFT | Nasdaq / software y cloud |
+| 3 | Meta Platforms | META | Nasdaq / plataformas y publicidad |
+| 4 | Amazon | AMZN | Nasdaq / comercio y cloud |
+| 5 | Johnson & Johnson | JNJ | NYSE / salud |
+| 6 | ASML | ASML | Euronext Amsterdam / semiconductores |
+| 7 | SAP | SAP | Xetra / software empresarial |
+| 8 | Banco Santander | SAN | BME Madrid / banca |
+| 9 | SPDR S&P 500 ETF Trust | SPY | NYSE Arca / ETF USA |
+| 10 | Vanguard FTSE All-World UCITS ETF | VWCE | Xetra / ETF global |
+| 11 | Bitcoin | BTC/USD | Cripto |
+| 12 | Ethereum | ETH/USD | Cripto |
+
+Este universo sirve para probar cobertura, no representa una cartera diversificada ni una recomendación de compra. Sigue teniendo bastante exposición indirecta a tecnología por las cuatro acciones estadounidenses y los dos ETF.
+
+### 13.2 Identificadores de referencia
+
+Los siguientes símbolos son una primera normalización, no un contrato universal entre proveedores. Los sufijos dependen de cada API.
+
+| Activo | EODHD (formato candidato) | MIC / plaza de referencia | Moneda |
+|---|---|---|---|
+| NVDA | NVDA.US | XNAS | USD |
+| MSFT | MSFT.US | XNAS | USD |
+| META | META.US | XNAS | USD |
+| AMZN | AMZN.US | XNAS | USD |
+| JNJ | JNJ.US | XNYS | USD |
+| ASML | ASML.AS | XAMS | EUR |
+| SAP | SAP.XETRA | XETR | EUR |
+| SAN | SAN.MC | BMEX | EUR |
+| SPY | SPY.US | ARCX | USD |
+| VWCE | VWCE.XETRA | XETR | EUR |
+| BTC | BTC-USD.CC | Mercado cripto agregado; proveedor pendiente | USD |
+| ETH | ETH-USD.CC | Mercado cripto agregado; proveedor pendiente | USD |
+
+Evidencia de símbolos EODHD: su API EOD usa `SYMBOL.EXCHANGE`, admite `.AS`, `.XETRA` y `.MC`; la ficha de SAN.MC identifica Madrid/BMEX y la ficha de VWCE.XETRA confirma el ETF en Xetra. El catálogo de instrumentos de cada proveedor debe consultarse antes de cualquier llamada; los fallos de símbolo pueden consumir cuota. Fuentes: https://eodhd.com/financial-apis/api-for-historical-data-and-volumes ; https://eodhd.com/financial-apis/exchanges-api-list-of-tickers-and-trading-hours ; https://eodhd.com/financial-summary/SAN.MC ; https://eodhd.com/financial-summary/VWCE.XETRA
+
+### 13.3 Comparativa de cobertura y coste operativo estimado
+
+Supuesto homogéneo: una descarga EOD diaria, una consulta de serie por instrumento cuando el endpoint es individual, sin fundamentals ni noticias en esa misma cifra. Los endpoints agrupados se señalan por separado.
+
+| Proveedor / plan gratis | Cobertura probable en el universo | Consumo EOD estimado | Histórico / frescura publicada | Limitación determinante |
+|---|---|---:|---|---|
+| **EODHD Free** | Candidato para los 12: acciones USA, ASML, SAP, SAN, SPY, VWCE, BTC y ETH; confirmar los 12 en Exchanges API. | **12 llamadas/día** (una por símbolo) de un máximo de 20; 60% del cupo. | 1 año EOD. | El endpoint EOD sirve un símbolo por request. Demo sólo cubre un conjunto fijo y no demuestra cobertura de los 12. No incluye automáticamente todos los endpoints/fundamentals. |
+| **Twelve Data Basic** | Candidato para 6 acciones/ETF USA y 2 cripto; **no asumir cobertura gratuita de las 4 posiciones europeas**. | 8 créditos por ciclo (1 por símbolo en `/time_series`); límite 8/min y 800/día. | Series históricas; datos USA/ETF y cripto en tiempo real según el plan, sujeto al instrumento. | Los 8 símbolos consumen todo el cupo de un minuto; no queda margen para otro endpoint en ese minuto. Europa requiere verificar plan/add-on y derechos de mercado. |
+| **FMP Basic** | 6 instrumentos USA (5 acciones + SPY) como base; cripto y Europa quedan condicionados a la disponibilidad efectiva del endpoint Basic. | **12 llamadas/día** si cada símbolo usa una petición EOD; máximo publicado 250/día. | Pricing anuncia EOD y hasta 5 años en Basic; el acceso efectivo a cada endpoint/dataset debe comprobarse. | Hay una discrepancia en la documentación: el plan Basic describe cobertura USA, mientras que el endpoint EOD Light se etiqueta como disponible globalmente. No dar por cubierta Europa sin validación. Términos limitan la acumulación/archivo sustitutivo. |
+| **Massive Stocks Basic** | 6 instrumentos USA (5 acciones + SPY). No cubre las 4 posiciones europeas ni debe suponerse que el plan Stocks incluye cripto. | 6 peticiones individuales, por lo que se necesitan al menos 2 minutos a 5 req/min; alternativa: 1 llamada al endpoint de mercado agrupado USA, que devuelve todo el mercado y exige filtrar localmente. | 2 años; EOD disponible después de medianoche ET para el día anterior. | No permite descargar el EOD del mismo día antes de medianoche ET. El endpoint agrupado reduce peticiones, pero descarga mucho más dato del necesario. |
+| **Alpaca Basic** | 6 instrumentos USA (5 acciones + SPY). No Europa; cripto debe validarse por separado. | **1 petición agrupada** de barras para los 6 símbolos, dentro de 200 llamadas/min. | Histórico desde 2016; feed IEX en tiempo real. La restricción de los últimos 15 minutos afecta a SIP reciente; barras SIP con más de 15 minutos son accesibles. | Para EOD histórico puede usarse SIP con corte superior a 15 minutos, pero el dato en tiempo real gratuito es IEX, no el mercado consolidado. Especificar siempre `feed`. |
+| **Alpha Vantage Free** | Acciones globales potencialmente; ETF VWCE y cripto no quedan validados para este universo. | **12 peticiones/día** si cada instrumento se consulta individualmente; máximo 25/día. | `TIME_SERIES_DAILY` ofrece OHLCV bruto y 25+ años; los datos ajustados requieren otro endpoint cuya disponibilidad gratuita no debe asumirse. | El cupo deja sólo 13 peticiones para cualquier otro endpoint. Datos USA en tiempo real y retrasados 15 minutos son premium. |
+| **Finnhub Free** | Cotizaciones USA y algunas funciones auxiliares; no considerar cubiertos los históricos EOD de los 12. | Hasta 12 consultas de quote en teoría; cuota publicada habitualmente 60/min, pero el acceso free a cada endpoint requiere confirmación. | No se ha confirmado acceso gratuito a velas históricas OHLC para este proyecto. | No incluir en el cálculo de ingesta EOD: la evidencia pública consultada no permite asegurar que `stock/candle` y `crypto/candle` estén disponibles en Free. |
+| **Stooq** | No validado. | No calculable. | No verificados endpoint, frecuencia ni profundidad. | No usar en automatización hasta localizar API y licencia oficial inequívocas. |
+
+Fuentes oficiales principales:
+- EODHD planes, EOD y costes: https://eodhd.com/help/plans ; https://eodhd.com/financial-apis/api-for-historical-data-and-volumes ; https://eodhd.com/help/limits
+- Twelve Data Basic y pesos por símbolo: https://twelvedata.com/pricing ; https://support.twelvedata.com/en/articles/5615854-credits ; documentación: https://twelvedata.com/docs
+- FMP Basic y EOD Light: https://site.financialmodelingprep.com/pricing-plans ; https://site.financialmodelingprep.com/es/developer/docs
+- Massive Stocks Basic, barras individuales y resumen agrupado: https://massive.com/pricing?product=stocks ; https://massive.com/docs/rest/stocks/aggregates/custom-bars ; https://massive.com/docs/rest/stocks/aggregates/daily-market-summary ; disponibilidad tras medianoche ET: https://massive.com/knowledge-base/article/on-the-free-basic-plan-when-can-i-pull-the-previous-trading-days-data
+- Alpaca Basic, feeds y llamadas: https://docs.alpaca.markets/us/v1.1/docs/about-market-data-api ; endpoint multi-símbolo: https://docs.alpaca.markets/us/reference/stockbars ; aclaración de SIP y últimos 15 minutos: https://forum.alpaca.markets/t/cant-read-spy-minutes/14293
+- Alpha Vantage límites y datos diarios: https://www.alphavantage.co/support/ ; https://www.alphavantage.co/documentation/
+- Finnhub endpoints y términos: https://finnhub.io/docs/api ; https://finnhub.io/pricing ; https://finnhub.io/terms-of-service
+
+### 13.4 Qué significan realmente las cuotas
+
+- **EODHD:** una petición HTTP al endpoint EOD de un símbolo equivale a una llamada, incluso si devuelve 404. La consulta de 12 símbolos consumiría 12 de las 20 llamadas diarias, antes de cualquier consulta adicional.
+- **Twelve Data:** el coste es por crédito/símbolo y endpoint, no simplemente por petición HTTP. `/time_series` cuesta 1 crédito por símbolo; 8 símbolos en una misma consulta consumen 8 créditos.
+- **Massive:** el límite de 5 es por peticiones/minuto. Se puede consultar un ticker por petición o recuperar el mercado USA completo con el endpoint agrupado. La segunda alternativa ahorra llamadas, pero aumenta datos descargados y trabajo local.
+- **Alpaca:** el endpoint de barras acepta una lista de símbolos en una sola petición; no debe multiplicarse el consumo por seis si se utiliza correctamente el modo batch.
+- **FMP y Alpha Vantage:** sus límites publicados se expresan en peticiones/día; para el cálculo conservador se considera una petición por símbolo. No se ha demostrado un batch EOD que reduzca el coste para este conjunto.
+
+### 13.5 Noticias, eventos y segunda ejecución selectiva
+
+La segunda ejecución no debe volver a descargar las 12 series de precios. Propuesta:
+1. Consultar GDELT para descubrir noticias/eventos nuevos, filtrando por entidades y ventana temporal; actualizar metadatos y deduplicar.
+2. Confirmar cualquier evento material con fuente primaria: relaciones con inversores, SEC EDGAR para emisores USA, comunicados regulatorios o bolsa correspondiente.
+3. Recalcular sólo los activos afectados y sus relaciones; si el evento no cambia la tesis o no hay evidencia, no emitir alerta.
+4. Marketaux puede evaluarse como alternativa de noticias (100 solicitudes/día y hasta 3 artículos por petición), pero no usar snippets/guardar contenido ni enviarlo a LLM hasta cerrar sus condiciones de almacenamiento, retención y tratamiento.
+
+GDELT publica streams principales con actualización aproximada de 15 minutos y permite reutilizar datasets con atribución; no concede derechos sobre el artículo enlazado. SEC EDGAR ofrece APIs públicas, con User-Agent identificable y límite fair-access de 10 solicitudes por segundo. Fuentes: https://www.gdeltproject.org/about.html ; https://www.gdeltproject.org/data.html ; https://www.sec.gov/search-filings/edgar-application-programming-interfaces ; https://www.marketaux.com/pricing ; https://www.marketaux.com/faq
+
+### 13.6 Recomendación provisional
+
+1. **Primer candidato a prueba EOD integral: EODHD Free**, porque su formato y catálogo parecen cubrir los mercados del universo y el consumo teórico (12/20) cabe en la cuota diaria. El año de histórico es insuficiente para validar estrategias de largo plazo y la cobertura exacta debe probarse.
+2. **Contraste USA: Alpaca Basic**, usando barras SIP históricas de más de 15 minutos para comparar el cierre consolidado; IEX sólo como feed separado y etiquetado.
+3. **Contraste de precio EOD: Alpha Vantage o FMP Basic**, con atención a ajustes corporativos, acceso por símbolo y condiciones de almacenamiento.
+4. **Twelve Data Basic** es útil para una prueba USA/cripto, pero su límite de 8 créditos/min y la cobertura europea lo hacen incompleto para el universo total.
+5. **Massive Basic** es alternativa USA EOD, pero el retraso hasta medianoche ET y el límite de 5 peticiones/min lo hacen menos cómodo que una consulta agrupada.
+6. **Finnhub y Stooq no entran aún en la shortlist de precios EOD**: falta confirmar acceso free a candles y/o licencia automatizable.
+
+**Conclusión:** la cuota no es el principal obstáculo. El principal riesgo es cobertura y derechos de uso, seguido por la profundidad histórica. No existe aún evidencia suficiente para afirmar que un proveedor gratuito cubra los 12 activos con cinco años de OHLCV ajustado y permisos de almacenamiento/backtesting. No iniciar desarrollo ni emitir señales hasta validar esto.
+
+### 13.7 Restricciones y siguiente paso
+
+- No se han ejecutado llamadas API, creado cuentas, usado claves ni consumido cuotas.
+- Las cifras anteriores son estimaciones derivadas de documentación oficial, no pruebas.
+- Antes de seleccionar proveedor, ejecutar una prueba pequeña y reproducible con los símbolos exactos, OHLCV, ajustes, timestamps, huecos, moneda y profundidad histórica.
+- La prueba debe registrar respuestas y errores sin guardar credenciales; no activar planes de pago.
+- La siguiente fase requiere autorización expresa del usuario para consumir cuotas gratuitas y/o utilizar credenciales personales.
