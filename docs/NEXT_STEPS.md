@@ -189,3 +189,22 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Analizar barras devueltas, primera/última fecha, continuidad, huecos y ajustes; registrar conclusiones en DATA_SOURCES.md.
 
 **Siguiente acción exacta:** tras `git pull`, revisar el contador de EODHD y ejecutar el comando anterior una vez. No ejecutar otros modos del script ese día para evitar consumo accidental.
+
+
+---
+
+## Estado tras muestra histórica EODHD — 24-11-2026
+
+- [x] Ejecutar la muestra histórica de exactamente cuatro peticiones EODHD para NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC (2025-11-24 a 2026-11-24).
+- [x] Analizar cobertura: 1.125 barras en total; 251 NVDA, 255 ASML, 253 VWCE y 366 BTC.
+- [x] Comprobar estructura: cuatro símbolos aceptados, fechas ordenadas y sin duplicados, OHLC coherente y volúmenes positivos.
+- [x] Registrar consumo estimado: 4 unidades EODHD; Alpaca omitido, 0 peticiones.
+- [x] Registrar la conclusión provisional en DATA_SOURCES.md y DECISIONS.md.
+- [ ] Contrastar con fuente independiente los movimientos extremos sincronizados del 20-11 y 23-11, sin nuevas llamadas EODHD.
+- [ ] Revisar eventos corporativos y metodología de `adjustedClose` de NVDA y ASML.
+- [ ] Completar la revisión de licencia individual: automatización, almacenamiento/backtesting, outputs derivados, Telegram/email y uso con LLM.
+- [ ] Validar cobertura y calidad del resto de los 12 instrumentos antes de decidir proveedor.
+
+**Decisión vigente:** EODHD supera provisionalmente esta muestra técnica, pero no está aprobado para producción ni backtesting. No realizar más llamadas API ni consumir cuotas hasta definir y autorizar una prueba concreta.
+
+**Siguiente paso recomendado:** contrastar los movimientos extremos del 20 y 23 de noviembre con una fuente independiente, reutilizando el JSON ya obtenido y sin consumir cuota EODHD.
