@@ -22,6 +22,9 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 - Telegram para alertas relevantes al titular y email para resumen semanal al titular.
 - Registro inmutable de señales y evaluación histórica objetiva.
 
+## Prototipo visual
+- [Abrir y revisar el mock-up](prototype/README.md) — maqueta estática, sin APIs ni datos reales.
+
 ## Documentación
 - [Especificación de producto](docs/PRODUCT_SPEC.md)
 - [Arquitectura](docs/ARCHITECTURE.md)
