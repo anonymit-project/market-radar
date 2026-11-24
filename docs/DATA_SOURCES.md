@@ -731,3 +731,51 @@ No se ha encontrado una fuente gratuita paneuropea de OHLCV EOD que combine cobe
 
 ### Estado de validación
 Toda esta revisión es documental. No se han hecho llamadas API, usado credenciales, creado cuentas ni consumido cuotas. Las pruebas EODHD y Alpaca descritas en secciones anteriores no se repiten ni se amplían por esta investigación.
+
+
+---
+
+## 19. Ficheros MiFIR post-trade y EuroCTP — actualización 24-11-2026
+
+La investigación adicional identifica una alternativa importante para Europa: los ficheros públicos de transparencia post-trade retrasada. El Reglamento Delegado (UE) 2025/1156, artículos 23–25, exige acceso público no discriminatorio y gratuito a datos retrasados 15 minutos, en formato machine-readable; el post-trade debe publicarse en ficheros diarios aptos para extracción automatizada y disponibles al menos hasta el siguiente día hábil.
+
+### Fuentes
+- **Euronext Trades Files:** CSV de operaciones retrasadas para Amsterdam, Brussels, Dublin, Lisbon, Milan, Oslo y Paris; ventanas hasta el día anterior; descarga gratuita. Sus términos dicen que el uso es gratuito y sin restricciones salvo distribución. Candidato para construir barras propias por venue.
+- **Deutsche Börse/Xetra:** JSON.gz post-trade y pre-trade, 15 min retraso, actualización cada minuto y disponibilidad hasta medianoche del siguiente día hábil. Uso gratuito sujeto a términos; non-display/feeds requieren aclaración.
+- **Cboe Europe:** ficheros CSV minutely y diarios; operaciones de sus venues BXE/CXE/DXE y APA/MTF reportadas a sus APA. No representa por sí solo toda la negociación de una acción en Europa.
+- **BME APA post-trade:** JSON legible mecánicamente; página oficial limita copia/descarga a uso personal e interno y exige autorización para usos comerciales o redistribución de pago. Automatización sistemática no confirmada.
+- **LSEG delayed transparency:** datos retrasados de XLON/Turquoise/APA; LSEG exige licencia para non-display, derived data y otras aplicaciones. No usar automatizadamente sin licencia.
+
+### EuroCTP
+EuroCTP fue autorizado el 27-07-2026 y lanzó el consolidado europeo de acciones/ETF el 14-09-2026. Es una referencia consolidada de más de un centenar de fuentes/venues, pero su gratuidad para minoristas no equivale a permiso de ingesta automatizada:
+- acceso web gratuito para Retail Investors/Non-Professional Clients tras declarar estatus;
+- Non-Display Use incluye acceso/procesamiento no mostrado en formato humano;
+- la política exige Data Licence previa para Non-Display Use;
+- fee schedule 08-04-2026: Data Licence 4.000 €/mes por Client Group; Web API 56 €/mes adicional; histórico €204 por día. Documento sujeto a revisión ESMA.
+Conclusión: útil para consulta visual y contraste, no viable para escáner automático personal con tarifas publicadas.
+
+### Reevaluación de agregadores
+- Stooq: histórico diario interesante, pero sin API oficial documentada y acceso automatizado no fiable; no usar endpoints no oficiales.
+- Alpha Vantage: 25 req/día; daily adjusted premium; ventana compacta de 100 barras por defecto; no escala a miles.
+- Twelve Data: EOD global disponible en planes Grow o superiores; Basic gratis está limitado a realtime USA/FX/crypto y no resuelve EOD global. Algunos mercados europeos figuran como no soportados/licencia requerida.
+- OHLC.io: buen diseño técnico (IDs estables, corporate actions, cobertura point-in-time, bulk por fecha), pero el plan gratuito sólo seis símbolos USA y Europa requiere Pro.
+- Yahoo Finance: términos prohíben extracción automatizada sin permiso previo; no usar scraping.
+
+### Limitación metodológica
+Los ficheros post-trade de cada venue/APA no son necesariamente un consolidado de todas las sedes de negociación. Las barras OHLCV derivadas deben marcar el MIC y el alcance de la fuente. El volumen de venue no debe etiquetarse como volumen total del instrumento.
+
+Fuentes oficiales y técnicas:
+- Reglamento Delegado (UE) 2025/1156: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R1156
+- MiFIR Art. 13 / ESMA: https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mifir/article-13-obligation-make-pre-trade-and
+- Euronext trades files y términos: https://marketdata.euronext.com/data-reporting-service/trades-file
+- Deutsche Börse delayed data: https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data
+- Cboe Europe transparency files: https://www.cboe.com/markets/eu/equities/transparency-data
+- BME APA post-trade: https://www.bolsasymercados.es/es/otros-servicios/servicios-regulatorios/post-trade-data.html
+- LSEG licensing: https://www.londonstockexchange.com/en/markets-products/market-data/market-data-licensing
+- EuroCTP ESMA authorisation: https://www.esma.europa.eu/press-news/esma-news/esma-authorises-euroctp-consolidated-tape-provider-shares-and-exchange-traded
+- EuroCTP market data policy: https://cdn.auth.euroctp.eu/EuroCTP_Market_Data_Policy.pdf
+- EuroCTP fee schedule: https://cdn.auth.euroctp.eu/EuroCTP_Fee_Schedule.pdf
+- Twelve Data EOD: https://support.twelvedata.com/en/articles/12682324-end-of-day-eod-pricing-market-data
+- Alpha Vantage docs: https://www.alphavantage.co/documentation/
+- OHLC.io EOD: https://ohlc.io/data/historical-stock-prices
+- Yahoo terms: https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html
