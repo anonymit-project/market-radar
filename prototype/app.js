@@ -1,5 +1,5 @@
 (() => {
-  const labels = {overview:"Visión general",radar:"Radar de oportunidades",portfolio:"Mi cartera",assets:"Universo de activos",news:"Noticias y alertas","asset-detail":"Ficha de activo"};
+  const labels = {radar:"Radar de oportunidades",history:"Histórico de señales",assets:"Universo de activos",news:"Noticias y alertas","asset-detail":"Ficha de activo"};
   const pages = [...document.querySelectorAll(".page")];
   const sidebar = document.getElementById("sidebar");
   const toast = document.getElementById("toast");
@@ -70,7 +70,8 @@
   });
 
   document.getElementById("menuToggle").addEventListener("click", () => sidebar.classList.toggle("open"));
-  document.getElementById("refreshDemo").addEventListener("click", () => showToast("Vista de demostración: no hay datos nuevos."));
+  const refreshDemo = document.getElementById("refreshDemo");
+  if (refreshDemo) refreshDemo.addEventListener("click", () => showToast("Vista de demostración: no hay datos nuevos."));
   document.getElementById("assetSearch").addEventListener("input", event => {
     const query = event.target.value.trim().toLocaleLowerCase("es");
     document.querySelectorAll("#assetTable tbody tr").forEach(row => {
