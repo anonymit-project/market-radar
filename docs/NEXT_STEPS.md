@@ -4,6 +4,8 @@
 - [x] Consolidar alcance, principios, arquitectura lógica y pendientes.
 - [x] Publicar documentación inicial en GitHub.
 - [x] Definir GitHub como fuente persistente de contexto y relevo entre chats.
+- [x] Formalizar protocolo de trabajo y cierre obligatorio de cada chat en docs/WORKFLOW.md.
+- [x] Referenciar el protocolo desde README.md y DECISIONS.md.
 - [ ] Mantener DECISIONS.md actualizado tras cada decisión.
 
 ## Fase 1 — Validación de fuentes de datos (actual)
@@ -11,7 +13,7 @@
 2. Verificar documentación oficial, planes, cuotas, histórico, frescura y cobertura.
 3. Analizar licencias de uso interno, display a tres usuarios, derivados, almacenamiento, redistribución y uso con IA.
 4. Solicitar aclaración comercial por escrito a proveedores finalistas.
-5. Ejecutar pruebas reproducibles con un conjunto común de símbolos USA/EU/ETF/cripto.
+5. Ejecutar pruebas reproducibles con un conjunto común de símbolos USA/EU/ETF/cripto, sólo tras autorización para consumir cuotas o usar credenciales.
 6. Comparar calidad OHLCV, ajustes, latencia, huecos, símbolos deslistados y news metadata.
 7. Elaborar coste mensual realista con frecuencia y universo definidos.
 **Entregable:** matriz de resultados, scripts de prueba, evidencias, riesgos y recomendación respaldada. Sin contratación.
@@ -47,3 +49,10 @@ Sólo tras validar fases anteriores: PWA, autenticación de tres usuarios, hist�
 
 ## Condiciones de avance
 No saltar de fase por entusiasmo. Cada fase debe terminar con evidencias, decisiones, costes y riesgos. No contratar ni publicar datos a usuarios hasta confirmar licencias.
+
+
+## Regla de continuidad
+Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
+- Si la tarea puede continuar de forma eficiente en el mismo chat, cerrar con una pregunta concreta que desbloquee el siguiente paso.
+- Si conviene un chat nuevo, entregar un prompt de relevo completo, listo para copiar y pegar.
+Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso implícito.
