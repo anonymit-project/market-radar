@@ -779,3 +779,23 @@ Fuentes oficiales y técnicas:
 - Alpha Vantage docs: https://www.alphavantage.co/documentation/
 - OHLC.io EOD: https://ohlc.io/data/historical-stock-prices
 - Yahoo terms: https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html
+
+
+## 20. Revisión detallada de feeds europeos — 24-11-2026
+
+### Euronext
+La página oficial confirma CSV post-trade, retraso máximo de 15 minutos, timestamps UTC y disponibilidad mínima de 24 horas para Amsterdam, Brussels, Dublin, Lisbon, Milan, Oslo y Paris. Los términos específicos conceden uso gratuito sin restricciones salvo distribución, pero la cabecera de copyright de la misma página prohíbe copiar o redistribuir sin autorización. No queda resuelto si se permite la copia técnica, almacenamiento histórico indefinido o creación de OHLCV internas. La página consultada no publica un diccionario completo de campos ni una muestra descargable verificable. **Candidato prioritario, pendiente de confirmación escrita de derechos y esquema.**
+
+### Deutsche Börse / Xetra
+La página oficial confirma JSON.gz, retraso de 15 minutos, actualización cada minuto, UTC y disponibilidad hasta medianoche del siguiente día hábil. La política v2.8 indica uso gratuito si no se comercializan los datos, pero define NDDU de forma amplia e incluye análisis cuantitativo/gestión de cartera en «Other Application Usage»; una aplicación sólo de almacenamiento también puede quedar sujeta a otras licencias. La FAQ dice que el NDDU de datos retrasados no genera tarifa en general salvo excepciones de la lista de precios, pero no resuelve la autorización para persistencia ni el alcance del caso privado automatizado. **No aprobado hasta aclaración escrita de DBAG.**
+
+### Cboe Europe — nuevo feed
+La especificación «Delayed Transparency Files» v1.0.7 (31-07-2026) sustituye progresivamente al feed legacy; la migración anunciada termina el 27-11-2026. El feed nuevo ofrece CSV por minuto y fichero diario cuando aplique, sin registro/CAPTCHA/throttling según especificación, con disponibilidad hasta el siguiente día hábil. Incluye ISIN, timestamp de ejecución/publicación, precio, divisa, cantidad, MIC de ejecución/publicación, ID de transacción y flags de cancelación, modificación, tipo de operación y diferimiento. Cubre BXE/CXE/DXE y reportes MTF/APA/SI publicados por Cboe; no consolida todo el mercado europeo. El disclaimer actual dice «Not for Trading or Investment Decisions» y deja la dependencia de los datos bajo riesgo del usuario. **Buen complemento técnico, pero no fuente única ni aprobada para Market Radar.**
+
+### BME y LSEG
+BME limita los datos a uso personal e interno; no se ha confirmado que automatización y almacenamiento histórico estén incluidos. LSEG declara que non-display y derived data requieren licencia. Mantener ambas fuentes bloqueadas hasta confirmar derechos.
+
+### Conclusión
+Euronext y Xetra siguen siendo las prioridades para un piloto europeo, pero no están aprobadas para ingesta automatizada persistente. Cboe añade cobertura alternativa útil, aunque parcial y con un disclaimer adverso al propósito de la herramienta. Toda barra derivada debe conservar MIC y alcance de fuente; nunca etiquetar volumen de venue/APA como volumen consolidado.
+
+Fuentes oficiales: https://marketdata.euronext.com/data-reporting-service/trades-file ; https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data ; https://www.mds.deutsche-boerse.com/resource/blob/4028410/8c40e8b49bbbae4adcf9aee2f8193ad6/data/Market%20Data%20Policy%20Guidelines%20and%20FAQ_V2_8.pdf ; https://cdn.cboe.com/resources/participant_resources/Cboe_Titanium_Europe_Aggregated_Depth_Feed_Specification.pdf ; https://www.cboe.com/markets/eu/equities/transparency-data/ ; https://www.bolsasymercados.es/es/otros-servicios/servicios-regulatorios/post-trade-data.html ; https://dmd.lseg.com/ .
