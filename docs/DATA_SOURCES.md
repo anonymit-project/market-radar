@@ -2,6 +2,8 @@
 
 **Estado:** investigación documental inicial; ningún proveedor está validado ni contratado. Precios y límites son los publicados en las páginas oficiales consultadas el 24-11-2026; pueden cambiar. Confirmar siempre el plan aplicable y los derechos por escrito antes de producción.
 
+**Nota de vigencia:** las secciones 2–8 contienen una evaluación preliminar anterior y referencias al escenario multiusuario. La selección vigente es exclusivamente individual y gratuita-first; prevalecen las secciones 10–11. No utilizar las conclusiones de las secciones antiguas como requisitos actuales.
+
 ## 1. Criterios de validación
 - Cobertura por país, bolsa, MIC, activo y ticker.
 - Endpoint exacto, granularidad, frescura/latencia y disponibilidad histórica.
