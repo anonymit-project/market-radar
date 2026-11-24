@@ -88,7 +88,7 @@ El usuario confirma incluir obligatoriamente NVIDIA, Microsoft y Meta. Se propon
 | 11 | Bitcoin | BTC/USD | Cripto |
 | 12 | Ethereum | ETH/USD | Cripto |
 
-Los símbolos exactos por proveedor pueden variar; resolver ticker, MIC/bolsa, moneda y tipo de instrumento antes de comparar datos. No confundir el ticker estadounidense CNR con otros instrumentos homónimos.
+Los símbolos exactos por proveedor pueden variar; resolver ticker, MIC/bolsa, moneda y tipo de instrumento antes de comparar datos.
 
 ### Criterio de diversificación sectorial: Johnson & Johnson (JNJ)
 
