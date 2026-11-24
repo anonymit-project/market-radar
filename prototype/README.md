@@ -13,7 +13,15 @@ Prototipo estático e independiente. **No es la aplicación y no contiene funcio
 - En Chrome o Edge de escritorio: abre `index.html`, pulsa F12 y activa el modo dispositivo (Ctrl+Shift+M). Prueba anchos de móvil y tablet.
 - En un teléfono real, puedes servir temporalmente esta carpeta desde tu ordenador con cualquier servidor estático local y abrir desde el móvil la dirección local del ordenador. No requiere dejar un servidor encendido permanentemente. Ambos dispositivos deben estar en la misma red.
 
-Para verlo en un teléfono real desde Windows, si tienes Python instalado, abre PowerShell en la carpeta raíz del repositorio y ejecuta:\n\n\`\`\`powershell\npy -m http.server 8000 --directory prototype\n\`\`\`\n\nCon el ordenador y el móvil conectados a la misma Wi-Fi, consulta la dirección IPv4 del ordenador con \`ipconfig\` y abre \`http://IP-DEL-ORDENADOR:8000\` en el móvil. Al terminar, detén el servidor con Ctrl+C. Es un servidor temporal de archivos estáticos, no queda ejecutándose en segundo plano. Si Windows solicita permiso de red, permite el acceso sólo en redes privadas.\n\n## Navegación incluida
+Para verlo en un teléfono real desde Windows, si tienes Python instalado, abre PowerShell en la carpeta raíz del repositorio y ejecuta:
+
+```powershell
+py -m http.server 8000 --directory prototype
+```
+
+Con el ordenador y el móvil conectados a la misma Wi-Fi, consulta la dirección IPv4 del ordenador con `ipconfig` y abre `http://IP-DEL-ORDENADOR:8000` en el móvil. Al terminar, detén el servidor con Ctrl+C. Si Windows solicita permiso, permite el acceso sólo en redes privadas.
+
+## Navegación incluida
 
 - Radar: tarjetas de oportunidad con score y niveles ilustrativos.
 - Histórico de señales: registro de alertas, entregas simuladas por Telegram y resultados a 1/5/10/30/90 días frente a benchmark.
