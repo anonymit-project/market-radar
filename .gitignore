@@ -1,0 +1,3 @@
+# Local provider-test credentials and generated reports
+.env.local
+validation-results/
