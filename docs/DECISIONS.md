@@ -163,3 +163,38 @@ La prueba no consulta Alpaca, no reintenta, no pagina y no amplía la ventana. E
 
 ### Registro de cambios
 - 2026-11-24: se registra la conclusión provisional de la muestra histórica EODHD de cuatro instrumentos. Detalle y métricas en docs/DATA_SOURCES.md, sección 17.
+
+
+---
+
+## Diseño del Explorador de acciones — 24-11-2026
+
+### Confirmado
+- El módulo de exploración se centra en acciones cotizadas de EE. UU. y Europa, universo amplio y sin limitación sectorial.
+- ETF y criptomonedas quedan fuera de este universo y siguen en seguimiento separado.
+- Arquitectura por adaptadores desacoplados para catálogo, precios, fundamentales, noticias y eventos.
+- Escaneo EOD diario; sin intradía ni WebSockets. Segunda comprobación sólo para eventos materiales.
+- El catálogo de instrumentos no dependerá del proveedor de precios y el ticker no será clave primaria.
+- El LLM no decide señales ni modifica las puntuaciones cuantitativas; el filtrado y la decisión final serán deterministas y admitirán abstención.
+
+### Propuesta de mercados iniciales (pendiente de validación final)
+- EE. UU.: Nasdaq, NYSE y NYSE American; acciones ordinarias y ADR, excluyendo OTC y valores no equivalentes a acciones.
+- Europa: Xetra, Euronext (Amsterdam, Paris, Brussels, Lisbon, Milan), BME y LSE Main Market. Ampliación posterior: SIX, Nasdaq Nordic, Warsaw y otros mercados.
+- No describir esta primera fase como cobertura de toda Europa; cobertura explícita por bolsa/MIC.
+
+### Candidatos, no aprobados
+- Nasdaq Trader + Massive All Tickers para descubrimiento USA.
+- ESMA FIRDS + directorios de bolsa para universo UE/EEE; LSE por fuente separada.
+- Massive Stocks Basic como candidato técnico de precios USA, sujeto a clasificación personal/non-professional, licencia, retención y pruebas autorizadas.
+- SEC EDGAR para filings/XBRL USA.
+- GDELT como detector de noticias/metadatos, con confirmación en fuentes primarias.
+
+### Bloqueos y pendientes
+- No existe todavía una fuente gratuita paneuropea de OHLCV EOD automatizable, amplia y con derechos de almacenamiento/uso claros.
+- No aprobar Massive, EODHD, Euronext ni BME como fuente de producción.
+- No ejecutar llamadas API, usar credenciales, crear cuentas o consumir cuotas sin autorización expresa.
+- No iniciar desarrollo del Explorador amplio hasta resolver cobertura/licencia de precios europeos.
+- Los hallazgos, límites y enlaces oficiales quedan documentados en docs/EXPLORER_DESIGN.md y docs/DATA_SOURCES.md, sección 18.
+
+### Corrección de vigencia documental
+Los bloques anteriores que mencionan tres usuarios, PWA como requisito inmediato, cadencia intradía o universo ETF/cripto como alcance principal son antecedentes históricos o hipótesis superadas. Prevalecen el uso privado de un único titular, el alcance de acciones USA/EU para el Explorador, ETF/cripto separados y la cadencia EOD confirmados en este registro y en docs/WORKFLOW.md / docs/PRODUCT_SPEC.md.
