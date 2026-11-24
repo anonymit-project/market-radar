@@ -501,7 +501,7 @@ En esta sesión, el navegador de investigación no pudo abrir directamente los e
 
 ## 14. Harness de validación local (24-11-2026)
 
-**Estado de ejecución:** el script está preparado y publicado, pero todavía no se ha ejecutado contra EODHD ni Alpaca. No hay resultados empíricos, no se han usado credenciales y no se han consumido cuotas desde ChatGPT. No interpretar la configuración del script como prueba de cobertura.
+**Estado inicial actualizado el 24-11-2026:** el titular ha ejecutado el harness localmente y ha aportado un informe JSON. EODHD y Alpaca ya tienen resultados empíricos iniciales; véase la sección 15. La prueba adicional Alpaca IEX sigue pendiente. No interpretar la configuración del script como prueba de cobertura.
 
 - Script: `scripts/validate-providers.mjs` (Node.js >= 18, sin dependencias externas).
 - Instrucciones Windows/PowerShell: [docs/PROVIDER_VALIDATION_WINDOWS.md](PROVIDER_VALIDATION_WINDOWS.md).
@@ -533,3 +533,26 @@ El script crea localmente un JSON bajo `validation-results/` con fecha/hora, ven
 - [ ] Actualizar esta sección con resultados observados, separándolos de hipótesis documentales.
 
 Hasta completar esos puntos, EODHD sigue siendo primer candidato documental y Alpaca un contraste USA; ninguno queda validado ni seleccionado.
+
+
+---
+
+## 15. Resultados de la primera ejecución local (24-11-2026)
+
+**Evidencia:** informe aportado por el titular en `validation-results/provider-validation-2026-11-24T11-33-28-667Z.json`. Ventana consultada: 2026-11-17 a 2026-11-24. Se conservaron hasta tres barras recientes por símbolo.
+
+| Proveedor | Resultado observado | Peticiones | Lectura |
+|---|---|---:|---|
+| EODHD Free | 12/12 símbolos aceptados; 0 errores | 12 | Cobertura básica confirmada para el universo probado y esos identificadores. No valida exactitud, frescura suficiente para operar, profundidad histórica ni derechos de almacenamiento/uso. |
+| Alpaca Basic, feed SIP | HTTP 403: `subscription does not permit querying recent SIP data`; 0/6 símbolos | 1 | El feed SIP solicitado no está habilitado en esta modalidad. No demuestra que Alpaca Basic no funcione: su feed gratuito previsto para la prueba es IEX. |
+
+**Cuota:** EODHD registra 12 peticiones iniciadas, equivalentes a 12 unidades estimadas frente a la referencia documental de 20/día. El titular debe contrastar el consumo con el contador real de su cuenta; la estimación del script no sustituye ese contador.
+
+**Interpretación y límites:**
+- EODHD queda como candidato técnico principal para continuar la evaluación, no como proveedor aprobado.
+- Alpaca no queda descartado. Se ha añadido el modo `--alpaca-only`, que consulta exclusivamente Alpaca con `feed=iex` y evita por completo nuevas llamadas a EODHD.
+- IEX representa operaciones de ese centro de negociación, no el volumen consolidado SIP. No comparar sus volúmenes como si fueran equivalentes.
+- La muestra de tres barras por símbolo es demasiado pequeña para validar ajustes corporativos, huecos, series históricas o precisión frente a una fuente independiente.
+- No se ha validado aún el uso de datos en automatizaciones, almacenamiento persistente ni procesamiento por LLM; siguen sujetos a los términos del plan y sus fuentes subyacentes.
+
+**Pendiente:** ejecutar una sola vez `node .\\scripts\\validate-providers.mjs --alpaca-only` desde PowerShell y aportar el nuevo JSON. No ejecutar el modo completo para esta comprobación, porque volvería a consumir hasta 12 llamadas EODHD.
