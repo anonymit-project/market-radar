@@ -206,3 +206,44 @@ Enviar desde el canal oficial de ventas/licencias, sin adjuntar claves ni datase
 7. No se debe estimar el coste final usando precios de planes personales: pedir precio total para tres usuarios y derechos de exchange incluidos.
 
 **Estado:** investigación documental reforzada, no asesoramiento jurídico. Las páginas oficiales reflejan términos consultados el 24-11-2026; deben releerse antes de contratar. Ninguna consulta ha sido enviada y ningún proveedor está aprobado.
+
+
+---
+
+## 10. Cambio de alcance: uso estrictamente individual (24-11-2026)
+
+El usuario ha decidido que Market Radar será para **uso privado de una sola persona: el propio usuario**. Se abandona el requisito de tres familiares, el dashboard multiusuario y cualquier acceso/redistribución a familiares. Esta decisión sustituye el supuesto de tres usuarios de las secciones 9.1–9.6 para la selección de licencias; se conserva esa auditoría como histórico y evidencia de por qué se descartó el escenario compartido.
+
+### 10.1 Alcance de licencia actualizado
+
+- Un único titular, persona física, que consulta el dashboard autenticado.
+- No habrá otros usuarios, cuentas familiares, clientes, invitados ni acceso compartido.
+- Datos de mercado e históricos se consultan y almacenan para análisis propio, indicadores, señales y backtesting del titular, sujeto a las condiciones concretas del proveedor.
+- Alertas Telegram y email se enviarán únicamente al titular. La entrega a plataformas externas sigue sujeta a las condiciones del proveedor de datos, del canal y del servicio de mensajería.
+- Procesamiento IA/LLM sólo como herramienta de análisis del titular; comprobar las condiciones sobre proveedores externos, retención de prompts, entrenamiento y transferencia de datos.
+- No se compartirán cotizaciones, históricos, gráficos, señales, informes ni outputs derivados con familiares ni terceros. Tampoco se publicarán.
+- No se compartirán credenciales/API keys.
+
+### 10.2 Consecuencias para la evaluación
+
+1. EODHD personal pasa a ser un candidato especialmente relevante: su documentación de uso personal permite análisis, indicadores, backtesting y uso privado con IA del titular, sujeto a sus límites y sin compartir resultados.
+2. Massive, FMP, Finnhub y Alpha Vantage deben reevaluarse desde sus condiciones de uso individual; las prohibiciones de redistribución dejan de ser un bloqueo si no hay terceros, pero permanecen restricciones de IA, almacenamiento, retención y outputs.
+3. Twelve Data debe evaluarse para uso individual/internal use y derivados; no hace falta negociar display multiusuario, pero sí confirmar el derecho de uso personal y las restricciones de sus fuentes subyacentes.
+4. Alpaca debe evaluarse como feed personal de producción, diferenciando IEX/SIP, clasificación del suscriptor y términos de exchange.
+5. Stooq sigue sin aprobarse hasta encontrar condiciones oficiales claras.
+6. GDELT sigue siendo candidato para metadatos de eventos con atribución; Marketaux requiere comprobar licencia API, aunque no exista display a terceros.
+7. **Uso individual no equivale a permiso ilimitado**: respetar cuotas, retención, almacenamiento, IA, límites de descarga, no redistribución y condiciones de exchanges.
+8. Los precios de planes personales vuelven a ser una referencia útil, pero no se aprueba ningún plan hasta comparar cobertura, frescura, histórico y coste con el universo real.
+
+### 10.3 Matriz de decisión a rehacer
+
+La siguiente iteración debe puntuar proveedores para este escenario individual, no para tres usuarios. Separar:
+- uso personal del dashboard por el titular;
+- ingesta/caché e histórico local;
+- indicadores, señales y backtesting no compartidos;
+- alertas dirigidas sólo al titular;
+- procesamiento IA/LLM como herramienta personal;
+- retención y derechos al cancelar;
+- restricciones de exchange, mercado y feed.
+
+No enviar las consultas preparadas para licencias de tres usuarios: quedan obsoletas para el alcance vigente. Sólo consultar al proveedor si la documentación pública no resuelve una cláusula material.
