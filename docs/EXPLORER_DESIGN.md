@@ -410,3 +410,14 @@ Fuentes oficiales:
 - Deutsche Börse Market Data Policy v2.8: https://www.mds.deutsche-boerse.com/resource/blob/4028410/8c40e8b49bbbae4adcf9aee2f8193ad6/data/Market%20Data%20Policy%20Guidelines%20and%20FAQ_V2_8.pdf
 - Deutsche Börse Non-Display Guidance Note V4.0 (effective 01-08-2026): https://www.mds.deutsche-boerse.com/resource/blob/5322804/5ab2ea48a9787add0f7fc5abbf9e63a4/data/Non-Display%20Guidance%20Note%204_0.pdf
 - Cboe delayed transparency terms/disclaimer: https://www.cboe.com/markets/eu/equities/transparency-data/
+
+
+### 11.8 Lista pública de precios DBAG (01-08-2026)
+
+Se ha localizado la Price List to the Non-Display Agreement v11_01, vigente desde 01-08-2026. Para Xetra Post-Trade muestra tarifas non-display de 480 €/mes (Entry, 1–2 Device Accesses), 880 € (Medium), 1.400 € (Plus) y 2.200 € (Unlimited), antes de IVA. La tarifa es por Market Data Client, producto licenciado y mes.
+
+Importante: la tabla de Xetra Post-Trade deja en blanco las columnas de Index Calculation y Other Application Usage. La política define Other Application Usage como cuantitative analysis, portfolio management, instrument pricing, etc.; y la FAQ excluye expresamente de «simple analytics» el análisis técnico avanzado, la generación de señales y el apoyo a estrategias de inversión. Por tanto, no hay una tarifa pública visible que habilite claramente el uso concreto de Market Radar en Xetra Post-Trade. No inferir que 480 €/mes cubre ese uso: esa cifra corresponde a la columna de actividad de trading basada en Device Access.
+
+La página de descarga de delayed data sigue ofreciendo acceso gratuito 15 minutos retrasado, con archivos disponibles hasta medianoche del siguiente día hábil. Pero acceso gratuito a la descarga no resuelve automáticamente los derechos de uso non-display para análisis avanzado. **Conclusión: descartar Xetra como fuente del screening automatizado hasta que los documentos públicos permitan identificar una licencia aplicable; no contactar al proveedor.**
+
+Fuente: https://www.mds.deutsche-boerse.com/resource/blob/5107644/e6ec5d6e4bd221a24fcd29716f0bc215/data/NonDisplay_Price_List_11_01.pdf ; https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data
