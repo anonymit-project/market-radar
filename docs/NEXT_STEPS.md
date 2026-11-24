@@ -97,3 +97,14 @@ Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso i
 La investigación documental apunta a EODHD Free como primer candidato (12 llamadas teóricas para 12 símbolos, sobre 20 diarias), con Alpaca Basic para contraste de acciones/ETF USA y FMP o Alpha Vantage como contraste alternativo. Esta hipótesis no equivale a proveedor aprobado.
 
 **Bloqueo:** no ejecutar llamadas API, crear cuentas, utilizar credenciales ni consumir cuotas sin autorización expresa del usuario. Tras recibirla, realizar una prueba acotada, registrar endpoints, símbolos exactos, respuestas, errores, timestamps, ajustes, histórico y consumo real, y comparar resultados sin activar planes de pago.
+
+
+## Estado de autorización de pruebas — 24-11-2026
+- [x] El usuario ha autorizado pruebas limitadas con cuotas gratuitas.
+- [x] Confirmado que EODHD demo sólo cubre una lista de símbolos de ejemplo; permite como máximo contrastar AMZN y BTC del universo.
+- [x] Confirmado que Alpaca ofrece histórico cripto sin autenticación, pero requiere API key/secret para acciones.
+- [ ] Preparar harness técnico aislado (no aplicación) para 1–3 barras por activo, resolución de símbolos, moneda, timestamps y consumo.
+- [ ] Obtener credenciales gratuitas aportadas/creadas por el titular, almacenadas localmente o como secretos de GitHub Actions; nunca compartirlas en el chat o en el repositorio.
+- [ ] Ejecutar pruebas desde un entorno con conectividad, empezando por EODHD y Alpaca.
+- [ ] Registrar resultados reales, errores y cuotas consumidas en DATA_SOURCES.md.
+- **Restricciones:** sin planes de pago, pruebas de pago, creación de cuentas en nombre del usuario ni descargas históricas masivas.
