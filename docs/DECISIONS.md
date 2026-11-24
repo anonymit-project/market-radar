@@ -53,7 +53,9 @@
 - 2026-11-24: se formaliza el cierre obligatorio de cada chat con pregunta concreta o prompt de relevo completo; detalle en docs/WORKFLOW.md.
 
 
-## Decisiones y conclusiones de licencia (24-11-2026)
+## Decisiones y conclusiones de licencia — escenario histórico de tres usuarios (24-11-2026)
+
+**SUPERADO:** este bloque documenta por qué se abandonó el uso compartido. No representa el alcance ni los criterios actuales.
 
 ### Conclusiones confirmadas documentalmente
 - El caso de uso objetivo es un único dashboard autenticado para tres familiares adultos, con backend centralizado, cotizaciones/históricos, indicadores y señales comunes, backtesting, alertas Telegram/email y procesamiento IA/LLM. No hay empresa, ingresos ni ánimo de lucro.
