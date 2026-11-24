@@ -208,3 +208,27 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 **Decisión vigente:** EODHD supera provisionalmente esta muestra técnica, pero no está aprobado para producción ni backtesting. No realizar más llamadas API ni consumir cuotas hasta definir y autorizar una prueba concreta.
 
 **Siguiente paso recomendado:** contrastar los movimientos extremos del 20 y 23 de noviembre con una fuente independiente, reutilizando el JSON ya obtenido y sin consumir cuota EODHD.
+
+
+---
+
+## Fase 1D — Diseño y viabilidad del Explorador de acciones (24-11-2026)
+
+**Diseño documental inicial completado:** [docs/EXPLORER_DESIGN.md](EXPLORER_DESIGN.md).
+
+- [x] Separar acciones USA/EU del seguimiento de ETF y criptomonedas.
+- [x] Proponer mercados iniciales por fases: Nasdaq/NYSE/NYSE American; Xetra, Euronext, BME y LSE.
+- [x] Identificar fuentes de catálogo: Nasdaq Trader, ESMA FIRDS, directorios de bolsas, Massive All Tickers, OpenFIGI y GLEIF.
+- [x] Evaluar fuentes de precios, fundamentales, noticias y eventos por separado.
+- [x] Diseñar master de instrumentos independiente del ticker y pipeline de filtrado/ranking.
+- [x] Proponer arquitectura desacoplada y criterios de calidad/abstención.
+- [ ] Resolver una fuente paneuropea gratuita de OHLCV EOD que permita automatización y almacenamiento histórico con derechos claros.
+- [ ] Confirmar elegibilidad y términos de Massive para uso personal/non-professional antes de considerarlo para USA.
+- [ ] Definir umbrales de liquidez por mercado y tratamiento de ADR, small caps y clases múltiples.
+- [ ] Validar el coste operativo de ingesta/normalización de ESMA FIRDS y directorios de bolsas.
+- [ ] Diseñar un conjunto mínimo de fundamentales homogéneos USA/EU para análisis de candidatos.
+- [ ] Sólo tras cerrar las cuestiones anteriores, proponer pruebas API acotadas y solicitar autorización expresa antes de consumir cuotas.
+
+**Bloqueo principal:** no iniciar desarrollo del escáner amplio mientras no haya cobertura de precios EOD europea automatizable y licenciada. No repetir las pruebas históricas EODHD ni consumir cuotas en esta fase documental.
+
+**Siguiente paso recomendado:** continuar investigación documental del mercado de datos EOD europeo y sus licencias, sin llamadas API ni credenciales.
