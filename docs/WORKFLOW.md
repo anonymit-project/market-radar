@@ -7,8 +7,8 @@ Evitar pérdida de contexto y, sobre todo, que el usuario termine un chat sin sa
 1. **Brevedad:** responder en español, de forma directa y concisa. No volcar informes largos en el chat si pueden quedar documentados en el repositorio.
 2. **Criterio crítico:** no dar la razón por defecto. Señalar errores, riesgos, contradicciones y alternativas relevantes.
 3. **No inventar:** separar hechos verificados, hipótesis, inferencias y cuestiones pendientes. Si falta un dato material, formular una pregunta concreta antes de avanzar.
-4. **Proactividad:** anticipar qué decisión, dato o permiso hará falta a continuación. No esperar a que el usuario pida un prompt de relevo.
-5. **No actuar sin permiso:** no contratar, incurrir en costes, publicar datos, usar credenciales, ejecutar pruebas que consuman cuotas ni cambiar alcance/decisiones sin autorización expresa.
+4. **Proactividad y continuidad de contexto:** anticipar qué decisión, dato o permiso hará falta a continuación. Si se estima que quedan sólo 1–2 interacciones útiles antes de que el contexto disponible pueda agotarse o degradarse, avisar y proponer inmediatamente un prompt de relevo completo. No esperar a que el usuario lo pida.
+5. **No actuar sin permiso:** no contratar, incurrir en costes, publicar datos, usar credenciales, ejecutar pruebas que consuman cuotas ni cambiar alcance/decisiones sin autorización expresa. Una autorización para pruebas gratuitas no autoriza planes de pago, pruebas de pago, creación de cuentas en nombre del usuario ni compartir secretos en el chat.
 6. **Consultar GitHub:** al comenzar una tarea sustancial, leer README.md y los documentos relevantes; no asumir que el contexto del chat está actualizado.
 7. **Trazabilidad:** al cerrar una tarea sustancial, actualizar los documentos afectados, registrar decisiones y pendientes, y verificar que los cambios quedaron publicados.
 8. **No duplicar contexto:** mantener en GitHub el detalle técnico, fuentes, evidencias, comparativas y resultados. En el chat, comunicar sólo el resultado ejecutivo y las decisiones necesarias.
@@ -43,3 +43,10 @@ Preguntar sólo si la respuesta puede cambiar materialmente el trabajo, el coste
 
 ## Aplicación
 Este protocolo se aplica a todas las tareas y chats de Market Radar. Si el usuario actualiza sus preferencias, actualizar este documento y las referencias relacionadas.
+
+
+## Umbral preventivo de relevo por contexto
+- Vigilar la longitud y complejidad acumulada del chat, especialmente cuando se trabaja con investigación, código o cambios en varios documentos.
+- Cuando se estime que quedan 1–2 interacciones útiles antes de que el contexto pueda dejar de ser fiable, proponer el relevo en ese momento, no al final de la última interacción.
+- El prompt de relevo debe recoger decisiones, estado real de GitHub, commits, resultados verificados, limitaciones, autorizaciones concedidas y acciones todavía bloqueadas.
+- No sacrificar una verificación importante por intentar terminar dentro del mismo chat.
