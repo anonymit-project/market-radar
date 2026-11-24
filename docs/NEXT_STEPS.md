@@ -58,19 +58,25 @@ Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
 Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso implícito.
 
 
-## Fase 1B — Cierre de licencias para tres familiares (prioridad inmediata)
+## Fase 1B — Validación de proveedores para un único usuario (alcance vigente)
 
-- [x] Definir el caso exacto: tres personas físicas, dashboard autenticado, backend único, datos e históricos compartidos, derivados/señales, backtesting, Telegram/email y LLM.
-- [x] Contrastar políticas oficiales de EODHD, Twelve Data, FMP, Massive, Alpaca, Finnhub, Alpha Vantage y Stooq.
-- [x] Contrastar GDELT y Marketaux para noticias/eventos.
-- [x] Documentar qué está permitido para un titular, qué está prohibido compartir y qué requiere licencia/confirmación.
-- [x] Preparar consultas escritas individualizadas y plantilla común.
-- [ ] Enviar consultas a proveedores finalistas sólo con autorización del usuario (ninguna se ha enviado).
-- [ ] Registrar respuesta íntegra, persona/fecha, plan, cláusulas, costes, exchanges y condiciones de cada proveedor.
-- [ ] Descartar proveedores que no autoricen por escrito los tres usuarios o cuyo coste/licencia no resulte razonable.
-- [ ] Sólo después, cerrar matriz técnica de cobertura, latencia, histórico, cuotas y coste total de los proveedores que sí permitan el uso.
-- [ ] No ejecutar pruebas API ni consumir cuotas/credenciales hasta autorización expresa.
+**Alcance:** uso privado del titular, sin compartir datos ni resultados con familiares o terceros.
 
-**Criterio de salida:** autorización contractual o respuesta escrita suficientemente concreta para los tres usuarios y todos los canales/outputs previstos, incluyendo derechos de exchanges; coste completo conocido; política de almacenamiento/IA clara. Sin esto, no hay proveedor aprobado y no se inicia desarrollo.
+- [x] Sustituir el requisito de tres usuarios por uso individual.
+- [x] Mantener la auditoría anterior como histórico, sin usarla como requisito de selección.
+- [ ] Reevaluar EODHD, Twelve Data, FMP, Massive, Alpaca, Finnhub, Alpha Vantage y Stooq bajo licencias personales/individuales.
+- [ ] Para cada proveedor, verificar expresamente: dashboard privado del titular; API/automatización; almacenamiento local y caché; histórico y backtesting; indicadores/señales no compartidos; alertas Telegram/email al titular; procesamiento por LLM; retención y borrado al cancelar; derechos de exchange.
+- [ ] Verificar fuentes de noticias: GDELT como candidato de metadatos con atribución; Marketaux y APIs de noticias según licencia individual.
+- [ ] Consultar por escrito sólo los puntos materiales que no queden resueltos en términos/documentación oficial. No enviar las antiguas consultas de licencias multiusuario.
+- [ ] Comparar cobertura USA/EU/ETF/cripto, granularidad, latencia, histórico, cuotas y coste para el universo y frecuencia previstos.
+- [ ] No ejecutar pruebas API, consumir cuotas ni usar credenciales hasta autorización expresa.
 
-**Siguiente decisión del usuario:** autorizar que se envíen las consultas escritas a los proveedores finalistas. Recomendación operativa: empezar por Twelve Data, EODHD, Massive y FMP; añadir Alpaca/Finnhub si el coste y cobertura USA justifican negociar; dejar Alpha Vantage y Stooq como candidatos secundarios. GDELT puede evaluarse por separado para metadatos de noticias.
+**Criterio de salida:** shortlist de proveedor(es) cuyo uso individual cubra el caso real, con restricciones, coste, fuentes subyacentes y evidencia oficial documentados. Ningún proveedor queda aprobado hasta terminar esa evaluación. No iniciar desarrollo antes.
+
+**Siguiente paso:** rehacer la comparación de licencias y capacidades con EODHD como candidato prioritario para históricos y backtesting personal, contrastándolo con Twelve Data, FMP y Massive. Después evaluar feeds especializados (Alpaca/Finnhub) y alternativas gratuitas.
+
+## Regla de continuidad
+Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
+- Si la tarea puede continuar de forma eficiente en el mismo chat, cerrar con una pregunta concreta que desbloquee el siguiente paso.
+- Si conviene un chat nuevo, entregar un prompt de relevo completo, listo para copiar y pegar.
+Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso implícito.
