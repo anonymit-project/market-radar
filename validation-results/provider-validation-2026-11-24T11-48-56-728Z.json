@@ -1,0 +1,48 @@
+{
+  "reportType": "market-radar-provider-validation",
+  "generatedAt": "2026-11-24T11:48:56.705Z",
+  "testMode": "alpaca-only-iex",
+  "testWindow": {
+    "from": "2026-11-17",
+    "to": "2026-11-24",
+    "calendarDays": 7
+  },
+  "scope": {
+    "eodhdSymbols": 12,
+    "eodhdMaximumRequests": 0,
+    "alpacaSymbols": [
+      "NVDA",
+      "MSFT",
+      "META",
+      "AMZN",
+      "JNJ",
+      "SPY"
+    ],
+    "barsKeptPerSymbol": 3,
+    "noRetries": true,
+    "credentialsWritten": false,
+    "credentialsPrinted": false
+  },
+  "credentialAvailability": {
+    "eodhdConfigured": false,
+    "alpacaConfigured": false
+  },
+  "providers": [
+    {
+      "provider": "EODHD",
+      "status": "skipped",
+      "note": "Modo --alpaca-only: EODHD no se consulta ni consume cuota.",
+      "requestsAttempted": 0,
+      "quotaUnitsEstimated": 0,
+      "symbols": []
+    },
+    {
+      "provider": "Alpaca",
+      "status": "skipped",
+      "note": "Faltan ALPACA_API_KEY y/o ALPACA_API_SECRET; no se ha realizado ninguna petición.",
+      "requestsAttempted": 0,
+      "quotaUnitsEstimated": 0,
+      "symbols": []
+    }
+  ]
+}
