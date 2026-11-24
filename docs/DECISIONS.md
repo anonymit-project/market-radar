@@ -125,3 +125,16 @@
 - JNJ se incluye exclusivamente como instrumento de seguimiento y prueba de cobertura, no como recomendación de inversión.
 - La matriz documental de proveedores y consumo EOD queda incorporada en la sección 13 de DATA_SOURCES.md. Ningún proveedor está validado; no se han ejecutado llamadas ni consumido cuotas.
 - Primera hipótesis de prueba: EODHD Free (12/20 llamadas teóricas), contraste USA con Alpaca Basic y contraste alternativo con FMP/Alpha Vantage. La selección queda pendiente de pruebas de símbolo, cobertura, calidad, ajustes, histórico y licencia.
+
+---
+
+## Evidencia técnica inicial de proveedores — 24-11-2026
+
+- EODHD devolvió 12/12 instrumentos del universo inicial; Alpaca Basic con feed IEX devolvió 6/6 símbolos USA probados.
+- Para NVDA, MSFT, META, AMZN, JNJ y SPY, los 18 cierres EODHD de los días 19, 20 y 23-11-2026 coinciden al céntimo con los valores históricos consultados en Yahoo Finance.
+- Los cierres de Alpaca IEX difieren de EODHD una media absoluta aproximada del 0,068% (máximo 0,169%). IEX no representa el volumen consolidado.
+- Esto es evidencia técnica favorable, no aprobación de proveedor: muestra pequeña, posible dependencia de fuentes upstream comunes y licencia/retención/IA pendientes.
+- La semántica de `adjustedClose` de JNJ presenta una discrepancia para el 23-11-2026 que debe resolverse antes de usar precios ajustados en backtesting.
+
+**Decisión:** no seleccionar todavía EODHD ni Alpaca como proveedor de producción. Mantener EODHD como candidato principal multi-mercado y Alpaca IEX como contraste USA mientras se resuelven ajustes, profundidad histórica y licencias.
+
