@@ -28,6 +28,7 @@ Radar conservador para explorar oportunidades en acciones cotizadas de EE. UU. y
 ## Documentación
 - [Especificación de producto](docs/PRODUCT_SPEC.md)
 - [Diseño del Explorador de acciones](docs/EXPLORER_DESIGN.md)
+- [Investigación de fuentes europeas post-trade](docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md)
 - [Arquitectura](docs/ARCHITECTURE.md)
 - [Inteligencia de eventos](docs/EVENT_INTELLIGENCE.md)
 - [Fuentes de datos y licencias](docs/DATA_SOURCES.md)
