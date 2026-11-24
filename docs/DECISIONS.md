@@ -107,3 +107,12 @@
 - No se fija un techo de gasto mensual futuro: se reconsiderará el pago sólo cuando exista un sistema gratuito operativo y se conozcan sus limitaciones reales.
 - La falta de coste no justifica usar datos sin derechos claros ni sacrificar la integridad de las señales. Si no hay fuente gratuita válida para una cobertura, se documentará el hueco y el sistema deberá abstenerse.
 - El alcance sigue siendo un único usuario privado.
+
+
+## Universo y cadencia de la v1 — 24-11-2026
+- Universo inicial propuesto: NVDA, MSFT, META, AMZN, CNR, ASML (Euronext Amsterdam), SAP (Xetra), SAN (BME Madrid), SPY, VWCE (Xetra), BTC/USD y ETH/USD.
+- NVIDIA, Microsoft y Meta son inclusiones expresamente solicitadas por el usuario. El resto constituye una propuesta para cubrir sectores, regiones y clases de activo.
+- CNR se incluye sólo como seguimiento cíclico/de alto riesgo; no se presupone que sea una inversión adecuada a largo plazo.
+- V1 sin intradía ni WebSockets: una actualización diaria EOD y, opcionalmente, una segunda comprobación selectiva de eventos materiales. Objetivo de 1–2 resúmenes/alertas diarios como máximo, sólo si hay cambios relevantes.
+- Si los datos gratuitos no son suficientemente frescos o completos, mostrar la limitación y abstenerse; no presentar datos retrasados como ejecutables.
+- La selección de instrumentos es un universo de monitorización, no una recomendación de compra ni asignación de cartera.
