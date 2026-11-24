@@ -379,3 +379,34 @@ Fuentes oficiales revisadas:
 - Cboe delayed transparency page and disclaimer: https://www.cboe.com/markets/eu/equities/transparency-data/
 - BME APA post-trade: https://www.bolsasymercados.es/es/otros-servicios/servicios-regulatorios/post-trade-data.html
 - LSEG delayed data: https://dmd.lseg.com/
+
+
+### 11.7 Aclaración: uso privado, scraping y licencias — 24-11-2026
+
+El carácter privado/no comercial de Market Radar reduce el riesgo de redistribución y comercialización, pero no convierte automáticamente cualquier extracción automatizada en libre. Deben separarse el acceso técnico, los términos contractuales aceptados al acceder, los derechos sui generis sobre bases de datos y la licencia de uso de datos de mercado. La normativa española de bases de datos protege frente a extracción/reutilización de partes sustanciales y frente a extracción repetida/sistemática de partes no sustanciales que perjudique la explotación normal; la excepción de extracción privada del art. 135 se refiere a bases de datos no electrónicas, no es una excepción general para scraping de bases online.
+
+**Euronext — reevaluación favorable, con reserva de copia/retención**
+- Los términos específicos de Delayed Trade Data (cláusula 1) dicen expresamente que el derecho de uso es gratuito y no impone restricciones salvo distribución. Esto respalda razonablemente el uso interno privado, el procesamiento y los indicadores derivados que no se distribuyan.
+- La página incorpora además un aviso de copyright que dice que los datos no pueden copiarse ni redistribuirse salvo autorización. Hay tensión entre el aviso general y la cláusula específica que define «Use» incluyendo acceso, descarga y uso, y que sólo limita la distribución. La lectura más razonable para un usuario privado es que el procesamiento interno está permitido, pero no debe afirmarse certeza jurídica absoluta sobre la copia sistemática/retención histórica indefinida.
+- La página dice que los ficheros permanecen disponibles al menos 24 horas; eso es una garantía de disponibilidad, no un límite explícito de retención del usuario ni una autorización explícita de conservación indefinida.
+- Estado revisado: **apto provisionalmente para uso interno y cálculos derivados no distribuidos**, sujeto a minimizar la copia de datos crudos y no redistribuirlos. Retención histórica de raw data queda como riesgo interpretativo; almacenar preferentemente barras derivadas y metadatos propios.
+
+**Deutsche Börse / Xetra — no asumir gratuidad para análisis avanzado**
+- La política DBAG v2.8 (2025) separa datos retrasados de tiempo real. El uso gratuito de delayed data se condiciona a no comercializar los datos, pero la política remite a la lista de precios cuando el uso non-display o display de delayed data no está permitido.
+- La Guidance Note V4.0 efectiva 01-08-2026 introduce categorías específicas para productos MiFIR. Las categorías 1, 2, 3 y 7 permiten Non-Display; las tarifas dependen de Device Accesses (Entry 1–2, Medium 3–10, Plus 11–30, Unlimited >30/no control). No es correcto aplicar sin más la conclusión antigua de que el delayed non-display siempre es gratis.
+- DBAG define analytics simples como hasta dos series temporales de métricas para un instrumento o hasta dos instrumentos; expresamente excluye análisis técnico avanzado, generación de señales y apoyo/desarrollo de estrategias de inversión. Market Radar hace precisamente screening y señales, por lo que no debe encuadrarse como simple analytics.
+- La FAQ anterior señala que almacenamiento puro no cuenta como Device para trading-based activity, pero pueden aplicar otras licencias. Esto no autoriza por sí solo la retención persistente.
+- Estado: **no usar Xetra para screening/indicadores hasta verificar el precio y el derecho aplicable al producto MiFIR concreto**. No hace falta contactar; basta consultar los documentos y price list públicos. Si la licencia para Other Application Usage es desproporcionada, descartar el feed.
+
+**Cboe**
+- Mantener sólo como candidato técnico complementario. El disclaimer «Not for Trading or Investment Decisions», además de la ausencia de garantía de integridad/continuidad, hace que no sea prudente fundamentar señales de inversión directamente en ese feed. Podría servir para investigación de cobertura/estructura de mercado, siempre revisando sus términos completos.
+
+**Regla de proyecto**
+No tratar «scraping» como categoría legal exenta. Para cada fuente evaluar: (a) autorización de acceso automatizado; (b) términos aceptados; (c) extracción de base de datos; (d) uso non-display/derived data; (e) persistencia; (f) redistribución. La ausencia de ánimo de lucro no elimina por sí sola los puntos (b)-(e).
+
+Fuentes oficiales:
+- Ley de Propiedad Intelectual española, arts. 133 y 135: https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930
+- Euronext Delayed Trade Data terms: https://marketdata.euronext.com/data-reporting-service/trades-file
+- Deutsche Börse Market Data Policy v2.8: https://www.mds.deutsche-boerse.com/resource/blob/4028410/8c40e8b49bbbae4adcf9aee2f8193ad6/data/Market%20Data%20Policy%20Guidelines%20and%20FAQ_V2_8.pdf
+- Deutsche Börse Non-Display Guidance Note V4.0 (effective 01-08-2026): https://www.mds.deutsche-boerse.com/resource/blob/5322804/5ab2ea48a9787add0f7fc5abbf9e63a4/data/Non-Display%20Guidance%20Note%204_0.pdf
+- Cboe delayed transparency terms/disclaimer: https://www.cboe.com/markets/eu/equities/transparency-data/
