@@ -225,3 +225,8 @@ El carácter privado/no comercial de Market Radar no se tratará como exención 
 - Xetra/Deutsche Börse: la Guidance Note V4.0 (01-08-2026) introduce categorías y tarifas non-display para productos MiFIR; Market Radar genera análisis técnico y señales, excluidos de simple analytics. No usar hasta comprobar la tarifa/licencia específica. No contactar con proveedores.
 - Cboe: sólo complemento técnico; no basar señales de inversión en el feed debido al disclaimer y a la falta de garantías.
 - En todas las fuentes separar automatización, condiciones contractuales, derechos de base de datos, uso non-display, retención y redistribución.
+
+
+## Decisión — Xetra para el Explorador (24-11-2026)
+
+Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque los ficheros delayed se descargan gratis con 15 minutos de retraso, la política DBAG separa acceso de uso non-display. Market Radar realiza análisis técnico y genera señales, excluidos de simple analytics. La lista de precios v11_01 publica 480 €/mes Entry para Xetra Post-Trade en la categoría tarifada por Device Access, pero deja vacía la columna Other Application Usage; no hay tarifa pública identificada que habilite claramente el uso requerido. No contactar al proveedor ni asumir que la tarifa de 480 € cubre este caso.
