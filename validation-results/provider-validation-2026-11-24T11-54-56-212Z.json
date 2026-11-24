@@ -1,0 +1,302 @@
+{
+  "reportType": "market-radar-provider-validation",
+  "generatedAt": "2026-11-24T11:54:55.681Z",
+  "testMode": "alpaca-only-iex",
+  "testWindow": {
+    "from": "2026-11-17",
+    "to": "2026-11-24",
+    "calendarDays": 7
+  },
+  "scope": {
+    "eodhdSymbols": 12,
+    "eodhdMaximumRequests": 0,
+    "alpacaSymbols": [
+      "NVDA",
+      "MSFT",
+      "META",
+      "AMZN",
+      "JNJ",
+      "SPY"
+    ],
+    "barsKeptPerSymbol": 3,
+    "noRetries": true,
+    "credentialsWritten": false,
+    "credentialsPrinted": false
+  },
+  "credentialAvailability": {
+    "eodhdConfigured": true,
+    "alpacaConfigured": true
+  },
+  "providers": [
+    {
+      "provider": "EODHD",
+      "status": "skipped",
+      "note": "Modo --alpaca-only: EODHD no se consulta ni consume cuota.",
+      "requestsAttempted": 0,
+      "quotaUnitsEstimated": 0,
+      "symbols": []
+    },
+    {
+      "provider": "Alpaca",
+      "planAssumption": "Basic gratuito; feed IEX solicitado explícitamente",
+      "status": "completed",
+      "requestsAttempted": 1,
+      "quotaUnitsEstimated": 1,
+      "requestMode": "Una única petición agrupada para seis símbolos",
+      "feedRequested": "iex",
+      "adjustmentRequested": "raw",
+      "symbols": [
+        {
+          "asset": "NVDA",
+          "symbol": "NVDA",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 167.03,
+              "high": 171.47,
+              "low": 156.96,
+              "close": 165.185,
+              "volume": 21130783,
+              "tradeCount": 157132,
+              "vwap": 165.425036
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 143.52,
+              "high": 143.72,
+              "low": 124.51,
+              "close": 125.65,
+              "volume": 17679388,
+              "tradeCount": 136049,
+              "vwap": 133.131594
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 152.895,
+              "high": 158.11,
+              "low": 145.71,
+              "close": 145.985,
+              "volume": 8068954,
+              "tradeCount": 77124,
+              "vwap": 151.47054
+            }
+          ]
+        },
+        {
+          "asset": "MSFT",
+          "symbol": "MSFT",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 506.065,
+              "high": 508.64,
+              "low": 492.16,
+              "close": 492.95,
+              "volume": 1227877,
+              "tradeCount": 24753,
+              "vwap": 498.988453
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 493.14,
+              "high": 503.735,
+              "low": 481.11,
+              "close": 485.34,
+              "volume": 1980588,
+              "tradeCount": 33017,
+              "vwap": 490.060284
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 518.81,
+              "high": 526.49,
+              "low": 498.31,
+              "close": 498.45,
+              "volume": 1398753,
+              "tradeCount": 26011,
+              "vwap": 512.458631
+            }
+          ]
+        },
+        {
+          "asset": "META",
+          "symbol": "META",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 591.69,
+              "high": 602.38,
+              "low": 579.9,
+              "close": 597.82,
+              "volume": 778056,
+              "tradeCount": 19390,
+              "vwap": 594.820589
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 582.935,
+              "high": 588.575,
+              "low": 558.98,
+              "close": 561.24,
+              "volume": 1054917,
+              "tradeCount": 19812,
+              "vwap": 571.170845
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 625.23,
+              "high": 630.06,
+              "low": 595.83,
+              "close": 596.44,
+              "volume": 659799,
+              "tradeCount": 15056,
+              "vwap": 609.182861
+            }
+          ]
+        },
+        {
+          "asset": "AMZN",
+          "symbol": "AMZN",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 260.14,
+              "high": 262.35,
+              "low": 251.34,
+              "close": 255.205,
+              "volume": 2616501,
+              "tradeCount": 41628,
+              "vwap": 256.651767
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 253.535,
+              "high": 259.94,
+              "low": 245.39,
+              "close": 247.115,
+              "volume": 3063806,
+              "tradeCount": 42755,
+              "vwap": 251.211692
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 272.5,
+              "high": 274,
+              "low": 256.77,
+              "close": 257.25,
+              "volume": 2092485,
+              "tradeCount": 36781,
+              "vwap": 264.667762
+            }
+          ]
+        },
+        {
+          "asset": "JNJ",
+          "symbol": "JNJ",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 269.61,
+              "high": 272.4,
+              "low": 267.535,
+              "close": 270.17,
+              "volume": 493867,
+              "tradeCount": 9212,
+              "vwap": 270.785698
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 269.57,
+              "high": 272.475,
+              "low": 269.565,
+              "close": 270.83,
+              "volume": 483925,
+              "tradeCount": 10407,
+              "vwap": 271.001756
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 269.61,
+              "high": 270.43,
+              "low": 264.72,
+              "close": 267.225,
+              "volume": 510328,
+              "tradeCount": 11109,
+              "vwap": 266.473804
+            }
+          ]
+        },
+        {
+          "asset": "SPY",
+          "symbol": "SPY",
+          "market": "USA",
+          "currency": "USD",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23T05:00:00Z",
+              "open": 724.295,
+              "high": 727.975,
+              "low": 713.57,
+              "close": 722.56,
+              "volume": 2407294,
+              "tradeCount": 42385,
+              "vwap": 722.259576
+            },
+            {
+              "timestamp": "2026-11-20T05:00:00Z",
+              "open": 713.56,
+              "high": 718.26,
+              "low": 686.75,
+              "close": 690.68,
+              "volume": 2813065,
+              "tradeCount": 43790,
+              "vwap": 700.085864
+            },
+            {
+              "timestamp": "2026-11-19T05:00:00Z",
+              "open": 737.54,
+              "high": 739.77,
+              "low": 715.71,
+              "close": 715.84,
+              "volume": 2674961,
+              "tradeCount": 36671,
+              "vwap": 723.958487
+            }
+          ]
+        }
+      ],
+      "acceptedSymbols": [
+        "NVDA",
+        "MSFT",
+        "META",
+        "AMZN",
+        "JNJ",
+        "SPY"
+      ],
+      "coverage": {
+        "requested": 6,
+        "accepted": 6,
+        "missing": []
+      },
+      "paginationTokenPresent": false,
+      "paginationNote": "No se detectó una página adicional.",
+      "comparisonNote": "Feed IEX: representa operaciones de ese centro de negociación, no el volumen consolidado SIP. Comparar fechas y precios con cautela; los volúmenes no son directamente equivalentes. adjustment=raw."
+    }
+  ]
+}
