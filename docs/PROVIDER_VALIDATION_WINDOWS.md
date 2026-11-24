@@ -100,3 +100,26 @@ El informe registra cobertura, símbolos aceptados/no encontrados, moneda, times
 - EODHD incluye adjustedClose cuando lo devuelve. Alpaca solicita adjustment=raw y feed=sip; comparar únicamente fechas comunes y no asumir que las series son equivalentes.
 - El script no decide proveedor ni desarrolla Market Radar.
 - La prueba puede consumir hasta 12 de las 20 llamadas EODHD diarias. No la ejecutes más de una vez el mismo día sin revisar antes el contador de cuota.
+
+
+## 4C. Muestra histórica EODHD de cuatro activos (cuatro llamadas)
+
+Esta prueba está autorizada para medir profundidad y continuidad diaria en una ventana máxima de un año. **No ejecutes el modo normal ni `--alpaca-only` para esta comprobación.**
+
+Desde PowerShell, tras `git pull`, ejecuta exactamente:
+
+~~~powershell
+node .\scripts\validate-providers.mjs --history-sample
+~~~
+
+El modo aislado:
+- Consulta sólo NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC.
+- Usa la ventana fija 2025-11-24 a 2026-11-24, frecuencia diaria.
+- Realiza exactamente cuatro peticiones EODHD (estimación: cuatro unidades); no consulta Alpaca.
+- Conserva todas las barras devueltas para contar registros y registrar primera/última fecha.
+- No reintenta, no pagina y no amplía la ventana.
+- Si falta el token EODHD, no realiza ninguna petición.
+
+La prueba puede elevar el consumo diario estimado de EODHD de 12 a 16 unidades si las 12 llamadas iniciales se hicieron el mismo día y el contador coincide con la estimación. La referencia documental es 20 llamadas/día, pero **comprueba el contador real antes de ejecutar**. No ejecutes si el panel muestra menos de cuatro llamadas disponibles.
+
+Adjunta únicamente el JSON generado en `validation-results/`. Nunca compartas `.env.local` ni credenciales.
