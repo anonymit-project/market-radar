@@ -116,3 +116,13 @@
 - V1 sin intradía ni WebSockets: una actualización diaria EOD y, opcionalmente, una segunda comprobación selectiva de eventos materiales. Objetivo de 1–2 resúmenes/alertas diarios como máximo, sólo si hay cambios relevantes.
 - Si los datos gratuitos no son suficientemente frescos o completos, mostrar la limitación y abstenerse; no presentar datos retrasados como ejecutables.
 - La selección de instrumentos es un universo de monitorización, no una recomendación de compra ni asignación de cartera.
+
+
+## Ajuste del universo de prueba — 24-11-2026
+
+- Se sustituye Core Natural Resources (CNR) por Johnson & Johnson (JNJ) en el universo inicial de 12 activos.
+- Motivo: incorporar salud como sector no tecnológico y evitar que la única diversificación sectorial propuesta dependiera de una minera de carbón de riesgo cíclico elevado.
+- CNR no queda descartada definitivamente; deja de ser necesaria para la primera validación de proveedores.
+- JNJ se incluye exclusivamente como instrumento de seguimiento y prueba de cobertura, no como recomendación de inversión.
+- La matriz documental de proveedores y consumo EOD queda incorporada en la sección 13 de DATA_SOURCES.md. Ningún proveedor está validado; no se han ejecutado llamadas ni consumido cuotas.
+- Primera hipótesis de prueba: EODHD Free (12/20 llamadas teóricas), contraste USA con Alpaca Basic y contraste alternativo con FMP/Alpha Vantage. La selección queda pendiente de pruebas de símbolo, cobertura, calidad, ajustes, histórico y licencia.
