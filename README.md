@@ -30,13 +30,15 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 - [Validación y backtesting](docs/VALIDATION.md)
 - [Decisiones y cuestiones abiertas](docs/DECISIONS.md)
 - [Próximos pasos](docs/NEXT_STEPS.md)
+- [Protocolo de trabajo y continuidad](docs/WORKFLOW.md)
 
 ## Método de trabajo con ChatGPT
 - Este repositorio es la fuente persistente de verdad; los chats son espacios de trabajo temporales.
 - Un chat principal coordina prioridades y decisiones; las tareas sustanciales pueden desarrollarse en chats separados.
-- Cada tarea debe comenzar leyendo los documentos pertinentes y terminar actualizando la documentación, registrando decisiones y dejando un prompt de relevo.
+- Cada tarea sustancial debe comenzar leyendo README.md y los documentos pertinentes, y terminar actualizando la documentación, registrando decisiones y verificando los cambios.
+- **Todo chat debe terminar con un siguiente paso explícito:** una única pregunta concreta si se continúa en el mismo chat, o un prompt de relevo completo y listo para copiar si se abre otro. Nunca dejar al usuario sin saber qué hacer.
 - No asumir decisiones pendientes ni contratar servicios, publicar datos o modificar alcance sin autorización.
-- Los prompts de relevo deben incluir objetivo, contexto, decisiones, archivos, evidencias, estado, pendientes y siguiente acción.
+- El protocolo completo está en [docs/WORKFLOW.md](docs/WORKFLOW.md).
 
 ## Regla de evidencia
 Cobertura, precios, cuotas, latencia, endpoints, licencias y permisos deben comprobarse en documentación oficial vigente y, cuando sea posible, mediante pruebas reproducibles. Un candidato no es un proveedor validado hasta superar esas comprobaciones. Diferenciar hechos, hipótesis e inferencias.
