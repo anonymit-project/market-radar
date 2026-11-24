@@ -470,3 +470,28 @@ GDELT publica streams principales con actualización aproximada de 15 minutos y 
 - Antes de seleccionar proveedor, ejecutar una prueba pequeña y reproducible con los símbolos exactos, OHLCV, ajustes, timestamps, huecos, moneda y profundidad histórica.
 - La prueba debe registrar respuestas y errores sin guardar credenciales; no activar planes de pago.
 - La siguiente fase requiere autorización expresa del usuario para consumir cuotas gratuitas y/o utilizar credenciales personales.
+
+
+---
+
+## 14. Estado de pruebas técnicas autorizadas — 24-11-2026
+
+El usuario ha autorizado pruebas limitadas con cuotas gratuitas. La autorización **no** incluye contratar planes, activar pruebas de pago, crear cuentas en su nombre ni compartir claves en el chat.
+
+### 14.1 Acceso disponible sin credenciales
+- EODHD publica un token demo que sólo funciona con una lista reducida de símbolos de ejemplo: AAPL.US, TSLA.US, VTI.US, AMZN.US, MCD.US y BTC-USD.CC. Permite comprobar el formato de respuesta para AMZN y BTC, pero no validar la cobertura de los 12 instrumentos. Documentación: https://eodhd.com/financial-apis/quick-start-with-our-financial-data-apis
+- Alpaca permite consultar histórico de cripto sin autenticación; los endpoints de acciones requieren API key y secret. Documentación: https://docs.alpaca.markets/us/v1.4.2/docs/about-market-data-api ; https://alpaca.markets/sdks/python/market_data.html
+- Las acciones USA de Alpaca requieren autenticación incluso en el plan Basic gratuito. El feed IEX es el feed realtime incluido; el acceso a SIP reciente está restringido y no debe confundirse con acceso consolidado gratuito. Documentación: https://docs.alpaca.markets/us/docs/market-data-faq
+
+### 14.2 Limitación del entorno de ejecución
+En esta sesión, el navegador de investigación no pudo abrir directamente los endpoints JSON y el entorno de ejecución no dispone de resolución DNS/salida de red para efectuar llamadas HTTP. Por tanto, **no se ha ejecutado ninguna petición API real en esta sesión**. No declarar una prueba como realizada basándose únicamente en documentación, ni confundir los ejemplos públicos de la documentación con respuestas de API obtenidas.
+
+### 14.3 Próximo procedimiento de prueba
+1. Preparar un pequeño harness reproducible, separado de la aplicación, para consultar EODHD y Alpaca.
+2. El titular crea las cuentas gratuitas si decide utilizarlas y guarda las claves localmente o en secretos de GitHub Actions; nunca las pega en chats, commits, archivos de configuración ni logs.
+3. Probar primero sólo los endpoints necesarios para resolver símbolos y obtener 1–3 barras recientes por activo, evitando descargas históricas masivas.
+4. Medir llamadas/créditos realmente consumidos y capturar status HTTP, esquema, símbolo, moneda, timestamps, volumen y mensajes de error. No registrar claves ni datos sensibles.
+5. No consultar endpoints de noticias, fundamentales o intradía en esta primera prueba.
+6. Revisar la salida y decidir si se autoriza ampliar histórico o comparar proveedores adicionales.
+
+**Estado:** autorización recibida; ejecución bloqueada hasta disponer de credenciales gratuitas para endpoints autenticados y de un entorno con conectividad de red. No hay resultados técnicos de API todavía.
