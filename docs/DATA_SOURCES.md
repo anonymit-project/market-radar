@@ -582,3 +582,55 @@ Parámetros: `timeframe=1Day`, `feed=iex`, `adjustment=raw`; hasta tres barras p
 
 **Siguiente validación recomendada:** comparar EODHD y Alpaca IEX para los seis símbolos USA en fechas comunes, verificando OHLC y cierres con una tercera fuente independiente. No comparar volúmenes IEX con volúmenes consolidados. Después, evaluar histórico y ajustes corporativos. No repetir consultas EODHD ni consumir nuevas cuotas hasta definir una prueba concreta.
 
+---
+
+## 17. Contraste de precios USA con referencias externas (24-11-2026)
+
+**Objetivo:** contrastar los datos EODHD y Alpaca IEX ya almacenados, sin nuevas llamadas API ni consumo de cuotas. Se compararon las sesiones comunes del 19, 20 y 23 de noviembre de 2026 para NVDA, MSFT, META, AMZN, JNJ y SPY.
+
+### Cierres EODHD frente a Yahoo Finance
+
+Los 18 cierres EODHD coinciden con los cierres publicados por Yahoo Finance al céntimo (seis símbolos × tres sesiones):
+
+| Símbolo | 19 nov. | 20 nov. | 23 nov. |
+|---|---:|---:|---:|
+| NVDA | 145.98 | 125.53 | 165.05 |
+| MSFT | 498.30 | 484.52 | 492.50 |
+| META | 596.22 | 560.84 | 597.60 |
+| AMZN | 257.37 | 246.82 | 255.39 |
+| JNJ | 267.14 | 270.47 | 270.05 |
+| SPY | 715.87 | 689.81 | 722.29 |
+
+Referencias históricas consultadas:
+- Yahoo Finance: https://finance.yahoo.com/quote/NVDA/history/
+- https://finance.yahoo.com/quote/MSFT/history/
+- https://finance.yahoo.com/quote/META/history/
+- https://finance.yahoo.com/quote/AMZN/history/
+- https://finance.yahoo.com/quote/JNJ/history/
+- https://finance.yahoo.com/quote/SPY/history/
+- Contraste adicional de META con su página oficial de información bursátil: https://investor.atmeta.com/stock-info/default.aspx
+
+**Lectura:** es una señal favorable para los cierres EODHD en esta muestra. No demuestra independencia plena de la cadena de suministro de Yahoo ni exactitud general; los datos de ambas plataformas podrían compartir proveedores subyacentes. La muestra es de sólo tres sesiones y seis activos.
+
+### Alpaca IEX frente a EODHD
+
+Los cierres IEX difieren ligeramente de EODHD. En los 18 pares, la diferencia absoluta media es aproximadamente 0,068%; la máxima, 0,169% (MSFT, 20 nov.). Es compatible con una muestra de operaciones de un solo centro de negociación frente a una referencia de mercado más amplia, pero no permite afirmar que IEX reproduzca el cierre consolidado oficial.
+
+No comparar volúmenes IEX con volúmenes EODHD/SIP. IEX presenta volúmenes muy inferiores porque sólo recoge operaciones de ese centro.
+
+### Incidencia pendiente: adjusted close de JNJ
+
+El campo `adjustedClose` de EODHD para JNJ no coincide con el `Adj Close` mostrado por Yahoo en la sesión del 23 nov. (EODHD: 268,71; Yahoo: 270,05). Para 20 y 19 nov., EODHD devuelve 269,1279 y 265,8144; esos valores sí coinciden aproximadamente con los ajustes publicados por StockAnalysis (269,13 y 265,81): https://stockanalysis.com/stocks/jnj/history/
+
+La diferencia puede depender de la fecha de corte y del tratamiento de dividendos, pero no se da por explicada. Antes de usar series ajustadas en indicadores, rentabilidades o backtesting, hay que identificar la convención de ajuste y contrastar fechas ex-dividendo, factor y fecha de cálculo.
+
+### Conclusión provisional
+
+- EODHD: candidato técnico prometedor para EOD de los seis activos USA y, por la primera prueba, del universo de 12 instrumentos. No aprobado aún.
+- Alpaca Basic IEX: candidato técnico complementario; no usar sus volúmenes como volumen consolidado.
+- Los cierres EODHD reciben una validación externa inicial favorable, no una certificación de calidad.
+- La calidad de `adjustedClose`, especialmente JNJ, queda abierta.
+- Las condiciones de licencia, almacenamiento y uso individual siguen siendo un filtro independiente de la calidad técnica.
+
+**Siguiente paso recomendado:** resolver la semántica de ajustes y dividendos de JNJ y, en paralelo, validar la cobertura histórica EODHD de varios años con una muestra acotada. No hacer nuevas llamadas API hasta definir símbolos, fechas y consumo máximo de la prueba.
+
