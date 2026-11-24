@@ -67,3 +67,38 @@ Proveedor, frecuencia exacta y costes de email pendientes.
 - La primera versión debe construirse y operar con servicios y fuentes de coste cero, siempre que sus licencias y límites lo permitan.
 - No se contratarán planes de pago durante la fase inicial. Sólo se estudiarán cuando el sistema gratuito esté funcionando y se hayan medido sus limitaciones reales.
 - «Gratis» no prevalece sobre legalidad, calidad, estabilidad o seguridad; no usar fuentes sin derechos suficientemente claros.
+
+
+## Universo inicial de seguimiento — v1 (24-11-2026)
+
+El usuario confirma incluir obligatoriamente NVIDIA, Microsoft y Meta. Se propone el siguiente universo de 12 instrumentos para validar cobertura y diseñar el radar; **no son recomendaciones de compra ni una cartera objetivo**:
+
+| # | Instrumento | Símbolo de referencia | Mercado / función |
+|---:|---|---|---|
+| 1 | NVIDIA | NVDA | EE. UU.; semiconductores/IA |
+| 2 | Microsoft | MSFT | EE. UU.; software/cloud |
+| 3 | Meta Platforms | META | EE. UU.; plataformas/publicidad/IA |
+| 4 | Amazon | AMZN | EE. UU.; comercio/cloud |
+| 5 | Core Natural Resources | CNR | EE. UU.; carbón térmico y metalúrgico; seguimiento de alto riesgo cíclico |
+| 6 | ASML | ASML (Euronext Amsterdam) | Europa; semiconductores/equipamiento |
+| 7 | SAP | SAP (Xetra) | Europa; software empresarial |
+| 8 | Banco Santander | SAN (BME Madrid) | Europa; banca |
+| 9 | SPDR S&P 500 ETF Trust | SPY | ETF USA; benchmark de grandes compañías estadounidenses |
+| 10 | Vanguard FTSE All-World UCITS ETF | VWCE (Xetra) | ETF UCITS global; benchmark diversificado |
+| 11 | Bitcoin | BTC/USD | Cripto |
+| 12 | Ethereum | ETH/USD | Cripto |
+
+Los símbolos exactos por proveedor pueden variar; resolver ticker, MIC/bolsa, moneda y tipo de instrumento antes de comparar datos. No confundir el ticker estadounidense CNR con otros instrumentos homónimos.
+
+### Criterio sobre Core Natural Resources (CNR)
+CNR se incluye para vigilarla, no como componente «core» ni como apuesta de largo plazo aprobada. Es una compañía expuesta a carbón térmico y metalúrgico, precios de materias primas, demanda de acero/energía, regulación climática, riesgos operativos mineros, transporte, deuda y transición energética. La empresa también explora líneas nuevas (incluidas tierras raras), pero no deben valorarse como negocio consolidado sin evidencia de ingresos, márgenes y escala. Su 10-Q y comunicaciones de 2026 enumeran expresamente volatilidad de precios, demanda, regulación, operaciones, reservas y riesgos de integración. El radar deberá tratarla como caso cíclico/especial y exigir margen de seguridad, balance, generación de caja a través del ciclo y valoración conservadora antes de emitir una señal positiva.
+
+Fuente primaria: SEC, 10-Q de Core Natural Resources para el trimestre finalizado el 30-09-2026: https://www.sec.gov/Archives/edgar/data/1710366/000171036626000068/cnr-20260930.htm ; resultados Q3 2026: https://www.sec.gov/Archives/edgar/data/1710366/000171036626000067/cnrq32026er-exhibit991.htm
+
+### Cadencia operativa v1
+- No se exige intradía ni streaming/WebSocket.
+- Una ejecución diaria tras el cierre de los mercados correspondientes actualizará precios EOD, fundamentals/noticias disponibles y reglas.
+- Segunda ejecución opcional sólo para novedades materiales o alertas de riesgo; no generar mensajes si no cambia la evaluación.
+- Para mercados USA y Europa, respetar horarios, festivos y zonas horarias. Cripto opera 24/7, pero la señal diaria debe usar un corte horario definido y consistente.
+- Las alertas serán para el titular, máximo orientativo de 1–2 resúmenes al día, con prioridad a cambios de tesis, resultados, eventos relevantes o niveles de entrada/salida. No prometer datos en tiempo real.
+- Si una fuente gratuita no aporta precio fresco o histórico suficiente, etiquetar la carencia y abstenerse; nunca presentar dato retrasado como cotización ejecutable.
