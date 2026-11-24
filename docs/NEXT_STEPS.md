@@ -81,3 +81,11 @@ Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
 - Si la tarea puede continuar de forma eficiente en el mismo chat, cerrar con una pregunta concreta que desbloquee el siguiente paso.
 - Si conviene un chat nuevo, entregar un prompt de relevo completo, listo para copiar y pegar.
 Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso implícito.
+
+
+## Próximo paso — validar universo y cuotas gratuitas
+- [ ] Resolver ticker/MIC/bolsa/moneda de los 12 instrumentos definidos en PRODUCT_SPEC.md.
+- [ ] Construir matriz de cobertura por proveedor y endpoint para una descarga EOD diaria; medir créditos/llamadas para 12 instrumentos.
+- [ ] Evaluar fuentes de eventos para una segunda ejecución selectiva, sin descarga completa.
+- [ ] Diseñar el comportamiento de abstención cuando falten datos, haya retraso excesivo o discrepancias.
+- [ ] Sólo tras autorización expresa, ejecutar llamadas de prueba con cuotas gratuitas.
