@@ -266,3 +266,16 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] No descargar datos, ejecutar scripts, registrarse ni enviar consultas sin autorización expresa del usuario.
 
 **Conclusión vigente:** Euronext y Xetra siguen como candidatos prioritarios, pero ninguna fuente europea está aprobada todavía para ingesta automatizada con almacenamiento histórico. Cboe es complemento técnico parcial, no consolidado paneuropeo.
+
+
+## Actualización 24-11-2026 — criterio de uso privado
+
+- [x] Aclarar que el scraping no es ilegal por definición, pero no existe una exención general por uso privado para bases de datos electrónicas.
+- [x] Reinterpretar Euronext: cláusula específica de uso gratuito sin restricciones salvo distribución respalda uso interno y derivados no distribuidos; copia sistemática y retención indefinida siguen con reserva por aviso de copyright y ausencia de cláusula explícita de retención.
+- [x] Incorporar DBAG Non-Display Guidance Note V4.0 efectiva 01-08-2026: productos MiFIR con categorías y tarifas por Device Access; Market Radar no encaja en simple analytics por generar análisis técnico/señales.
+- [x] Mantener Cboe fuera de señales de inversión por su disclaimer y falta de garantía.
+- [ ] Consultar la lista de precios DBAG vigente para productos MiFIR y determinar si existe categoría Non-Display individual asumible; no contactar con proveedores.
+- [ ] Diseñar almacenamiento Euronext minimizando raw data y reteniendo preferentemente OHLCV derivados/metadatos propios, sujeto a validación de términos.
+- [ ] No enviar correos, descargar ficheros, crear cuentas ni consumir cuotas sin autorización expresa.
+
+**Conclusión:** Euronext pasa a ser candidato razonable para piloto privado basado en uso interno y datos derivados, con reserva sobre retención raw indefinida. Xetra queda bloqueado hasta conocer la licencia non-display aplicable a screening y señales.
