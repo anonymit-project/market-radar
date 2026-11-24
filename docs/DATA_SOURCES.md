@@ -703,3 +703,31 @@ La prueba aporta evidencia favorable de disponibilidad, cobertura anual y consis
 La prueba no demuestra precisión absoluta, completitud de toda la historia, estabilidad/SLA, ausencia de errores semánticos, derechos de licencia, permisos de almacenamiento/automatización/LLM ni cobertura histórica suficiente para estrategias de largo plazo. Las barras bursátiles tampoco se contrastaron una a una con una fuente independiente.
 
 Siguientes verificaciones: contrastar los movimientos extremos con una fuente independiente sin nuevas llamadas EODHD; revisar eventos corporativos que explican `adjustedClose`; completar la revisión de licencia individual y derechos de uso antes de seleccionar proveedor.
+
+
+---
+
+## 18. Investigación del Explorador de acciones — 24-11-2026
+
+La investigación documental detallada, con matriz de fuentes, mercados, licencias, arquitectura y pipeline de filtrado, queda en [docs/EXPLORER_DESIGN.md](EXPLORER_DESIGN.md). Esta sección resume el estado vigente y no sustituye las evidencias históricas de las secciones anteriores.
+
+### Conclusiones vigentes
+- El universo del Explorador queda limitado a acciones cotizadas de EE. UU. y Europa; ETF y cripto se mantienen en seguimiento separado.
+- Catálogo USA: Nasdaq Trader (nasdaqlisted/otherlisted), directorios de bolsas y Massive All Tickers como fuente complementaria.
+- Catálogo UE/EEE: ESMA FIRDS como referencia regulatoria amplia (full semanal, delta/cancelaciones diarias), filtrada por CFI/MIC/estado y contrastada con directorios de bolsas. LSE requiere fuente separada.
+- Identidad: no usar ticker como clave primaria. Normalizar issuer, security/share class, ISIN, FIGI, LEI/CIK, MIC, moneda, listing status y vigencia de símbolos.
+- Massive Stocks Basic es candidato técnico USA: directorio diario, 2 años EOD, endpoint agrupado USA y 5 req/min. Sus términos restringen a uso personal/no comercial, prohíben compartir y obligan a borrar datos/cachés dentro de 30 días tras finalizar la licencia. No aprobado; confirmar elegibilidad y retención.
+- Euronext declara gratuito el uso interno de datos retrasados, pero diferencia display y non-display; el uso automatizado/cálculos puede requerir acuerdo directo. BME mantiene licencias y tarifas separadas display/non-display desde 23-08-2026. No asumir que datos visibles gratuitamente permiten automatización persistente.
+- SEC EDGAR proporciona APIs públicas de submissions y XBRL sin API key, con actualización durante el día y bulk ZIP nocturno. Respetar User-Agent y fair access (máximo 10 req/s en SEC.gov).
+- FMP Basic: 250 llamadas/día y EOD/profile/reference; fundamentals/ratios anuales y news se anuncian desde Starter, no en Basic.
+- GDELT: metadatos/datasets reutilizables sin tarifa con atribución, pero los derechos de los artículos subyacentes no se transfieren. Usar para descubrimiento, confirmar con filings y fuentes primarias.
+- ESAP comienza a recopilar información en 2026 y su portal público está previsto para julio de 2027; la disponibilidad será gradual. No basar la v1 en una API paneuropea que todavía no existe.
+
+### Decisión provisional de arquitectura
+Separar adaptadores de catálogo, precios, fundamentales, noticias y eventos. El explorador amplio requiere precios EOD para cada valor elegible; un universo amplio sin cobertura de precios no permite detectar anomalías de mercado. Los fundamentales se enriquecen sólo para candidatos, no para todas las compañías desde el primer paso.
+
+### Bloqueo
+No se ha encontrado una fuente gratuita paneuropea de OHLCV EOD que combine cobertura amplia, automatización, almacenamiento histórico y derechos claros. EODHD Free (20 llamadas/día, un año) no escala al universo amplio. Massive no cubre Europa y no debe considerarse archivo histórico permanente. No iniciar desarrollo ni consumir cuotas adicionales hasta resolver el bloqueo y autorizar una prueba concreta.
+
+### Estado de validación
+Toda esta revisión es documental. No se han hecho llamadas API, usado credenciales, creado cuentas ni consumido cuotas. Las pruebas EODHD y Alpaca descritas en secciones anteriores no se repiten ni se amplían por esta investigación.
