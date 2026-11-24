@@ -56,3 +56,21 @@ Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
 - Si la tarea puede continuar de forma eficiente en el mismo chat, cerrar con una pregunta concreta que desbloquee el siguiente paso.
 - Si conviene un chat nuevo, entregar un prompt de relevo completo, listo para copiar y pegar.
 Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso implícito.
+
+
+## Fase 1B — Cierre de licencias para tres familiares (prioridad inmediata)
+
+- [x] Definir el caso exacto: tres personas físicas, dashboard autenticado, backend único, datos e históricos compartidos, derivados/señales, backtesting, Telegram/email y LLM.
+- [x] Contrastar políticas oficiales de EODHD, Twelve Data, FMP, Massive, Alpaca, Finnhub, Alpha Vantage y Stooq.
+- [x] Contrastar GDELT y Marketaux para noticias/eventos.
+- [x] Documentar qué está permitido para un titular, qué está prohibido compartir y qué requiere licencia/confirmación.
+- [x] Preparar consultas escritas individualizadas y plantilla común.
+- [ ] Enviar consultas a proveedores finalistas sólo con autorización del usuario (ninguna se ha enviado).
+- [ ] Registrar respuesta íntegra, persona/fecha, plan, cláusulas, costes, exchanges y condiciones de cada proveedor.
+- [ ] Descartar proveedores que no autoricen por escrito los tres usuarios o cuyo coste/licencia no resulte razonable.
+- [ ] Sólo después, cerrar matriz técnica de cobertura, latencia, histórico, cuotas y coste total de los proveedores que sí permitan el uso.
+- [ ] No ejecutar pruebas API ni consumir cuotas/credenciales hasta autorización expresa.
+
+**Criterio de salida:** autorización contractual o respuesta escrita suficientemente concreta para los tres usuarios y todos los canales/outputs previstos, incluyendo derechos de exchanges; coste completo conocido; política de almacenamiento/IA clara. Sin esto, no hay proveedor aprobado y no se inicia desarrollo.
+
+**Siguiente decisión del usuario:** autorizar que se envíen las consultas escritas a los proveedores finalistas. Recomendación operativa: empezar por Twelve Data, EODHD, Massive y FMP; añadir Alpaca/Finnhub si el coste y cobertura USA justifican negociar; dejar Alpha Vantage y Stooq como candidatos secundarios. GDELT puede evaluarse por separado para metadatos de noticias.
