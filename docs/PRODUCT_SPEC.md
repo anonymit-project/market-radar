@@ -48,8 +48,8 @@ Mobile-first, instalable desde navegador Android/iOS; no aplicación nativa ni p
 
 El foco visual es el radar, no el seguimiento de inversiones.
 
-## 7. Usuarios y carteras virtuales
-Tres personas comparten el mismo conjunto de señales. Cada una puede tener cartera virtual independiente; funcionalidad secundaria. Separar rendimiento del sistema de señales y rendimiento de las operaciones virtuales. Acceso compartido con perfiles nombre/PIN fue una idea, no una decisión; autenticación pendiente.
+## 7. Usuario y cartera virtual
+Un único usuario privado (el titular). No hay usuarios adicionales, acceso familiar ni redistribución de datos o señales. La cartera virtual, si se mantiene, será individual y secundaria. Separar rendimiento del sistema de señales y rendimiento de las operaciones virtuales.
 
 ## 8. Notificaciones
 - Telegram: nuevas oportunidades relevantes, sin spam, con datos esenciales y enlace a ficha.
