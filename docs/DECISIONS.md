@@ -198,3 +198,20 @@ La prueba no consulta Alpaca, no reintenta, no pagina y no amplía la ventana. E
 
 ### Corrección de vigencia documental
 Los bloques anteriores que mencionan tres usuarios, PWA como requisito inmediato, cadencia intradía o universo ETF/cripto como alcance principal son antecedentes históricos o hipótesis superadas. Prevalecen el uso privado de un único titular, el alcance de acciones USA/EU para el Explorador, ETF/cripto separados y la cadencia EOD confirmados en este registro y en docs/WORKFLOW.md / docs/PRODUCT_SPEC.md.
+
+
+---
+
+## Actualización de fuentes europeas — 24-11-2026
+
+- La investigación confirma que los ficheros públicos MiFIR post-trade pueden ser automatizables: Reglamento Delegado (UE) 2025/1156, arts. 23–25. Esto corrige la hipótesis demasiado tajante de que no existía ninguna fuente gratuita automatizable europea.
+- Euronext Trades Files es candidato prioritario para OHLCV propio por venue: CSV, 15 min retraso, 7 mercados, uso gratuito salvo distribución según sus términos. Aún pendiente validar esquema, flags y retención.
+- Xetra/Deutsche Börse ofrece JSON.gz post-trade gratuito y descargable, pero se requiere confirmar por escrito el uso automatizado privado/non-display y retención.
+- Cboe Europe ofrece CSV de transacciones de sus venues y APA/MTF reportadas; fuente complementaria, no consolidado total.
+- BME ofrece JSON post-trade, pero su página restringe el uso a personal/interno; no aprobar job automatizado hasta confirmar condiciones.
+- LSEG exige licencia para non-display y otras aplicaciones; no aprobar automatización sin licencia.
+- EuroCTP está operativo desde 14-09-2026 y consolida el mercado UE. Minoristas pueden acceder gratuitamente vía web, pero Non-Display Use exige Data Licence; fee schedule publicado indica 4.000 €/mes + 56 €/mes de Web API y 204 €/día de histórico. No viable para el escáner automático con tarifas actuales.
+- OHLC.io, Twelve Data y Alpha Vantage no resuelven gratuitamente la cobertura EOD europea completa. Yahoo scraping no permitido por términos.
+
+### Próxima prioridad
+Validar Euronext y Xetra como fuentes de transacciones por venue, incluyendo correcciones/cancelaciones, flags y calidad de cierre. Diferenciar explícitamente volumen del venue de volumen consolidado. No ejecutar descargas ni pruebas de datos hasta autorización expresa.
