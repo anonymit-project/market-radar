@@ -252,3 +252,17 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Sólo después, solicitar autorización para una prueba técnica pequeña, acotada y sin consumo de APIs comerciales.
 
 **Siguiente paso recomendado:** análisis documental detallado del formato de Euronext y de la política de uso Xetra. No descargar ficheros, no llamar APIs y no consumir cuotas sin autorización.
+
+
+## Actualización 24-11-2026 — revisión de términos y formatos
+
+- [x] Revisar términos específicos de Euronext: uso gratuito salvo distribución, pero contradicción con aviso de copyright sobre copia; esquema y retención histórica siguen sin confirmación.
+- [x] Revisar política DBAG v2.8: delayed data gratis si no se comercializa, pero non-display/quantitative analysis y almacenamiento pueden requerir encuadre/licencia.
+- [x] Revisar especificación Cboe Delayed Transparency Files v1.0.7: campos, MIC, timestamps, cantidades, IDs y flags; feed nuevo reemplaza al legacy con migración anunciada hasta 27-11-2026.
+- [x] Revisar BME y LSEG: derechos automatizados no confirmados para BME; LSEG exige licencia para non-display/derived data.
+- [ ] Obtener confirmación escrita de Euronext sobre ingesta automática privada, copia técnica, OHLCV derivados internos y retención histórica indefinida.
+- [ ] Obtener confirmación escrita de Deutsche Börse sobre uso personal automatizado no-display/quantitative analysis y almacenamiento persistente de datos retrasados.
+- [ ] Evaluar con cautela el disclaimer de Cboe («Not for Trading or Investment Decisions») antes de considerarlo para señales de inversión.
+- [ ] No descargar datos, ejecutar scripts, registrarse ni enviar consultas sin autorización expresa del usuario.
+
+**Conclusión vigente:** Euronext y Xetra siguen como candidatos prioritarios, pero ninguna fuente europea está aprobada todavía para ingesta automatizada con almacenamiento histórico. Cboe es complemento técnico parcial, no consolidado paneuropeo.
