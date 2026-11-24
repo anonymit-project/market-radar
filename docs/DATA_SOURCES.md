@@ -195,7 +195,10 @@ Enviar desde el canal oficial de ventas/licencias, sin adjuntar claves ni datase
 - **Stooq**: localizar contacto oficial válido y pedir términos/licencia de API, origen de los datos, redistribución/display, histórico y uso de derivados/IA antes de cualquier consumo automatizado.
 - **Marketaux** (contacto oficial del sitio): pedir licencia específica de API para uso automatizado y display de títulos/descripciones/snippets/URLs a tres usuarios, almacenamiento, resúmenes derivados y procesamiento LLM.
 
-### 9.6 Conclusión y shortlist
+### 9.6 Conclusión y shortlist del escenario anterior de tres usuarios (SUPERADA)
+
+> **Histórico, no vigente.** La conclusión de esta sección corresponde al escenario de tres familiares y queda sustituida por la sección 10, tras la decisión del 24-11-2026 de usar Market Radar exclusivamente con un usuario.
+
 
 1. **No hay proveedor de mercado validado para el dashboard compartido de tres personas bajo una licencia personal.** EODHD, FMP, Massive y Finnhub lo excluyen expresamente; Alpha Vantage no permite el acceso indirecto de otros; Alpaca requiere más validación; Twelve Data es el candidato más interesante para negociar derechos de display/derivados, pero no hay autorización confirmada.
 2. **EODHD destaca para investigación privada individual** (históricos, backtesting, derivados conservables y uso personal con LLM), pero su FAQ hace inviable trasladar ese plan a los tres.
