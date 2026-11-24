@@ -108,3 +108,24 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Ejecutar pruebas desde un entorno con conectividad, empezando por EODHD y Alpaca.
 - [ ] Registrar resultados reales, errores y cuotas consumidas en DATA_SOURCES.md.
 - **Restricciones:** sin planes de pago, pruebas de pago, creación de cuentas en nombre del usuario ni descargas históricas masivas.
+
+
+## Fase 1C — ejecutar el harness local de proveedores (pendiente del titular)
+
+**Preparación completada:** se han publicado el script aislado `scripts/validate-providers.mjs`, las instrucciones [docs/PROVIDER_VALIDATION_WINDOWS.md](PROVIDER_VALIDATION_WINDOWS.md), la plantilla `.env.local.example` y las exclusiones de secretos/resultados en `.gitignore`.
+
+- [x] Preparar script Node.js sin dependencias para Windows (Node >= 18).
+- [x] Limitar EODHD a 12 peticiones individuales como máximo por ejecución.
+- [x] Preparar una única petición agrupada Alpaca para NVDA, MSFT, META, AMZN, JNJ y SPY.
+- [x] Limitar la ventana a 7 días naturales, conservar hasta 3 barras por símbolo y no reintentar.
+- [x] Registrar cobertura, símbolos, moneda, timestamps, OHLCV, errores y consumo estimado.
+- [x] Evitar imprimir/guardar claves y excluir `.env.local` e informes locales de Git.
+- [ ] El titular crea/usa sus propias cuentas gratuitas y añade las claves sólo en el archivo local `.env.local`.
+- [ ] El titular ejecuta una vez el comando de PowerShell indicado en la guía.
+- [ ] El titular adjunta únicamente el JSON de `validation-results/` a ChatGPT.
+- [ ] Contrastar consumo estimado EODHD con el contador real y revisar calidad/cobertura.
+- [ ] Registrar resultados reales en DATA_SOURCES.md; mantener claramente separadas pruebas ejecutadas e hipótesis documentales.
+
+**Siguiente acción exacta del titular:** descargar/actualizar el repositorio, seguir [la guía Windows](PROVIDER_VALIDATION_WINDOWS.md), ejecutar el script una sola vez y adjuntar el JSON generado. No enviar claves, archivo `.env.local` ni capturas que las muestren.
+
+**Restricciones vigentes:** no contratar, activar pruebas de pago, crear cuentas en nombre del titular, compartir credenciales ni descargar históricos masivos. Esta preparación no selecciona proveedor ni inicia el desarrollo de la aplicación.
