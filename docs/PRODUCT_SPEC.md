@@ -61,3 +61,9 @@ Proveedor, frecuencia exacta y costes de email pendientes.
 - Custodia, broker o asesoramiento personalizado.
 - Gestión de carteras reales.
 - Emitir señales continuamente para aparentar actividad.
+
+
+## 10. Restricción presupuestaria inicial
+- La primera versión debe construirse y operar con servicios y fuentes de coste cero, siempre que sus licencias y límites lo permitan.
+- No se contratarán planes de pago durante la fase inicial. Sólo se estudiarán cuando el sistema gratuito esté funcionando y se hayan medido sus limitaciones reales.
+- «Gratis» no prevalece sobre legalidad, calidad, estabilidad o seguridad; no usar fuentes sin derechos suficientemente claros.
