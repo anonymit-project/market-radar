@@ -85,3 +85,15 @@
 
 ### Registro de cambios
 - 2026-11-24: auditoría documental de licencias para el caso de tres familiares; se añaden conclusiones, matriz de derechos y plantillas de consultas en DATA_SOURCES.md.
+
+
+## Cambio de alcance confirmado — 24-11-2026
+
+- **Market Radar será exclusivamente para uso privado de un único usuario: el titular.** No habrá dashboard compartido con familiares, cuentas adicionales, invitados ni acceso de terceros.
+- Cotizaciones, históricos, indicadores, señales, backtesting e informes serán sólo para análisis del titular y no se compartirán ni publicarán.
+- Telegram y email, si se implementan, enviarán alertas únicamente al titular.
+- IA/LLM se utilizará como herramienta de análisis personal, sujeto a las restricciones de cada proveedor de datos y del proveedor de IA.
+- Esta decisión sustituye el requisito previo de tres familiares y deja sin efecto la necesidad de negociar licencias de display multiusuario. La auditoría anterior se conserva como histórico, no como requisito vigente.
+- No implica que cualquier plan gratuito/personal permita automáticamente almacenamiento ilimitado, uso de LLM, automatización o retención tras cancelar. Esos derechos siguen pendientes de verificar proveedor por proveedor.
+- No contratar, pagar, usar credenciales ni consumir cuotas sin autorización expresa. No desarrollar la aplicación hasta completar la selección documental y la validación técnica.
+
