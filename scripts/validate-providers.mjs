@@ -136,20 +136,20 @@ function mapAlpacaBar(bar) {
     tradeCount: bar.n ?? null, vwap: bar.vw ?? null,
   };
 }
-async function testAlpaca(key, secret, from, to) {
+async function testAlpaca(key, secret, from, to, feed) {
   const url = new URL("https://data.alpaca.markets/v2/stocks/bars");
   url.search = new URLSearchParams({
     symbols: ALPACA_SYMBOLS.join(","), timeframe: "1Day", start: from, end: to,
-    limit: "100", adjustment: "raw", feed: "sip", sort: "desc",
+    limit: "100", adjustment: "raw", feed, sort: "desc",
   }).toString();
   const response = await fetchJson(url, {
     headers: { "APCA-API-KEY-ID": key, "APCA-API-SECRET-KEY": secret },
   }, [key, secret]);
   const result = {
-    provider: "Alpaca", planAssumption: "Basic gratuito; feed SIP histórico solicitado explícitamente",
+    provider: "Alpaca", planAssumption: feed === "iex" ? "Basic gratuito; feed IEX solicitado explícitamente" : "Feed SIP solicitado explícitamente; requiere permiso de suscripción",
     status: response.ok ? "completed" : "error", requestsAttempted: 1, quotaUnitsEstimated: 1,
     requestMode: "Una única petición agrupada para seis símbolos",
-    feedRequested: "sip", adjustmentRequested: "raw", symbols: [],
+    feedRequested: feed, adjustmentRequested: "raw", symbols: [],
   };
   if (!response.ok) {
     result.error = response.error;
@@ -176,11 +176,14 @@ async function testAlpaca(key, secret, from, to) {
   result.paginationNote = result.paginationTokenPresent
     ? "La respuesta anuncia más páginas; no se descargan para mantener la prueba pequeña."
     : "No se detectó una página adicional.";
-  result.comparisonNote = "Comparar sólo fechas coincidentes. Feed SIP y ajuste raw se solicitan expresamente; no mezclar con IEX ni con series ajustadas.";
+  result.comparisonNote = feed === "iex"
+    ? "Feed IEX: representa operaciones de ese centro de negociación, no el volumen consolidado SIP. Comparar fechas y precios con cautela; los volúmenes no son directamente equivalentes. adjustment=raw."
+    : "Feed SIP y ajuste raw se solicitan expresamente; no mezclar con IEX ni con series ajustadas.";
   return result;
 }
 
 await loadLocalEnv();
+const alpacaOnlyIex = process.argv.includes("--alpaca-only");
 const eodhdToken = process.env.EODHD_API_TOKEN?.trim();
 const alpacaKey = process.env.ALPACA_API_KEY?.trim();
 const alpacaSecret = process.env.ALPACA_API_SECRET?.trim();
@@ -189,9 +192,10 @@ const from = dateDaysAgo(EODHD_WINDOW_DAYS);
 const report = {
   reportType: "market-radar-provider-validation",
   generatedAt: new Date().toISOString(),
+  testMode: alpacaOnlyIex ? "alpaca-only-iex" : "full-eodhd-and-alpaca-sip",
   testWindow: { from, to, calendarDays: EODHD_WINDOW_DAYS },
   scope: {
-    eodhdSymbols: EODHD_SYMBOLS.length, eodhdMaximumRequests: EODHD_MAX_REQUESTS,
+    eodhdSymbols: EODHD_SYMBOLS.length, eodhdMaximumRequests: alpacaOnlyIex ? 0 : EODHD_MAX_REQUESTS,
     alpacaSymbols: ALPACA_SYMBOLS, barsKeptPerSymbol: 3, noRetries: true,
     credentialsWritten: false, credentialsPrinted: false,
   },
@@ -203,15 +207,18 @@ const report = {
 console.log("Market Radar — prueba limitada de proveedores");
 console.log("Ventana consultada: " + from + " a " + to + " (barras diarias recientes).");
 console.log("No se mostrarán claves ni URLs con credenciales.");
-if (eodhdToken) {
+if (alpacaOnlyIex) {
+  report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Modo --alpaca-only: EODHD no se consulta ni consume cuota.") });
+} else if (eodhdToken) {
   console.log("EODHD: iniciando hasta 12 consultas individuales...");
   report.providers.push(await testEodhd(eodhdToken, from, to));
 } else {
   report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Falta EODHD_API_TOKEN en .env.local o en el entorno.") });
 }
 if (alpacaKey && alpacaSecret) {
-  console.log("Alpaca: iniciando una consulta agrupada para seis símbolos USA...");
-  report.providers.push(await testAlpaca(alpacaKey, alpacaSecret, from, to));
+  const feed = alpacaOnlyIex ? "iex" : "sip";
+  console.log("Alpaca: iniciando una consulta agrupada para seis símbolos USA (feed " + feed.toUpperCase() + ")...");
+  report.providers.push(await testAlpaca(alpacaKey, alpacaSecret, from, to, feed));
 } else {
   report.providers.push({ provider: "Alpaca", ...emptyProvider("skipped", "Faltan ALPACA_API_KEY y/o ALPACA_API_SECRET; no se ha realizado ninguna petición.") });
 }
