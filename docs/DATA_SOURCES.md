@@ -618,11 +618,15 @@ Los cierres IEX difieren ligeramente de EODHD. En los 18 pares, la diferencia ab
 
 No comparar volúmenes IEX con volúmenes EODHD/SIP. IEX presenta volúmenes muy inferiores porque sólo recoge operaciones de ese centro.
 
-### Incidencia pendiente: adjusted close de JNJ
+### Discrepancia de adjusted close de JNJ: explicada
 
-El campo `adjustedClose` de EODHD para JNJ no coincide con el `Adj Close` mostrado por Yahoo en la sesión del 23 nov. (EODHD: 268,71; Yahoo: 270,05). Para 20 y 19 nov., EODHD devuelve 269,1279 y 265,8144; esos valores sí coinciden aproximadamente con los ajustes publicados por StockAnalysis (269,13 y 265,81): https://stockanalysis.com/stocks/jnj/history/
+EODHD devuelve `adjustedClose=268.71` para JNJ el 23 nov., mientras Yahoo muestra `Adj Close=270.05`. La diferencia corresponde exactamente al dividendo de **1,34 USD** cuyo ex-date es el 24 nov. de 2026, anunciado por la propia Johnson & Johnson: https://www.jnj.com/media-center/press-releases/johnson-johnson-announces-quarterly-dividend-for-fourth-quarter-2026
 
-La diferencia puede depender de la fecha de corte y del tratamiento de dividendos, pero no se da por explicada. Antes de usar series ajustadas en indicadores, rentabilidades o backtesting, hay que identificar la convención de ajuste y contrastar fechas ex-dividendo, factor y fecha de cálculo.
+La metodología oficial de EODHD confirma que `adjusted_close` ajusta por splits y dividendos, mientras OHLC permanece sin ajustar: https://eodhd.com/help/methodology. En este caso aplica el factor:
+
+`(270.05 - 1.34) / 270.05 = 0.99503796`
+
+Ese factor produce 268.71 para el 23 nov., 269.1279 para el 20 nov. y 265.8144 para el 19 nov., coincidiendo con el informe EODHD. Por tanto, la diferencia observada se explica por convenciones/corte de ajuste distintos; no es evidencia de un error en el cierre raw. No mezclar `close` y `adjustedClose` entre proveedores sin normalizar su fecha de referencia y metodología.
 
 ### Conclusión provisional
 
