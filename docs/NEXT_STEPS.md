@@ -279,3 +279,12 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] No enviar correos, descargar ficheros, crear cuentas ni consumir cuotas sin autorización expresa.
 
 **Conclusión:** Euronext pasa a ser candidato razonable para piloto privado basado en uso interno y datos derivados, con reserva sobre retención raw indefinida. Xetra queda bloqueado hasta conocer la licencia non-display aplicable a screening y señales.
+
+
+## Actualización — precios y licencia Xetra (24-11-2026)
+
+- [x] Revisar la Price List DBAG Non-Display v11_01, vigente 01-08-2026.
+- [x] Registrar tarifas Xetra Post-Trade: 480 €/mes Entry, 880 € Medium, 1.400 € Plus y 2.200 € Unlimited, antes de IVA, para la categoría tarifada por Device Access.
+- [x] Comprobar que Other Application Usage (categoría que incluye análisis cuantitativo) aparece sin tarifa publicada para Xetra Post-Trade; no asumir que la tarifa Entry cubre screening/señales.
+- [x] Confirmar que Market Radar no encaja en «simple analytics» según la FAQ DBAG por generar análisis técnico y señales.
+- [x] Decisión: descartar Xetra para screening automatizado salvo nueva licencia pública clara y asumible. No contactar al proveedor.
