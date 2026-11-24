@@ -243,10 +243,10 @@ const report = {
   reportType: "market-radar-provider-validation",
   generatedAt: new Date().toISOString(),
   testMode: historySampleOnly ? "eodhd-history-sample-only" : alpacaOnlyIex ? "alpaca-only-iex" : "full-eodhd-and-alpaca-sip",
-  testWindow: { from, to, calendarDays: EODHD_WINDOW_DAYS },
+  testWindow: { from, to, calendarDays: historySampleOnly ? 365 : EODHD_WINDOW_DAYS },
   scope: {
     eodhdSymbols: historySampleOnly ? HISTORY_SAMPLE.map((x) => x.symbol) : EODHD_SYMBOLS.length, eodhdMaximumRequests: historySampleOnly ? 4 : alpacaOnlyIex ? 0 : EODHD_MAX_REQUESTS,
-    alpacaSymbols: ALPACA_SYMBOLS, barsKeptPerSymbol: 3, noRetries: true,
+    alpacaSymbols: ALPACA_SYMBOLS, barsKeptPerSymbol: historySampleOnly ? "all returned" : 3, noRetries: true,
     credentialsWritten: false, credentialsPrinted: false,
   },
   credentialAvailability: {
