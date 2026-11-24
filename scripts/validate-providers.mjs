@@ -129,6 +129,55 @@ async function testEodhd(token, from, to) {
   result.quotaNote = "Estimación conservadora: 1 unidad por petición iniciada; comprobar el contador real de la cuenta EODHD.";
   return result;
 }
+const HISTORY_SAMPLE = [
+  { asset: "NVIDIA", symbol: "NVDA.US", currency: "USD", market: "XNAS" },
+  { asset: "ASML", symbol: "ASML.AS", currency: "EUR", market: "XAMS" },
+  { asset: "Vanguard FTSE All-World UCITS ETF", symbol: "VWCE.XETRA", currency: "EUR", market: "XETR" },
+  { asset: "Bitcoin", symbol: "BTC-USD.CC", currency: "USD", market: "CRYPTO-AGGREGATE" },
+];
+async function testEodhdHistory(token, from, to) {
+  const result = {
+    provider: "EODHD", planAssumption: "Free (referencia documental: hasta un año EOD)",
+    status: "completed", testType: "historical-depth-sample",
+    requestsAttempted: 0, quotaUnitsEstimated: 0, dailyQuotaReference: 20,
+    requestedWindow: { from, to }, symbols: [],
+  };
+  for (const item of HISTORY_SAMPLE) {
+    const url = new URL("https://eodhd.com/api/eod/" + encodeURIComponent(item.symbol));
+    url.search = new URLSearchParams({
+      api_token: token, fmt: "json", period: "d", order: "a", from, to,
+    }).toString();
+    result.requestsAttempted += 1;
+    result.quotaUnitsEstimated += 1;
+    const response = await fetchJson(url, {}, [token]);
+    if (!response.ok) {
+      result.symbols.push({ ...item, status: response.statusCode === 404 ? "rejected_or_not_found" : "error",
+        bars: [], error: response.error, httpStatus: response.statusCode });
+    } else if (!Array.isArray(response.body)) {
+      result.symbols.push({ ...item, status: "unexpected_response", bars: [],
+        error: "La respuesta no tiene el formato de una lista de barras", httpStatus: response.statusCode });
+    } else {
+      const rawBars = response.body.filter((bar) => bar && bar.date)
+        .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+      result.symbols.push({
+        ...item, status: rawBars.length ? "accepted" : "no_bars",
+        barCount: rawBars.length, firstDate: rawBars[0]?.date ?? null,
+        lastDate: rawBars.at(-1)?.date ?? null,
+        bars: rawBars.map(mapEodhdBar), httpStatus: response.statusCode,
+      });
+    }
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+  result.coverage = {
+    requested: HISTORY_SAMPLE.length,
+    accepted: result.symbols.filter((x) => x.status === "accepted").length,
+    errors: result.symbols.filter((x) => ["error", "unexpected_response", "rejected_or_not_found"].includes(x.status)).length,
+  };
+  result.quotaNote = "Cuatro peticiones individuales; estimación de cuatro unidades. Confirmar el contador real EODHD.";
+  result.limitations = "La muestra evalúa hasta un año EOD y continuidad observable; no demuestra disponibilidad de más de un año ni valida exactitud o licencia.";
+  return result;
+}
+
 function mapAlpacaBar(bar) {
   return {
     timestamp: bar.t ?? null, open: bar.o ?? null, high: bar.h ?? null,
@@ -184,18 +233,19 @@ async function testAlpaca(key, secret, from, to, feed) {
 
 await loadLocalEnv();
 const alpacaOnlyIex = process.argv.includes("--alpaca-only");
+const historySampleOnly = process.argv.includes("--history-sample");
 const eodhdToken = process.env.EODHD_API_TOKEN?.trim();
 const alpacaKey = process.env.ALPACA_API_KEY?.trim();
 const alpacaSecret = process.env.ALPACA_API_SECRET?.trim();
 const to = isoDate(new Date());
-const from = dateDaysAgo(EODHD_WINDOW_DAYS);
+const from = historySampleOnly ? "2025-11-24" : dateDaysAgo(EODHD_WINDOW_DAYS);
 const report = {
   reportType: "market-radar-provider-validation",
   generatedAt: new Date().toISOString(),
-  testMode: alpacaOnlyIex ? "alpaca-only-iex" : "full-eodhd-and-alpaca-sip",
+  testMode: historySampleOnly ? "eodhd-history-sample-only" : alpacaOnlyIex ? "alpaca-only-iex" : "full-eodhd-and-alpaca-sip",
   testWindow: { from, to, calendarDays: EODHD_WINDOW_DAYS },
   scope: {
-    eodhdSymbols: EODHD_SYMBOLS.length, eodhdMaximumRequests: alpacaOnlyIex ? 0 : EODHD_MAX_REQUESTS,
+    eodhdSymbols: historySampleOnly ? HISTORY_SAMPLE.map((x) => x.symbol) : EODHD_SYMBOLS.length, eodhdMaximumRequests: historySampleOnly ? 4 : alpacaOnlyIex ? 0 : EODHD_MAX_REQUESTS,
     alpacaSymbols: ALPACA_SYMBOLS, barsKeptPerSymbol: 3, noRetries: true,
     credentialsWritten: false, credentialsPrinted: false,
   },
@@ -205,7 +255,7 @@ const report = {
   providers: [],
 };
 console.log("Market Radar — prueba limitada de proveedores");
-console.log("Ventana consultada: " + from + " a " + to + " (barras diarias recientes).");
+console.log("Ventana consultada: " + from + " a " + to + (historySampleOnly ? " (muestra histórica EOD)" : " (barras diarias recientes)") + ".");
 console.log("No se mostrarán claves ni URLs con credenciales.");
 if (alpacaOnlyIex) {
   report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Modo --alpaca-only: EODHD no se consulta ni consume cuota.") });
