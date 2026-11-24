@@ -11,9 +11,9 @@
 - No perseguir precio si supera máximo de entrada.
 - PWA mobile-first, sin app nativa.
 - Telegram y resumen semanal por email.
-- Tres usuarios, señales comunes y carteras virtuales independientes.
+- Un único usuario privado; sin acceso compartido ni redistribución.
 - Ledger inmutable y evaluación objetiva.
-- Preferencia por coste inicial cero y servicios cloud de bajo mantenimiento.
+- Prioridad inicial absoluta al coste cero; reconsiderar pagos sólo tras validar el sistema gratuito y medir sus límites.
 - IA estructura noticias; reglas deterministas deciden señales.
 
 - GitHub es la fuente persistente de verdad del proyecto; los chats son temporales.
@@ -97,3 +97,11 @@
 - No implica que cualquier plan gratuito/personal permita automáticamente almacenamiento ilimitado, uso de LLM, automatización o retención tras cancelar. Esos derechos siguen pendientes de verificar proveedor por proveedor.
 - No contratar, pagar, usar credenciales ni consumir cuotas sin autorización expresa. No desarrollar la aplicación hasta completar la selección documental y la validación técnica.
 
+
+
+## Prioridad gratuita-first confirmada — 24-11-2026
+- La fase inicial debe utilizar exclusivamente fuentes y servicios gratuitos, siempre que las licencias permitan el uso previsto.
+- No contratar, activar pruebas de pago ni consumir cuotas/credenciales sin autorización expresa.
+- No se fija un techo de gasto mensual futuro: se reconsiderará el pago sólo cuando exista un sistema gratuito operativo y se conozcan sus limitaciones reales.
+- La falta de coste no justifica usar datos sin derechos claros ni sacrificar la integridad de las señales. Si no hay fuente gratuita válida para una cobertura, se documentará el hueco y el sistema deberá abstenerse.
+- El alcance sigue siendo un único usuario privado.
