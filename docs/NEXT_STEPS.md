@@ -74,7 +74,7 @@ Nunca cerrar con un «¿cómo seguimos?» genérico ni dejar el siguiente paso i
 
 **Criterio de salida:** shortlist de proveedor(es) cuyo uso individual cubra el caso real, con restricciones, coste, fuentes subyacentes y evidencia oficial documentados. Ningún proveedor queda aprobado hasta terminar esa evaluación. No iniciar desarrollo antes.
 
-**Siguiente paso:** definir un universo mínimo de prueba (símbolos USA, Europa, ETF y cripto) y una frecuencia de actualización realista para que la ingesta quepa en cuotas gratuitas. Después, con autorización expresa, ejecutar pruebas reproducibles sin activar planes de pago.
+**Estado actualizado:** el universo de 12 instrumentos y la frecuencia EOD diaria están definidos; la matriz documental de cobertura y consumo está en DATA_SOURCES.md, sección 13. El siguiente paso es una prueba técnica limitada, sólo después de autorización expresa.
 
 ## Regla de continuidad
 Al finalizar cada chat, indicar siempre el siguiente paso del usuario:
