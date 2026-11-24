@@ -264,7 +264,6 @@ if (historySampleOnly) {
   } else {
     report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Falta EODHD_API_TOKEN en .env.local o en el entorno.") });
   }
-  report.providers.push({ provider: "Alpaca", ...emptyProvider("skipped", "Modo --history-sample: Alpaca no se consulta.") });
 } else if (alpacaOnlyIex) {
   report.providers.push({ provider: "EODHD", ...emptyProvider("skipped", "Modo --alpaca-only: EODHD no se consulta ni consume cuota.") });
 } else if (eodhdToken) {
