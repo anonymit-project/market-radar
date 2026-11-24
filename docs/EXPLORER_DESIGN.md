@@ -259,3 +259,81 @@ Continuar investigación documental centrada en el bloqueo europeo de precios EO
 - European Commission ESEF requirements: https://finance.ec.europa.eu/financial-markets/company-reporting-and-auditing/company-reporting/transparency-requirements-listed-companies_en
 - ESMA ESAP: https://www.esma.europa.eu/esmas-activities/data/european-single-access-point-esap
 - ESMA ESAP first-phase collection: https://www.esma.europa.eu/press-news/esma-news/esma-launches-data-collection-under-first-phase-esap
+
+
+---
+
+## 11. Actualización crítica — ficheros MiFIR y EuroCTP (24-11-2026)
+
+Esta actualización corrige y amplía la evaluación inicial de fuentes europeas. Se han revisado los textos oficiales y especificaciones; no se han descargado ficheros de mercado ni ejecutado pruebas.
+
+### 11.1 Ficheros públicos de transparencia post-negociación
+
+El Reglamento Delegado (UE) 2025/1156 establece que los datos post-trade retrasados deben ofrecerse en formato legible por máquina y humano, en ficheros diarios por instrumento o categoría, con actualización durante la sesión y disponibilidad al menos hasta el siguiente día hábil. MiFIR exige acceso público gratuito a los datos retrasados 15 minutos después de publicación. Esto hace viable una ingesta automatizada en principio, pero no convierte automáticamente cada feed de venue en un registro consolidado de todo el mercado.
+
+Fuentes verificadas:
+
+| Fuente | Datos y alcance | Acceso / licencia | Uso potencial |
+|---|---|---|---|
+| Euronext Trades Files | CSV de ejecuciones retrasadas, UTC; Amsterdam, Brussels, Dublin, Lisbon, Milan, Oslo y Paris; ventanas de día actual/anterior y al menos 24 h | Descarga pública gratuita. Sus términos indican uso gratuito sin restricciones salvo distribución; si se distribuye, aplican atribución y disclaimer y puede requerirse acuerdo | Candidato fuerte para construir barras propias por venue, sujeto a validar campos, cobertura y correcciones |
+| Deutsche Börse / Xetra | Ficheros JSON comprimidos de post-trade Xetra y otros venues; 15 min retraso; actualización cada minuto; hasta medianoche del siguiente día hábil | Acceso gratuito, pero el uso está sujeto a términos y política de datos. La política separa usos display/non-display y feeds/APIs; confirmar por escrito que el flujo automatizado privado propuesto está permitido antes de persistirlo | Candidato técnico Xetra, licencia pendiente |
+| Cboe Europe | CSV retrasados; operaciones ejecutadas en BXE/CXE/DXE, libros lit/dark/auction, operaciones reportadas y algunas APA/MTF reportadas a sus APA; ficheros minutely y diario | Sin registro ni identificación; 15 min retraso. Revisar disclaimer/terms antes de uso persistente | Fuente complementaria de actividad en venues Cboe, no sustituto del mercado primario |
+| BME APA post-trade | Ficheros JSON públicos, legibles mecánicamente | La página limita descargas/copias/impresiones a uso personal e interno; uso comercial o redistribución de pago requiere autorización. No se ha confirmado autorización para extracción automatizada sistemática | Candidato para revisión de datos; no aprobado para job automático |
+| LSEG delayed transparency | Ficheros de operaciones y cotizaciones retrasadas de XLON/Turquoise/APA | Página LSEG declara licencia para non-display, derived data y otras aplicaciones; no asumir uso automatizado gratuito | No aprobado para automatización sin licencia |
+
+**Límite de cobertura:** los ficheros de cada operador reflejan los sistemas y operaciones que ese operador/APA publica. No son por sí solos un consolidado completo de todos los centros de negociación donde se negocia una acción. Los volúmenes derivados deben etiquetarse como venue-specific, salvo que se obtenga una fuente consolidada.
+
+**Cómo construir barras:** agrupar operaciones por ISIN + MIC de ejecución + fecha de negociación; ordenar por timestamp de ejecución; Open = primera operación válida, High/Low = extremos, Close = última operación válida y Volume = suma de cantidades elegibles. Antes de calcular:
+- interpretar flags de operación, subastas, negociación fuera de libro y deferrals;
+- procesar cancelaciones y correcciones/amendments sin duplicar volumen;
+- excluir registros no representativos (p.ej. operaciones especiales) conforme a las reglas del feed;
+- normalizar moneda, nominal/cantidad y unidades;
+- documentar que OHLCV es del venue/APA cubierto, no necesariamente volumen consolidado;
+- conciliar el cierre con fuente primaria y con un proveedor independiente cuando sea posible.
+
+El volumen de APA puede representar operaciones OTC reportadas y no debe sumarse ciegamente a los volúmenes del libro de órdenes: hay que deduplicar y entender venue of execution, publication venue y flags.
+
+### 11.2 EuroCTP — consolidado paneuropeo operativo
+
+EuroCTP fue autorizado por ESMA el 27-07-2026 y lanzó el primer consolidado europeo de acciones y ETF el 14-09-2026. Consolida datos pre-trade y post-trade de múltiples venues/APAs. Es una fuente estratégica que no figuraba en la primera versión del diseño.
+
+Sin embargo, su acceso gratuito no resuelve la automatización privada:
+- Los inversores minoristas no profesionales pueden acceder gratuitamente a través del sitio web y deben declarar su estatus.
+- La política de EuroCTP define Non-Display Use como acceso/procesamiento para fines distintos de mostrar los datos en formato legible por humanos.
+- Para Non-Display Use se exige firmar una EuroCTP Data Licence antes de usar los datos, tanto intradía como después de medianoche UTC.
+- El fee schedule publicado (versión 08-04-2026, sujeto a revisión ESMA) indica 4.000 €/mes por Client Group para la Data Licence non-display; el acceso Web API tiene además 56 €/mes de conectividad. No se debe interpretar el precio Web API como coste total.
+- El histórico de días anteriores al último día hábil figura a 204 €/día; exento para titulares de Data Licence durante su periodo.
+- La creación de Derived Data está permitida estrictamente para uso interno, pero no debe suponerse que un feed automatizado personal queda exento de la Data Licence.
+
+Conclusión: EuroCTP es excelente para consulta visual/manual gratuita y referencia consolidada, pero no es una solución económicamente viable para el escáner automático privado bajo la política publicada. Revalidar términos y precios antes de cualquier uso.
+
+### 11.3 Revisión de otros proveedores
+
+- **Stooq:** catálogo y series diarias históricas atractivos, pero no ofrece API oficial documentada; el acceso automatizado ha sido bloqueado/captcha en 2026 según evidencia secundaria. Términos de uso personal y prohibición de redistribución. No basar una ingesta programada en endpoints no oficiales.
+- **Alpha Vantage:** la API documenta series diarias globales, pero el plan gratuito limita a 25 solicitudes/día; TIME_SERIES_DAILY_ADJUSTED es premium y el modo diario gratuito sólo entrega una ventana compacta de 100 barras por defecto. Útil para contraste puntual, no para escaneo de miles.
+- **Twelve Data:** el catálogo EOD cubre más de 100 bolsas, pero el plan Basic gratuito está descrito como real-time US equities/ETF y FX/crypto, con tres mercados; EOD global aparece desde Grow (pago). Además, varios mercados europeos relevantes —incluidos Italia y Nordics— están marcados como no soportados/licencia requerida en su página EOD. No resuelve gratuitamente el universo propuesto.
+- **OHLC.io:** API moderna con precios EOD, IDs estables, ajustes y consulta de mercado completo por fecha. El plan gratuito sólo habilita seis símbolos USA; UK/France/Netherlands y otros mercados europeos aparecen desde Pro. Es candidato comercial a evaluar si se acepta coste, no solución gratuita europea.
+- **Yahoo Finance:** sus términos prohíben expresamente la extracción automatizada sin permiso previo. No usar scraping ni librerías no oficiales como fuente de producción.
+
+### 11.4 Conclusión actualizada
+
+La hipótesis inicial de que no existía ninguna vía automatizable europea gratuita era demasiado tajante. Sí existen feeds públicos de transparencia post-trade que pueden permitir construir barras EOD de determinados venues. La limitación es que:
+1. son datos de cada venue/APA, no necesariamente volumen consolidado;
+2. la cobertura, flags y calidad varían;
+3. los derechos de automatización/retención difieren por operador;
+4. no todos los mercados de la lista inicial quedan cubiertos por un feed con derechos suficientemente claros.
+
+La nueva arquitectura recomendada es híbrida:
+- catálogo de instrumentos vía ESMA FIRDS y directorios de bolsa;
+- precios USA desde proveedor con licencia personal adecuada o feed público de exchange, pendiente de selección;
+- precios europeos mediante feeds post-trade de venue sólo donde el uso automatizado privado esté permitido y tras validar cobertura/flags;
+- EuroCTP como referencia visual y benchmark de mercado, no como fuente automatizada hasta que exista licencia asequible;
+- adaptador comercial de respaldo si la cobertura gratuita no alcanza un mínimo aceptable.
+
+### 11.5 Siguiente validación documental/técnica
+
+1. Confirmar el alcance de los términos de Deutsche Börse para automatización privada no-display y retención.
+2. Analizar el esquema completo de los CSV de Euronext y sus flags de corrección/cancelación.
+3. Revisar los términos completos de Cboe y determinar si el daily file es venue-specific o incluye operaciones APA reportadas.
+4. Determinar si los feeds de transparencia de venues primarios permiten OHLCV diario suficientemente completo para screening, distinguiendo volumen de venue de volumen consolidado.
+5. No descargar ficheros, ejecutar scripts ni crear cuentas hasta autorización expresa para una prueba acotada.
