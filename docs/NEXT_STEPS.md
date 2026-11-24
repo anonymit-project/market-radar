@@ -169,11 +169,11 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [x] Medir diferencias EODHD/Alpaca IEX: media absoluta aproximada 0,068%; máximo 0,169%.
 - [x] Registrar que el volumen IEX no representa volumen consolidado.
 - [x] Detectar discrepancia pendiente en `adjustedClose` de JNJ para el 23 de noviembre.
-- [ ] Aclarar la convención de ajuste de dividendos de EODHD para JNJ y verificarla frente a fechas ex-dividendo y otros activos con dividendos.
+- [x] Aclarar la convención de ajuste de dividendos de EODHD para JNJ: el factor aplicado corresponde al dividendo de 1,34 USD con ex-date 24-11-2026.
 - [ ] Definir una prueba acotada de profundidad histórica EODHD (por ejemplo, fechas y número de peticiones explícitos) antes de consumir cuota.
 - [ ] Completar revisión de licencia individual, almacenamiento, automatización y uso con LLM antes de seleccionar proveedor.
 
 **Conclusión provisional:** EODHD obtiene una validación externa inicial favorable para los cierres de los seis activos USA en tres sesiones. No es suficiente para aprobar proveedor ni backtesting; Yahoo puede compartir upstream con EODHD y la semántica de precios ajustados sigue sin resolverse.
 
-**Siguiente paso recomendado:** investigar primero el ajuste de JNJ usando documentación oficial de EODHD y el calendario de dividendos, sin ejecutar llamadas API. Después diseñar la prueba histórica mínima.
+**Siguiente paso recomendado:** diseñar una prueba histórica EODHD acotada para medir profundidad, continuidad y consistencia de ajustes en varios activos, con símbolos, fechas y consumo máximo definidos antes de ejecutarla.
 
