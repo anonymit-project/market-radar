@@ -17,9 +17,9 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 - Acciones, ETF y criptomonedas; EE. UU. y Europa como mercados principales.
 - Horizontes: corto (1–10 días), medio (2 semanas–6 meses) y largo (6–36 meses).
 - Señales de compra moderada/fuerte, venta o evitar exposición, oportunidades tras caídas/rebotes y efectos directos/indirectos de acontecimientos.
-- Tres usuarios con señales comunes y carteras virtuales independientes (función secundaria).
+- Un único usuario privado; sin cuentas familiares ni acceso compartido.
 - Dashboard web mobile-first instalable como PWA; no app nativa.
-- Telegram para alertas relevantes y email para resumen semanal.
+- Telegram para alertas relevantes al titular y email para resumen semanal al titular.
 - Registro inmutable de señales y evaluación histórica objetiva.
 
 ## Documentación
