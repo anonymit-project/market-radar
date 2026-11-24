@@ -1,6 +1,6 @@
 # Market Radar
 
-Radar conservador de oportunidades de inversión en acciones, ETF y criptomonedas. Identifica y documenta posibles oportunidades; **no es un broker, no gestiona carteras reales y no ejecuta órdenes**.
+Radar conservador para explorar oportunidades en acciones cotizadas de EE. UU. y Europa; ETF y criptomonedas se mantienen en seguimiento separado. Identifica y documenta posibles oportunidades; **no es un broker, no gestiona carteras reales y no ejecuta órdenes**.
 
 ## Principios
 - Calidad y trazabilidad de señales por encima de cantidad; abstención cuando falte evidencia.
@@ -14,7 +14,7 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 **Fase 1 — investigación y validación de fuentes.** Ningún proveedor ni arquitectura está aprobado. No hay desarrollo funcional ni contrataciones. Objetivo inicial: **coste cero**. Priorizar exclusivamente opciones gratuitas durante el prototipo y la primera puesta en marcha. Sólo estudiar alternativas de pago cuando el sistema gratuito funcione y sus limitaciones reales justifiquen la mejora. No contratar sin autorización expresa.
 
 ## Alcance acordado
-- Acciones, ETF y criptomonedas; EE. UU. y Europa como mercados principales.
+- Exploración: acciones cotizadas de EE. UU. y Europa, universo amplio y sin restricción sectorial. ETF y criptomonedas permanecen en seguimiento separado.
 - Horizontes: corto (1–10 días), medio (2 semanas–6 meses) y largo (6–36 meses).
 - Señales de compra moderada/fuerte, venta o evitar exposición, oportunidades tras caídas/rebotes y efectos directos/indirectos de acontecimientos.
 - Un único usuario privado; sin cuentas familiares ni acceso compartido.
@@ -27,6 +27,7 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 
 ## Documentación
 - [Especificación de producto](docs/PRODUCT_SPEC.md)
+- [Diseño del Explorador de acciones](docs/EXPLORER_DESIGN.md)
 - [Arquitectura](docs/ARCHITECTURE.md)
 - [Inteligencia de eventos](docs/EVENT_INTELLIGENCE.md)
 - [Fuentes de datos y licencias](docs/DATA_SOURCES.md)
