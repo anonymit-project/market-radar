@@ -656,3 +656,50 @@ El usuario ha autorizado una prueba adicional de exactamente cuatro peticiones p
 **Objetivo de evaluación:** profundidad realmente devuelta, continuidad observable, fechas inicial/final, huecos y consistencia de OHLC/adjustedClose en cuatro clases de activo/mercado. Una muestra anual no demuestra acceso a más de un año, exactitud independiente ni derechos de almacenamiento/uso.
 
 Instrucciones exactas y comando: [PROVIDER_VALIDATION_WINDOWS.md](PROVIDER_VALIDATION_WINDOWS.md), sección 4C.
+
+
+---
+
+## 17. Muestra histórica EODHD — resultados analizados (24-11-2026)
+
+### Alcance y consumo
+- El titular ejecutó localmente `node .\\scripts\\validate-providers.mjs --history-sample`.
+- Ventana solicitada: 2025-11-24 a 2026-11-24; barras diarias.
+- Instrumentos: `NVDA.US`, `ASML.AS`, `VWCE.XETRA` y `BTC-USD.CC`.
+- EODHD: 4 peticiones intentadas, 4 completadas, cobertura 4/4 y consumo estimado de 4 unidades.
+- Alpaca: omitido; 0 peticiones y 0 consumo.
+- Sin reintentos ni paginación. El informe JSON se conserva localmente en `validation-results/` y no se incorpora al repositorio.
+
+### Cobertura observada
+| Símbolo | Barras | Primera fecha | Última fecha | MIC / mercado devuelto | Moneda |
+|---|---:|---|---|---|---|
+| NVDA.US | 251 | 2025-11-24 | 2026-11-23 | XNAS | USD |
+| ASML.AS | 255 | 2025-11-24 | 2026-11-23 | XAMS | EUR |
+| VWCE.XETRA | 253 | 2025-11-24 | 2026-11-23 | XETR | EUR |
+| BTC-USD.CC | 366 | 2025-11-24 | 2026-11-24 | CRYPTO-AGGREGATE | USD |
+| **Total** | **1.125** | | | | |
+
+Los activos bursátiles terminan el 23-11; la ausencia de barra del 24-11 no se clasifica como fallo, ya que la sesión/cierre y publicación podían no estar completados al ejecutar la consulta. BTC presenta datos diarios todos los días de la ventana.
+
+### Controles estructurales realizados
+- Los cuatro símbolos devolvieron HTTP 200 y estado `accepted`.
+- No se observaron fechas duplicadas; las series están ordenadas ascendentemente.
+- No se observaron barras OHLC inválidas (máximos/mínimos incompatibles con apertura, cierre o rango).
+- No se observaron volúmenes cero o negativos.
+- No se observaron huecos en la serie BTC. Los huecos bursátiles son compatibles con fines de semana/festivos, pero no se cruzaron formalmente con calendarios oficiales.
+- `adjustedClose` difiere de `close` en 198/251 barras de NVDA y 234/255 de ASML; no difiere en VWCE ni BTC. Esto es compatible con ajustes corporativos/distribuciones, pero no se han validado individualmente todos los eventos.
+- Mantener separados `close` (precio nominal) y `adjustedClose` (serie ajustada). No mezclar series ajustadas de proveedores distintos sin normalizar su metodología y fecha de referencia.
+
+### Anomalías que requieren contraste
+Se observan movimientos diarios extremos y sincronizados en NVDA, ASML y VWCE:
+- 20-11: NVDA aproximadamente -14,0%; ASML -9,33%; VWCE -3,35%.
+- 23-11: NVDA aproximadamente +31,48%; ASML +8,92%; VWCE +3,58%.
+
+La sincronía justifica contrastar fechas, precios y posibles incidencias de proveedor/calendario antes de usar la serie en señales o backtesting. No se concluye que sean errores sin una fuente independiente. No consumir más cuota EODHD para esta comprobación.
+
+### Conclusión y límites
+La prueba aporta evidencia favorable de disponibilidad, cobertura anual y consistencia estructural para estos cuatro instrumentos. **EODHD queda validado provisionalmente sólo para esta muestra técnica; no queda aprobado para producción ni para backtesting.**
+
+La prueba no demuestra precisión absoluta, completitud de toda la historia, estabilidad/SLA, ausencia de errores semánticos, derechos de licencia, permisos de almacenamiento/automatización/LLM ni cobertura histórica suficiente para estrategias de largo plazo. Las barras bursátiles tampoco se contrastaron una a una con una fuente independiente.
+
+Siguientes verificaciones: contrastar los movimientos extremos con una fuente independiente sin nuevas llamadas EODHD; revisar eventos corporativos que explican `adjustedClose`; completar la revisión de licencia individual y derechos de uso antes de seleccionar proveedor.
