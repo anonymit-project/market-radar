@@ -495,3 +495,41 @@ En esta sesión, el navegador de investigación no pudo abrir directamente los e
 6. Revisar la salida y decidir si se autoriza ampliar histórico o comparar proveedores adicionales.
 
 **Estado:** autorización recibida; ejecución bloqueada hasta disponer de credenciales gratuitas para endpoints autenticados y de un entorno con conectividad de red. No hay resultados técnicos de API todavía.
+
+
+---
+
+## 14. Harness de validación local (24-11-2026)
+
+**Estado de ejecución:** el script está preparado y publicado, pero todavía no se ha ejecutado contra EODHD ni Alpaca. No hay resultados empíricos, no se han usado credenciales y no se han consumido cuotas desde ChatGPT. No interpretar la configuración del script como prueba de cobertura.
+
+- Script: `scripts/validate-providers.mjs` (Node.js >= 18, sin dependencias externas).
+- Instrucciones Windows/PowerShell: [docs/PROVIDER_VALIDATION_WINDOWS.md](PROVIDER_VALIDATION_WINDOWS.md).
+- Plantilla local: `.env.local.example`; el titular la copia como `.env.local`.
+- `.env.local` y `validation-results/` están excluidos de Git mediante `.gitignore`.
+- Las claves se cargan en variables de entorno del proceso; no se imprimen ni se escriben en el informe. No compartir el archivo local de credenciales.
+
+### Límites implementados
+
+| Fuente | Peticiones máximas por ejecución | Parámetros principales | Datos conservados |
+|---|---:|---|---|
+| EODHD Free | 12 individuales | EOD diario, ventana de 7 días naturales, sin reintentos | Hasta 3 barras por símbolo; 12 unidades estimadas sobre 20 diarias |
+| Alpaca Basic | 1 agrupada | 6 símbolos USA: NVDA, MSFT, META, AMZN, JNJ y SPY; timeframe 1Day; feed SIP; adjustment raw; límite de respuesta 100 barras | Hasta 3 barras por símbolo |
+
+La consulta EODHD se limita a los 12 identificadores de la tabla 13.2. Alpaca no se utiliza para los cuatro instrumentos europeos ni para cripto. Si faltan credenciales de un proveedor, ese proveedor queda omitido sin petición. El script no reintenta ni pagina resultados de Alpaca.
+
+### Salida
+
+El script crea localmente un JSON bajo `validation-results/` con fecha/hora, ventana, cobertura, símbolos aceptados/no encontrados, moneda, timestamps, OHLCV, adjusted close cuando EODHD lo devuelve, errores resumidos y consumo estimado. El informe no contiene credenciales.
+
+**Importante sobre la cuota:** 12 es el máximo de peticiones EODHD iniciadas por ejecución y la estimación conservadora de consumo; confirmar el contador real de la cuenta tras la prueba. No ejecutar repetidamente el mismo día. Una petición agrupada Alpaca se contabiliza como una llamada HTTP, no seis.
+
+### Evidencia pendiente
+
+- [ ] El titular ejecuta el script desde Windows con sus claves gratuitas locales.
+- [ ] Adjunta al chat únicamente el JSON generado, nunca `.env.local`.
+- [ ] Contrastar consumo estimado con el contador real EODHD.
+- [ ] Revisar símbolos aceptados, monedas, fechas, OHLCV, errores, ajustes y diferencias EODHD/Alpaca.
+- [ ] Actualizar esta sección con resultados observados, separándolos de hipótesis documentales.
+
+Hasta completar esos puntos, EODHD sigue siendo primer candidato documental y Alpaca un contraste USA; ninguno queda validado ni seleccionado.
