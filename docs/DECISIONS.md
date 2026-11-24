@@ -134,7 +134,12 @@
 - Para NVDA, MSFT, META, AMZN, JNJ y SPY, los 18 cierres EODHD de los días 19, 20 y 23-11-2026 coinciden al céntimo con los valores históricos consultados en Yahoo Finance.
 - Los cierres de Alpaca IEX difieren de EODHD una media absoluta aproximada del 0,068% (máximo 0,169%). IEX no representa el volumen consolidado.
 - Esto es evidencia técnica favorable, no aprobación de proveedor: muestra pequeña, posible dependencia de fuentes upstream comunes y licencia/retención/IA pendientes.
-- La semántica de `adjustedClose` de JNJ presenta una discrepancia para el 23-11-2026 que debe resolverse antes de usar precios ajustados en backtesting.
+- La diferencia de `adjustedClose` de JNJ queda explicada por el ajuste retroactivo de EODHD al dividendo de 1,34 USD con ex-date 24-11-2026; no mezclar ajustes entre proveedores sin normalizar metodología y fecha de referencia.
 
 **Decisión:** no seleccionar todavía EODHD ni Alpaca como proveedor de producción. Mantener EODHD como candidato principal multi-mercado y Alpaca IEX como contraste USA mientras se resuelven ajustes, profundidad histórica y licencias.
 
+
+
+### Aclaración de ajustes de dividendos — JNJ (24-11-2026)
+
+La diferencia de EODHD `adjustedClose=268.71` frente al cierre raw de 270.05 el 23-11-2026 queda explicada por el dividendo de 1,34 USD con ex-date 24-11-2026. La metodología oficial de EODHD ajusta `adjusted_close` por dividendos y splits; el factor aplicado es (270.05 - 1.34) / 270.05 = 0.99503796. El valor ajustado resultante coincide con el informe. Fuente primaria del dividendo: comunicado oficial de JNJ del 13-10-2026. No se considera una anomalía del cierre raw.
