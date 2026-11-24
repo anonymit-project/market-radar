@@ -143,3 +143,10 @@
 ### Aclaración de ajustes de dividendos — JNJ (24-11-2026)
 
 La diferencia de EODHD `adjustedClose=268.71` frente al cierre raw de 270.05 el 23-11-2026 queda explicada por el dividendo de 1,34 USD con ex-date 24-11-2026. La metodología oficial de EODHD ajusta `adjusted_close` por dividendos y splits; el factor aplicado es (270.05 - 1.34) / 270.05 = 0.99503796. El valor ajustado resultante coincide con el informe. Fuente primaria del dividendo: comunicado oficial de JNJ del 13-10-2026. No se considera una anomalía del cierre raw.
+
+
+### Autorización y alcance de muestra histórica EODHD — 24-11-2026
+
+El usuario autoriza una prueba técnica adicional acotada, orientada a validar profundidad histórica, siempre que se mantenga el foco en el resultado y no se incurra en costes ni se excedan cuotas. Se prepara una ejecución de exactamente cuatro peticiones para NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC, con barras diarias entre 2025-11-24 y 2026-11-24.
+
+La prueba no consulta Alpaca, no reintenta, no pagina y no amplía la ventana. El usuario debe comprobar que su contador EODHD permite al menos cuatro llamadas adicionales antes de ejecutarla. No se comparte ninguna credencial. La autorización no cubre planes de pago, pruebas de pago ni consumos adicionales.
