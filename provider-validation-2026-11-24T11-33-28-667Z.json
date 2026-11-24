@@ -1,0 +1,524 @@
+{
+  "reportType": "market-radar-provider-validation",
+  "generatedAt": "2026-11-24T11:33:21.687Z",
+  "testWindow": {
+    "from": "2026-11-17",
+    "to": "2026-11-24",
+    "calendarDays": 7
+  },
+  "scope": {
+    "eodhdSymbols": 12,
+    "eodhdMaximumRequests": 12,
+    "alpacaSymbols": [
+      "NVDA",
+      "MSFT",
+      "META",
+      "AMZN",
+      "JNJ",
+      "SPY"
+    ],
+    "barsKeptPerSymbol": 3,
+    "noRetries": true,
+    "credentialsWritten": false,
+    "credentialsPrinted": false
+  },
+  "credentialAvailability": {
+    "eodhdConfigured": true,
+    "alpacaConfigured": true
+  },
+  "providers": [
+    {
+      "provider": "EODHD",
+      "planAssumption": "Free (cuota documental: 20 llamadas/día)",
+      "status": "completed",
+      "requestsAttempted": 12,
+      "quotaUnitsEstimated": 12,
+      "dailyQuotaReference": 20,
+      "symbols": [
+        {
+          "asset": "NVIDIA",
+          "symbol": "NVDA.US",
+          "currency": "USD",
+          "market": "XNAS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 167.035,
+              "high": 171.5,
+              "low": 156.93,
+              "close": 165.05,
+              "adjustedClose": 165.05,
+              "volume": 782593289
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 143.52,
+              "high": 143.725,
+              "low": 124.5,
+              "close": 125.53,
+              "adjustedClose": 125.53,
+              "volume": 633418375
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 152.915,
+              "high": 158.1301,
+              "low": 145.71,
+              "close": 145.98,
+              "adjustedClose": 145.98,
+              "volume": 322940094
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Microsoft",
+          "symbol": "MSFT.US",
+          "currency": "USD",
+          "market": "XNAS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 506.055,
+              "high": 509.15,
+              "low": 492.02,
+              "close": 492.5,
+              "adjustedClose": 492.5,
+              "volume": 30404395
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 493.74,
+              "high": 503.8,
+              "low": 481.03,
+              "close": 484.52,
+              "adjustedClose": 484.52,
+              "volume": 47200018
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 519.5,
+              "high": 526.49,
+              "low": 498.16,
+              "close": 498.3,
+              "adjustedClose": 498.3,
+              "volume": 29350637
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Meta Platforms",
+          "symbol": "META.US",
+          "currency": "USD",
+          "market": "XNAS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 591.715,
+              "high": 602.46,
+              "low": 579.78,
+              "close": 597.6,
+              "adjustedClose": 597.6,
+              "volume": 19106850
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 583.91,
+              "high": 588.69,
+              "low": 558.68,
+              "close": 560.84,
+              "adjustedClose": 560.84,
+              "volume": 25687221
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 624.66,
+              "high": 630.06,
+              "low": 595.78,
+              "close": 596.22,
+              "adjustedClose": 596.22,
+              "volume": 15358520
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Amazon",
+          "symbol": "AMZN.US",
+          "currency": "USD",
+          "market": "XNAS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 260.26,
+              "high": 262.48,
+              "low": 251.25,
+              "close": 255.39,
+              "adjustedClose": 255.39,
+              "volume": 53277376
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 253.48,
+              "high": 259.97,
+              "low": 245.31,
+              "close": 246.82,
+              "adjustedClose": 246.82,
+              "volume": 74362636
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 272.56,
+              "high": 274,
+              "low": 256.75,
+              "close": 257.37,
+              "adjustedClose": 257.37,
+              "volume": 53117924
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Johnson & Johnson",
+          "symbol": "JNJ.US",
+          "currency": "USD",
+          "market": "XNYS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 269.85,
+              "high": 272.4,
+              "low": 267.3601,
+              "close": 270.05,
+              "adjustedClose": 268.71,
+              "volume": 9916290
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 270.36,
+              "high": 272.5,
+              "low": 269.47,
+              "close": 270.47,
+              "adjustedClose": 269.1279,
+              "volume": 11925381
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 269.61,
+              "high": 270.6,
+              "low": 264.68,
+              "close": 267.14,
+              "adjustedClose": 265.8144,
+              "volume": 9842246
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "ASML",
+          "symbol": "ASML.AS",
+          "currency": "EUR",
+          "market": "XAMS",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 1208.6,
+              "high": 1296.8,
+              "low": 1205.4,
+              "close": 1272.2,
+              "adjustedClose": 1272.2,
+              "volume": 954133
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 1224.6,
+              "high": 1229.8,
+              "low": 1163.6,
+              "close": 1168,
+              "adjustedClose": 1168,
+              "volume": 1460181
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 1299.2,
+              "high": 1324,
+              "low": 1274,
+              "close": 1288.2,
+              "adjustedClose": 1288.2,
+              "volume": 674562
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "SAP",
+          "symbol": "SAP.XETRA",
+          "currency": "EUR",
+          "market": "XETR",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 182.44,
+              "high": 186.98,
+              "low": 181.16,
+              "close": 186.34,
+              "adjustedClose": 186.34,
+              "volume": 2158743
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 184.26,
+              "high": 185.94,
+              "low": 181.64,
+              "close": 183.68,
+              "adjustedClose": 183.68,
+              "volume": 3536426
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 193.92,
+              "high": 194.1,
+              "low": 186.02,
+              "close": 187.02,
+              "adjustedClose": 187.02,
+              "volume": 3422717
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Banco Santander",
+          "symbol": "SAN.MC",
+          "currency": "EUR",
+          "market": "BMEX",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 10.328,
+              "high": 10.612,
+              "low": 10.326,
+              "close": 10.574,
+              "adjustedClose": 10.574,
+              "volume": 19643086
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 10.406,
+              "high": 10.49,
+              "low": 10.252,
+              "close": 10.32,
+              "adjustedClose": 10.32,
+              "volume": 48443092
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 10.706,
+              "high": 10.808,
+              "low": 10.558,
+              "close": 10.558,
+              "adjustedClose": 10.558,
+              "volume": 18780432
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "SPDR S&P 500 ETF",
+          "symbol": "SPY.US",
+          "currency": "USD",
+          "market": "ARCX",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 724.33,
+              "high": 727.98,
+              "low": 713.53,
+              "close": 722.29,
+              "adjustedClose": 722.29,
+              "volume": 86692460
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 713.56,
+              "high": 718.29,
+              "low": 686.75,
+              "close": 689.81,
+              "adjustedClose": 689.81,
+              "volume": 147309190
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 737.46,
+              "high": 739.8999,
+              "low": 715.65,
+              "close": 715.87,
+              "adjustedClose": 715.87,
+              "volume": 76702574
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Vanguard FTSE All-World UCITS ETF",
+          "symbol": "VWCE.XETRA",
+          "currency": "EUR",
+          "market": "XETR",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-23",
+              "open": 160,
+              "high": 165.78,
+              "low": 159.9,
+              "close": 165.04,
+              "adjustedClose": 165.04,
+              "volume": 766469
+            },
+            {
+              "timestamp": "2026-11-20",
+              "open": 161.6,
+              "high": 162.26,
+              "low": 159.34,
+              "close": 159.34,
+              "adjustedClose": 159.34,
+              "volume": 585338
+            },
+            {
+              "timestamp": "2026-11-19",
+              "open": 166.62,
+              "high": 167,
+              "low": 164.14,
+              "close": 164.86,
+              "adjustedClose": 164.86,
+              "volume": 291145
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Bitcoin",
+          "symbol": "BTC-USD.CC",
+          "currency": "USD",
+          "market": "CRYPTO-AGGREGATE",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-24",
+              "open": 61211.1484375,
+              "high": 61502.6640625,
+              "low": 59622.875,
+              "close": 59707.87890625,
+              "adjustedClose": 59707.87890625,
+              "volume": 46363422720
+            },
+            {
+              "timestamp": "2026-11-23",
+              "open": 61161.909834751,
+              "high": 64478.36195886,
+              "low": 60297.497545579,
+              "close": 61210.983070207,
+              "adjustedClose": 61210.983070207,
+              "volume": 44884723836
+            },
+            {
+              "timestamp": "2026-11-22",
+              "open": 60094.08984375,
+              "high": 61561.59375,
+              "low": 58660.47265625,
+              "close": 61161.91015625,
+              "adjustedClose": 61161.91015625,
+              "volume": 26196142466
+            }
+          ],
+          "httpStatus": 200
+        },
+        {
+          "asset": "Ethereum",
+          "symbol": "ETH-USD.CC",
+          "currency": "USD",
+          "market": "CRYPTO-AGGREGATE",
+          "status": "accepted",
+          "bars": [
+            {
+              "timestamp": "2026-11-24",
+              "open": 1708.8509521484,
+              "high": 1718.7852783203,
+              "low": 1672.3823242188,
+              "close": 1679.3399658203,
+              "adjustedClose": 1679.3399658203,
+              "volume": 16649044992
+            },
+            {
+              "timestamp": "2026-11-23",
+              "open": 1721.0757299284,
+              "high": 1842.1920127736,
+              "low": 1694.3735569756,
+              "close": 1708.8512803146,
+              "adjustedClose": 1708.8512803146,
+              "volume": 16111424138
+            },
+            {
+              "timestamp": "2026-11-22",
+              "open": 1682.2045898438,
+              "high": 1728.5529785156,
+              "low": 1645.3004150391,
+              "close": 1721.0756835938,
+              "adjustedClose": 1721.0756835938,
+              "volume": 8352233671
+            }
+          ],
+          "httpStatus": 200
+        }
+      ],
+      "acceptedSymbols": [
+        "NVDA.US",
+        "MSFT.US",
+        "META.US",
+        "AMZN.US",
+        "JNJ.US",
+        "ASML.AS",
+        "SAP.XETRA",
+        "SAN.MC",
+        "SPY.US",
+        "VWCE.XETRA",
+        "BTC-USD.CC",
+        "ETH-USD.CC"
+      ],
+      "coverage": {
+        "requested": 12,
+        "accepted": 12,
+        "rejectedOrMissing": 0,
+        "errors": 0
+      },
+      "quotaNote": "Estimación conservadora: 1 unidad por petición iniciada; comprobar el contador real de la cuenta EODHD."
+    },
+    {
+      "provider": "Alpaca",
+      "planAssumption": "Basic gratuito; feed SIP histórico solicitado explícitamente",
+      "status": "error",
+      "requestsAttempted": 1,
+      "quotaUnitsEstimated": 1,
+      "requestMode": "Una única petición agrupada para seis símbolos",
+      "feedRequested": "sip",
+      "adjustmentRequested": "raw",
+      "symbols": [],
+      "error": "subscription does not permit querying recent SIP data",
+      "httpStatus": 403,
+      "coverage": {
+        "requested": 6,
+        "accepted": 0,
+        "errors": 6
+      }
+    }
+  ]
+}
