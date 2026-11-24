@@ -812,3 +812,12 @@ El uso privado/no comercial no equivale a una exención general de scraping. La 
 Regla: evaluar por separado acceso automatizado, términos contractuales, derechos de base de datos, uso non-display/derivado, retención y redistribución. La ausencia de lucro no elimina automáticamente las restricciones.
 
 Fuentes: https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930 ; https://marketdata.euronext.com/data-reporting-service/trades-file ; https://www.mds.deutsche-boerse.com/resource/blob/4028410/8c40e8b49bbbae4adcf9aee2f8193ad6/data/Market%20Data%20Policy%20Guidelines%20and%20FAQ_V2_8.pdf ; https://www.mds.deutsche-boerse.com/resource/blob/5322804/5ab2ea48a9787add0f7fc5abbf9e63a4/data/Non-Display%20Guidance%20Note%204_0.pdf ; https://www.cboe.com/markets/eu/equities/transparency-data/ .
+
+
+## 22. Xetra: precio non-display y encaje de Market Radar
+
+La Price List to the Non-Display Agreement v11_01, vigente desde 01-08-2026, publica para Xetra Post-Trade 480 €/mes Entry, 880 € Medium, 1.400 € Plus y 2.200 € Unlimited (antes de IVA), por cliente/producto/mes. Pero las columnas de Index Calculation y Other Application Usage aparecen vacías para Xetra Post-Trade. Esta última categoría es la que describe análisis cuantitativo y gestión de cartera; además, DBAG excluye de simple analytics el análisis técnico avanzado, la generación de señales y el soporte a estrategias.
+
+No se debe asumir que pagar 480 €/mes permite Market Radar: esa tarifa es para una categoría de trading basada en Device Access. No se ha encontrado una tarifa pública que habilite claramente Other Application Usage para Xetra Post-Trade. Aunque el feed delayed puede descargarse gratis a 15 minutos, eso no resuelve por sí solo el uso non-display avanzado. Decisión: descartar Xetra para screening automático salvo que aparezca una licencia pública aplicable y asumible. No contactar al proveedor.
+
+Fuentes: https://www.mds.deutsche-boerse.com/resource/blob/5107644/e6ec5d6e4bd221a24fcd29716f0bc215/data/NonDisplay_Price_List_11_01.pdf ; https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data ; https://www.mds.deutsche-boerse.com/resource/blob/5322804/5ab2ea48a9787add0f7fc5abbf9e63a4/data/Non-Display%20Guidance%20Note%204_0.pdf
