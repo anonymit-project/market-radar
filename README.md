@@ -11,7 +11,7 @@ Radar conservador de oportunidades de inversión en acciones, ETF y criptomoneda
 - Validar datos, licencias, costes y arquitectura antes de desarrollar o contratar.
 
 ## Estado
-**Fase 1 — investigación y validación de fuentes.** Ningún proveedor ni arquitectura está aprobado. No hay desarrollo funcional ni contrataciones. Objetivo inicial: coste cero; estudiar alternativas de 10–30 €/mes o superiores sólo si aportan una mejora material. No contratar sin autorización expresa.
+**Fase 1 — investigación y validación de fuentes.** Ningún proveedor ni arquitectura está aprobado. No hay desarrollo funcional ni contrataciones. Objetivo inicial: **coste cero**. Priorizar exclusivamente opciones gratuitas durante el prototipo y la primera puesta en marcha. Sólo estudiar alternativas de pago cuando el sistema gratuito funcione y sus limitaciones reales justifiquen la mejora. No contratar sin autorización expresa.
 
 ## Alcance acordado
 - Acciones, ETF y criptomonedas; EE. UU. y Europa como mercados principales.
