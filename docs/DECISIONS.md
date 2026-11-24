@@ -16,6 +16,9 @@
 - Preferencia por coste inicial cero y servicios cloud de bajo mantenimiento.
 - IA estructura noticias; reglas deterministas deciden señales.
 
+- GitHub es la fuente persistente de verdad del proyecto; los chats son temporales.
+- Todo chat debe cerrar con un siguiente paso inequívoco: pregunta concreta para continuar o prompt de relevo completo para un chat nuevo.
+
 ## Restricciones
 - No asumir acceso a InvestingPro.
 - No centrar noticias sólo en Expansión.
@@ -23,6 +26,7 @@
 - No contratar sin autorización.
 - No programar aplicación funcional antes de validar datos, licencias, costes y arquitectura.
 - No presentar hipótesis como decisiones.
+- No dejar al usuario sin una acción clara al terminar un chat; aplicar docs/WORKFLOW.md.
 
 ## Hipótesis / candidatas no aprobadas
 - GitHub Actions u otro scheduler gestionado.
@@ -46,3 +50,4 @@
 ## Registro de cambios
 - 2026-11-24: primera consolidación documental a partir del contexto del proyecto. Investigación documental inicial de proveedores; ningún proveedor aprobado.
 - 2026-11-24: README actualizado; se establece GitHub como fuente persistente de contexto y protocolo de relevo entre chats.
+- 2026-11-24: se formaliza el cierre obligatorio de cada chat con pregunta concreta o prompt de relevo completo; detalle en docs/WORKFLOW.md.
