@@ -215,3 +215,13 @@ Los bloques anteriores que mencionan tres usuarios, PWA como requisito inmediato
 
 ### Próxima prioridad
 Validar Euronext y Xetra como fuentes de transacciones por venue, incluyendo correcciones/cancelaciones, flags y calidad de cierre. Diferenciar explícitamente volumen del venue de volumen consolidado. No ejecutar descargas ni pruebas de datos hasta autorización expresa.
+
+
+## Decisión — tratamiento legal de feeds públicos europeos (24-11-2026)
+
+El carácter privado/no comercial de Market Radar no se tratará como exención general de scraping o de licencias de datos.
+
+- Euronext Trades Files: la cláusula específica permite gratuitamente el uso sin restricciones salvo distribución. Se considera candidato provisional para procesamiento interno y derivados no distribuidos; no redistribuir datos ni asumir que la disponibilidad de 24h autoriza conservar raw indefinidamente. Minimizar almacenamiento crudo y priorizar OHLCV/indicadores derivados, sujeto a términos.
+- Xetra/Deutsche Börse: la Guidance Note V4.0 (01-08-2026) introduce categorías y tarifas non-display para productos MiFIR; Market Radar genera análisis técnico y señales, excluidos de simple analytics. No usar hasta comprobar la tarifa/licencia específica. No contactar con proveedores.
+- Cboe: sólo complemento técnico; no basar señales de inversión en el feed debido al disclaimer y a la falta de garantías.
+- En todas las fuentes separar automatización, condiciones contractuales, derechos de base de datos, uso non-display, retención y redistribución.
