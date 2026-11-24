@@ -150,3 +150,16 @@ La diferencia de EODHD `adjustedClose=268.71` frente al cierre raw de 270.05 el 
 El usuario autoriza una prueba técnica adicional acotada, orientada a validar profundidad histórica, siempre que se mantenga el foco en el resultado y no se incurra en costes ni se excedan cuotas. Se prepara una ejecución de exactamente cuatro peticiones para NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC, con barras diarias entre 2025-11-24 y 2026-11-24.
 
 La prueba no consulta Alpaca, no reintenta, no pagina y no amplía la ventana. El usuario debe comprobar que su contador EODHD permite al menos cuatro llamadas adicionales antes de ejecutarla. No se comparte ninguna credencial. La autorización no cubre planes de pago, pruebas de pago ni consumos adicionales.
+
+
+## Validación histórica EODHD — decisión provisional (24-11-2026)
+
+- Se ha completado una muestra histórica EOD diaria de 12 meses para NVDA.US, ASML.AS, VWCE.XETRA y BTC-USD.CC mediante exactamente cuatro peticiones EODHD.
+- Las cuatro consultas fueron aceptadas (HTTP 200); se recibieron 1.125 barras en total y se superaron controles estructurales básicos de fechas, orden, duplicados, OHLC y volumen.
+- **Decisión:** EODHD supera provisionalmente la prueba técnica acotada de disponibilidad, cobertura anual y consistencia estructural para estos cuatro instrumentos.
+- Esta decisión **no equivale a aprobar EODHD para producción**, ni valida el resto del universo de 12 activos. Siguen pendientes la revisión de licencias y derechos de uso individual, almacenamiento, automatización y LLM; la contrastación independiente de movimientos extremos; la validación de ajustes corporativos; y la evaluación de estabilidad y profundidad histórica suficiente.
+- Se mantienen separados `close` y `adjustedClose`; la metodología de ajustes debe normalizarse antes de combinar proveedores o realizar backtests.
+- No se autoriza por esta decisión ninguna petición adicional, consumo de cuota, contratación ni prueba de pago.
+
+### Registro de cambios
+- 2026-11-24: se registra la conclusión provisional de la muestra histórica EODHD de cuatro instrumentos. Detalle y métricas en docs/DATA_SOURCES.md, sección 17.
