@@ -6,8 +6,9 @@ Market Radar identifica oportunidades potenciales de compra, venta/evitar exposi
 El ejemplo motivador fue detectar una posible oportunidad antes de una subida relevante (p. ej. NVIDIA), sin utilizar información posterior para justificar retrospectivamente una señal.
 
 ## 2. Universo
-- Activos: acciones, ETF y criptomonedas.
-- Mercados principales: EE. UU. y Europa.
+- Universo principal de exploración: acciones cotizadas de EE. UU. y Europa, sin limitación sectorial y con cobertura amplia por bolsas habilitadas.
+- ETF y criptomonedas permanecen en seguimiento separado; no forman parte del universo del Explorador de acciones.
+- La cobertura europea se incorporará por fases y se declarará por bolsa/MIC; no se afirmará cobertura paneuropea hasta validarla.
 - Resto del mundo: sólo oportunidades excepcionales o relaciones sectoriales/eventos justificables.
 - Horizontes: corto 1–10 días; medio 2 semanas–6 meses; largo 6–36 meses.
 
