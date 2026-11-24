@@ -232,3 +232,23 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 **Bloqueo principal:** no iniciar desarrollo del escáner amplio mientras no haya cobertura de precios EOD europea automatizable y licenciada. No repetir las pruebas históricas EODHD ni consumir cuotas en esta fase documental.
 
 **Siguiente paso recomendado:** continuar investigación documental del mercado de datos EOD europeo y sus licencias, sin llamadas API ni credenciales.
+
+
+---
+
+## Fase 1E — Fuentes públicas europeas post-trade (24-11-2026)
+
+**Hallazgo:** existen ficheros públicos automatizables de transparencia post-trade bajo MiFIR. No equivalen automáticamente a OHLCV consolidado, pero abren una vía viable por venue.
+
+- [x] Revisar Reglamento Delegado (UE) 2025/1156, artículos 23–25.
+- [x] Identificar Euronext Trades Files, Xetra delayed post-trade, Cboe Europe, BME APA y LSEG delayed transparency.
+- [x] Revisar EuroCTP: consolidado paneuropeo operativo, pero Non-Display Use sujeto a licencia; coste publicado no viable para el uso automático privado.
+- [x] Revisar alternativas Stooq, Alpha Vantage, Twelve Data, OHLC.io y Yahoo.
+- [ ] Confirmar términos de Deutsche Börse para automatización privada y retención.
+- [ ] Analizar esquema y flags completos de Euronext (correcciones, cancelaciones, deferrals, subastas y volumen).
+- [ ] Determinar el alcance real de los ficheros Cboe/BME por venue/APA y su integridad.
+- [ ] Definir si las barras de venue son suficientes para el primer screening y cómo se etiquetará la cobertura.
+- [ ] Proponer fuente complementaria para mercados europeos sin feed gratuito apto.
+- [ ] Sólo después, solicitar autorización para una prueba técnica pequeña, acotada y sin consumo de APIs comerciales.
+
+**Siguiente paso recomendado:** análisis documental detallado del formato de Euronext y de la política de uso Xetra. No descargar ficheros, no llamar APIs y no consumir cuotas sin autorización.
