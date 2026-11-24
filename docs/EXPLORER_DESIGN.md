@@ -337,3 +337,45 @@ La nueva arquitectura recomendada es híbrida:
 3. Revisar los términos completos de Cboe y determinar si el daily file es venue-specific o incluye operaciones APA reportadas.
 4. Determinar si los feeds de transparencia de venues primarios permiten OHLCV diario suficientemente completo para screening, distinguiendo volumen de venue de volumen consolidado.
 5. No descargar ficheros, ejecutar scripts ni crear cuentas hasta autorización expresa para una prueba acotada.
+
+
+### 11.6 Revisión detallada de derechos y formatos — 24-11-2026
+
+**Euronext Trades Files**
+- La página oficial confirma CSV post-trade, retraso máximo de 15 minutos, timestamps UTC y disponibilidad mínima de 24 horas para Amsterdam, Brussels, Dublin, Lisbon, Milan, Oslo y Paris.
+- Sus términos específicos conceden uso gratuito y dicen no imponer restricciones salvo distribución. No obstante, la cabecera de copyright de la misma página dice que los datos no pueden copiarse ni redistribuirse salvo autorización. La coexistencia de ambas cláusulas deja sin resolver el alcance de la copia técnica, almacenamiento histórico y creación de OHLCV internas.
+- La página pública no expone un diccionario de campos ni un fichero de muestra accesible en la documentación consultada. Por tanto, no se ha confirmado que cada fila incluya ISIN, MIC de ejecución, timestamp de operación/publicación, precio, cantidad e indicadores de corrección/cancelación.
+- **Estado: candidato prioritario, pero licencia y esquema pendientes.** Solicitar confirmación escrita a Euronext antes de automatizar o persistir datos. No asumir que la disponibilidad durante 24h autoriza conservarlos indefinidamente.
+
+**Deutsche Börse / Xetra**
+- La página oficial confirma ficheros descargables JSON.gz, datos post-trade retrasados 15 minutos, actualización cada minuto, timestamps UTC y disponibilidad hasta medianoche del siguiente día hábil.
+- La política DBAG (24-09-2025, v2.8) dice que el uso gratuito se condiciona a no comercializar los datos. Sin embargo, define el uso non-display como procesamiento para fines distintos de mostrar datos; incluye análisis cuantitativo/gestión de cartera como «Other Application Usage» y establece que puede requerir licencia. También indica que una aplicación sólo de almacenamiento puede estar sujeta a otras licencias.
+- La FAQ indica que el NDDU de datos retrasados no genera tarifa en la categoría general salvo excepciones de la lista de precios, pero eso no elimina la obligación de declarar/encuadrar el uso ni resuelve el almacenamiento persistente. La política recomienda consultar a DBAG cuando el caso no esté enumerado.
+- **Estado: no aprobado todavía.** La gratuidad de acceso no basta para concluir que un escáner personal automatizado que calcula señales y conserva histórico esté autorizado. Pedir confirmación escrita a data.services@deutsche-boerse.com; no registrarse ni iniciar feeds.
+
+**Cboe Europe — feed nuevo, no el legacy**
+- Desde 2026 existe una nueva especificación «Delayed Transparency Files» v1.0.7 (31-07-2026), que sustituye progresivamente el servicio MiFID Public Trade Data legacy; la migración paralela anunciada termina el 27-11-2026.
+- La nueva especificación confirma CSV machine-readable, ficheros por minuto, fichero diario cuando aplique y disponibilidad hasta el siguiente día hábil, sin registro/CAPTCHA/throttling según el documento.
+- El post-trade incluye ISIN, hora de ejecución, precio, divisa, cantidad, MIC de ejecución y publicación, ID de transacción y flags. Distingue operaciones de BXE/CXE/DXE (lit, dark, subastas, reportes off-book y MTF) y reportes APA off-exchange/SI; los APA pueden incluir trades de otros MTF reportados a Cboe. No representa toda la negociación europea del instrumento.
+- Los flags identifican cancelaciones (CANC), modificaciones (AMND), operaciones no formadoras de precio (NPFT/TNCP), operaciones negociadas, benchmarks y diferimientos (LRGS/ILQD/SIZE/DEFF). Deben procesarse antes de calcular OHLCV; no sumar duplicados entre publicación APA y venue.
+- La página actual contiene un disclaimer «Not for Trading or Investment Decisions» y deja cualquier dependencia de los datos bajo riesgo del usuario. No es una prohibición técnica de acceso, pero sí un riesgo material para el propósito de Market Radar y exige valoración jurídica/operativa previa.
+- **Estado: candidato técnico sólido como complemento, no como fuente única ni aprobada.** La especificación describe claramente el contenido, pero la página consultada no resuelve de forma suficiente la retención histórica más allá de la disponibilidad indicada ni el alcance exacto de uso automatizado privado.
+
+**BME APA y LSEG**
+- BME declara que la información sólo puede descargarse/copiarse/imprimirse para uso personal y que está destinada exclusivamente al uso interno. No se ha confirmado si la automatización sistemática y el almacenamiento histórico derivado entran en ese uso personal. Mantener bloqueado hasta aclaración.
+- LSEG ofrece ficheros delayed públicos, pero su página de licensing declara que se requiere licencia para non-display, derived data y otras aplicaciones. No usar para el escáner sin licencia expresa.
+
+**Decisión provisional**
+- Euronext y Xetra siguen siendo las dos fuentes prioritarias para intentar un piloto europeo, pero ninguna queda legalmente aprobada para ingesta automatizada persistente.
+- Cboe mejora la cobertura de negociación alternativa y APA, pero es un complemento de alcance parcial y su disclaimer limita su idoneidad para apoyar decisiones de inversión.
+- Las barras construidas desde un feed de venue deben etiquetarse con MIC/ámbito y no presentarse como volumen consolidado. Un OHLC de operaciones reportadas puede servir para precios del venue; el volumen sólo será comparable si el universo de operaciones incluidas y los flags están definidos y completos.
+- Próximo paso: solicitar por escrito a Euronext y Deutsche Börse confirmación de automatización privada, uso non-display/quantitative analysis, creación de datos derivados internos, conservación histórica indefinida y límites de redistribución. No enviar consultas ni descargar ficheros sin autorización expresa del usuario.
+
+Fuentes oficiales revisadas:
+- Euronext Trades Files y términos: https://marketdata.euronext.com/data-reporting-service/trades-file
+- Deutsche Börse delayed data: https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data
+- Deutsche Börse Market Data Policy Guidelines v2.8: https://www.mds.deutsche-boerse.com/resource/blob/4028410/8c40e8b49bbbae4adcf9aee2f8193ad6/data/Market%20Data%20Policy%20Guidelines%20and%20FAQ_V2_8.pdf
+- Cboe Delayed Transparency Files specification v1.0.7: https://cdn.cboe.com/resources/participant_resources/Cboe_Titanium_Europe_Aggregated_Depth_Feed_Specification.pdf
+- Cboe delayed transparency page and disclaimer: https://www.cboe.com/markets/eu/equities/transparency-data/
+- BME APA post-trade: https://www.bolsasymercados.es/es/otros-servicios/servicios-regulatorios/post-trade-data.html
+- LSEG delayed data: https://dmd.lseg.com/
