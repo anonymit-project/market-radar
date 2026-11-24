@@ -64,6 +64,23 @@ El script:
 
 Si falta una clave, ese proveedor aparece como omitido y no se realiza ninguna petición a ese proveedor.
 
+## 4B. Probar sólo Alpaca Basic con feed IEX (sin consumir cuota EODHD)
+
+Para repetir únicamente la prueba de Alpaca después del error SIP, actualiza el repositorio con `git pull` y ejecuta:
+
+~~~powershell
+node .\scripts\validate-providers.mjs --alpaca-only
+~~~
+
+Este modo:
+- **No realiza ninguna petición a EODHD** y registra ese proveedor como omitido.
+- Realiza una sola petición agrupada a Alpaca para NVDA, MSFT, META, AMZN, JNJ y SPY.
+- Solicita explícitamente `feed=iex` y `adjustment=raw`, compatibles con la modalidad Basic según la documentación de Alpaca.
+- Conserva hasta tres barras recientes por símbolo y no reintenta ni pagina.
+- No necesita el token EODHD; basta con las dos claves locales de Alpaca.
+
+No ejecutes el comando normal sin el argumento `--alpaca-only` para esta comprobación: ese modo vuelve a consultar EODHD y solicita SIP a Alpaca.
+
 ## 5. Enviar el resultado
 Al terminar aparecerá la ruta del informe, dentro de validation-results\, por ejemplo:
 
