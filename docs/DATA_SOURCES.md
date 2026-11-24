@@ -250,3 +250,72 @@ La siguiente iteración debe puntuar proveedores para este escenario individual,
 - restricciones de exchange, mercado y feed.
 
 No enviar las consultas preparadas para licencias de tres usuarios: quedan obsoletas para el alcance vigente. Sólo consultar al proveedor si la documentación pública no resuelve una cláusula material.
+
+
+---
+
+## 11. Reevaluación para uso individual y estrategia gratuita-first (24-11-2026)
+
+**Prioridad confirmada por el usuario:** coste inicial de **0 €**. Durante el prototipo y la primera puesta en marcha se buscarán exclusivamente fuentes y servicios gratuitos. No contratar planes ni iniciar pruebas que consuman cuotas/credenciales sin autorización expresa. Los planes de pago sólo se reconsiderarán cuando el sistema gratuito esté funcionando y existan limitaciones medidas que justifiquen el gasto.
+
+Esta sección y las conclusiones siguientes sustituyen cualquier shortlist o coste orientado al escenario de tres usuarios. Las secciones 9.1–9.6 se conservan únicamente como histórico.
+
+### 11.1 Hallazgos gratuitos verificados en documentación oficial
+
+| Fuente | Acceso gratuito publicado | Utilidad real y límites | Estado para el proyecto |
+|---|---|---|---|
+| **EODHD** | 20 llamadas/día; un año de histórico EOD. Demo pública con histórico completo para un conjunto pequeño de símbolos. | Multi-activo y multi-mercado en catálogo, pero free insuficiente para ingesta amplia; confirmar cobertura efectiva por símbolo. Plan personal documenta uso propio y análisis, pero verificar almacenamiento, IA y retención por separado. | Candidato para evaluar con demo y una prueba pequeña autorizada; no base única del sistema. |
+| **Twelve Data Basic** | 8 créditos/minuto y 800/día; 8 créditos WebSocket de prueba. | Datos en tiempo real para acciones/ETF USA, FX y cripto; no incluye el catálogo global de EOD/Europa del plan Grow ni datos europeos en tiempo real del Pro. Endpoints tienen pesos distintos por símbolo. | Útil para prototipo limitado USA/FX/cripto; cobertura europea gratuita insuficiente. |
+| **FMP Basic** | 250 llamadas/día; datos USA; cinco años históricos de acciones; endpoints premium excluidos. | Puede aportar EOD y fundamentales básicos USA. Términos vigentes limitan a uso personal y restringen acumulación/almacenamiento que cree un archivo sustitutivo; hay que comprobar endpoint y retención permitidos. | Candidato para fundamentals/EOD USA, sujeto a revisión de cada endpoint y política de almacenamiento. |
+| **Massive Stocks Basic** | 5 llamadas/minuto; dos años históricos; datos EOD y cobertura de acciones USA publicada como 100%. | Acceso personal individual. Términos de mercado permiten descargar/almacenar para uso propio durante la licencia; al terminar, borrar datos y cachés en un máximo de 30 días. IA/servicios externos sólo como procesadores por cuenta del titular; entrenamiento prohibido salvo permiso. | Candidato experimental USA EOD, muy limitado por cuota; no apto como fuente única. |
+| **Alpaca Basic** | Gratis; acciones/ETF USA; IEX en tiempo real; histórico desde 2016, pero la API free limita la consulta al tramo reciente (últimos 15 minutos, según tabla oficial); 200 llamadas/minuto. | IEX no representa el volumen consolidado SIP/CTA/UTP. No cubre Europa. | Útil para feed USA en tiempo real de alcance IEX, no como referencia de mercado consolidado ni para histórico libre amplio. |
+| **Alpha Vantage** | 25 llamadas/día para la mayoría de datasets. | Datos USA en tiempo real y retrasados 15 minutos son premium por licencias de mercado. Excepción de volumen ilimitado sólo para proyectos open-source/educativos verificados; no asumir que un proyecto privado cumple. | Fuente secundaria para consultas puntuales, no ingesta operativa. |
+| **Finnhub** | La cuota y los derechos concretos del plan gratuito no han quedado suficientemente verificados en esta revisión. | La documentación ofrece endpoints de mercado, fundamentals y noticias, pero no se da por supuesto que todos estén disponibles en free ni que permitan almacenamiento/LLM. | Pendiente de verificación; no incluir aún en shortlist gratuito. |
+| **Stooq** | Acceso web a datos históricos; no se ha verificado una API gratuita estable ni licencia clara para automatización/almacenamiento. | No asumir que la disponibilidad pública equivale a permiso para extracción automatizada o reutilización. | Sólo contraste manual/experimental hasta aclarar licencia y API. |
+| **SEC EDGAR** | APIs públicas sin API key; límite fair-access de 10 solicitudes/segundo y obligación de uso responsable/User-Agent. | Filings, submissions y XBRL de emisores obligados a reportar en EE. UU.; no es un proveedor de cotizaciones ni cubre Europa. | Fuente primaria prioritaria y gratuita para fundamentales/eventos USA. |
+| **GDELT** | Datasets/APIs abiertos y gratuitos; los datasets se pueden reutilizar y redistribuir con cita y enlace al proyecto. GDELT 2.0 actualiza sus streams principales cada 15 minutos. | Metadatos/eventos y descubrimiento global; no concede derechos sobre artículos originales enlazados. Volumen y ruido exigen filtrado. | Candidato fuerte para descubrimiento de eventos y contexto, no sustituto de fuente primaria. |
+| **Marketaux Free** | 100 solicitudes/día y hasta 3 artículos por solicitud; devuelve snippets y enlaces. | Cobertura global anunciada; no se ha resuelto con suficiente claridad la licencia de almacenamiento, automatización y uso de snippets con LLM. | Candidato condicionado a revisión de términos antes de usarlo en producción. |
+
+### 11.2 Lectura crítica: no existe todavía una solución gratuita completa
+
+- **EE. UU.**: hay varias opciones gratuitas para EOD, fundamentals/filings y un feed IEX; cada una tiene límites distintos. SEC EDGAR + GDELT son los componentes gratuitos con derechos públicos más claros para filings y metadatos de eventos.
+- **Europa**: no se ha identificado una fuente gratuita única, con cobertura amplia, histórico de cinco años, API automatizable y derechos claros de uso personal. La cobertura europea es el principal hueco del stack gratuito.
+- **Intradía**: los tiers gratuitos son muy limitados o no ofrecen una visión consolidada. No presentar IEX como mercado USA completo ni usar datos retrasados como si fueran ejecutables.
+- **Histórico**: EODHD Free sólo un año; Massive Basic dos años; FMP Basic cinco años USA según la página oficial. Ninguno resuelve por sí solo cinco años globales USA+Europa+ETF+cripto.
+- **Fundamentales**: SEC EDGAR es valioso para emisores USA; FMP Free puede complementar, con restricciones de endpoints y almacenamiento. Para Europa habrá que acudir a informes corporativos y fuentes regulatorias por emisor/país, cuya automatización debe revisarse.
+- **Noticias**: GDELT es la base abierta más clara para metadatos; Marketaux añade una API sencilla pero queda condicionado por sus términos y límites.
+
+### 11.3 Restricciones contractuales relevantes identificadas
+
+- **FMP**: los términos individuales publicados prohíben acumular datos mediante API en volúmenes/frecuencias que excedan el plan o crear un archivo/base de datos sustitutivo. No diseñar una descarga masiva histórica o caché permanente sin aclarar el alcance permitido.
+- **Massive**: los términos individuales y de market data aplican también al acceso gratuito. Permiten análisis personal y almacenamiento de la información licenciada, pero al acabar el derecho de acceso exigen detener el uso y borrar datos/cachés en un máximo de 30 días. Los análisis propios no reconstruibles pueden conservarse. No entrenar modelos IA/ML con la información salvo permiso expreso.
+- **Twelve Data**: Basic se limita a uso interno no-display y tiene cuotas muy bajas. Las condiciones de uso personal permiten herramientas internas y derivados no reversibles, pero el acceso efectivo a mercados depende del tier y de licencias de exchange.
+- **EODHD**: 20 llamadas diarias y un año EOD en free; demo sirve para evaluar un conjunto pequeño sin consumir la cuota propia. No extrapolar la demo a cobertura universal ni a producción.
+- **Alpaca**: IEX es una fuente parcial, no el SIP consolidado; los derechos del feed y el alcance de datos deben indicarse en la interfaz y en el análisis.
+- **Marketaux**: la página de precios/FAQ confirma cuota y snippets, no resuelve por sí sola todos los derechos de almacenamiento, IA y retención.
+- **SEC/GDELT**: respetar fair access, atribución y límites; GDELT no otorga derechos sobre el contenido original de los medios.
+
+### 11.4 Fuentes oficiales revisadas el 24-11-2026
+
+- EODHD planes: https://eodhd.com/help/plans ; histórico/free: https://eodhd.com/financial-apis/api-for-historical-data-and-volumes ; límites: https://eodhd.com/help/limits
+- Twelve Data precios: https://twelvedata.com/pricing ; uso personal/comercial: https://support.twelvedata.com/en/articles/5332349-commercial-and-personal-usage
+- FMP precios: https://site.financialmodelingprep.com/pricing-plans ; FAQ free: https://site.financialmodelingprep.com/faqs ; términos: https://site.financialmodelingprep.com/terms-of-service
+- Massive planes: https://massive.com/pricing?product=stocks ; términos individuales: https://massive.com/legal/individuals-terms-of-service ; términos de datos: https://massive.com/legal/market-data-terms-of-service
+- Alpaca market data: https://docs.alpaca.markets/us/v1.1/docs/about-market-data-api ; feed: https://alpaca.markets/support/data-provider-alpaca
+- Alpha Vantage cuotas/licencias: https://www.alphavantage.co/support/api-key/
+- Finnhub: https://finnhub.io/docs/api ; términos: https://finnhub.io/terms-of-service (pendiente de verificación específica de free)
+- Stooq: https://stooq.com/ (no se ha localizado licencia/API suficientemente clara)
+- SEC fair access: https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data ; APIs: https://www.sec.gov/about/developer-resources
+- GDELT uso: https://www.gdeltproject.org/about.html ; datos/actualización: https://www.gdeltproject.org/data.html
+- Marketaux precios: https://www.marketaux.com/pricing ; FAQ: https://www.marketaux.com/faq
+
+### 11.5 Shortlist provisional gratuita
+
+1. **SEC EDGAR + GDELT** como base gratuita de filings y descubrimiento de eventos.
+2. **FMP Basic** para evaluar fundamentals/EOD USA, con almacenamiento restringido y sólo endpoints incluidos.
+3. **Alpaca Basic** para evaluar datos USA IEX en tiempo real, dejando clara su representatividad limitada.
+4. **EODHD Free/demo** para evaluar cobertura multi-activo y calidad EOD en un universo reducido.
+5. **Twelve Data Basic** como alternativa de prototipo de baja frecuencia para USA/FX/cripto.
+6. **Marketaux Free** sólo tras resolver términos de almacenamiento/LLM; **Finnhub y Stooq** quedan pendientes.
+
+Esta shortlist no implica aprobación contractual ni técnica. No se han creado cuentas, usado credenciales, ejecutado llamadas con cuotas ni contratado servicios. La siguiente fase es concretar un universo pequeño de símbolos y una frecuencia de actualización que quepa en las cuotas gratuitas, y luego solicitar autorización antes de ejecutar pruebas reproducibles.
