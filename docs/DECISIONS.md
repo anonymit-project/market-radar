@@ -241,3 +241,14 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 - Euronext sigue siendo la prioridad inicial; no se presume autorización de retención indefinida de raw.
 - Arquitectura propuesta: adaptadores por venue, normalización de flags/correcciones/deduplicación, OHLCV venue-specific y quality gate; no llamar consolidado al volumen parcial.
 - Detalle y fuentes: docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md.
+
+
+## Decisión — Nasdaq Nordic/Baltic y NGM (25-11-2026)
+
+- **Nasdaq Nordic Equity:** candidato preferente para un primer piloto acotado, pendiente de inspeccionar un CSV real y resolver la retención histórica. Motivos: CSV delayed oficial, uso no comercial gratuito, ficheros por minuto, afirmación de todos los trades del día por instrumento y especificación NLS pública con identificadores/flags (sin asumir que el CSV replica NLS).
+- **Nasdaq Baltic Equity:** mantener como subcandidato; validar por separado formato y cobertura, dado que la guía diferencia XLSX de descarga individual y CSV en Regulatory Reports.
+- **NGM:** no descartar, pero no iniciar ingesta todavía. La política v1.4 genera ambigüedad para automatización non-display/Derived Information (7.3, 8 y 9.6), y no autoriza claramente retención perpetua de ficheros gratuitos.
+- Para ambos: no hay prueba de retención raw indefinida; 48/72 h son ventanas de disponibilidad, no licencias de archivo. Los CSV exactos no se han inspeccionado y la completitud no está validada.
+- Toda barra sería venue-specific, no volumen consolidado. No aprobar señales de volumen/liquidez hasta demostrar cobertura.
+- No descargar, crear cuentas, ejecutar APIs, contactar proveedores ni consumir cuotas sin autorización expresa.
+- Evidencia y análisis: docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md, actualización 25-11-2026.
