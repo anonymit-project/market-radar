@@ -329,3 +329,12 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Resolver derechos de almacenamiento raw y derivados antes de retención histórica o ingesta recurrente.
 
 **Estado:** sólo diseño documental. Ningún CSV inspeccionado; ninguna descarga/API ejecutada. Detalle: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
+
+## Nasdaq Nordic — autorización recibida, descarga bloqueada por acceso a la interfaz (25-11-2026)
+
+- [x] Autorización expresa recibida para un único CSV, instrumento y sesión.
+- [x] Candidato identificado: Nokia Oyj, NOKIA, ISIN FI0009000681, MIC XHEL; sesión candidata 25-11-2026.
+- [ ] Obtener el CSV diario individual mediante el botón oficial «Download CSV» de la ficha de instrumento.
+- [ ] Inspeccionar el CSV y emitir informe técnico.
+
+La ficha web de Nokia disponible en el navegador devuelve «Data is currently not available» y no expone el enlace de descarga. No se ha descargado nada ni se ha recurrido a APIs o a los ficheros minuto a minuto. Para mantener el alcance aprobado, el usuario puede adjuntar el único CSV diario obtenido desde el botón oficial de Nasdaq. Véase docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
