@@ -252,3 +252,12 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 - Toda barra sería venue-specific, no volumen consolidado. No aprobar señales de volumen/liquidez hasta demostrar cobertura.
 - No descargar, crear cuentas, ejecutar APIs, contactar proveedores ni consumir cuotas sin autorización expresa.
 - Evidencia y análisis: docs/EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md, actualización 25-11-2026.
+
+## Decisión — diseño del piloto Nasdaq Nordic Equity (25-11-2026)
+
+- Aprobar únicamente el **diseño documental** de un piloto con un solo CSV, un instrumento y una sesión completa de Nasdaq Nordic Equity.
+- No se ha inspeccionado ningún CSV. RTS 1 y NLS no acreditan el esquema del CSV público.
+- La reconstrucción será venue-specific: aplicar cancelaciones/enmiendas antes de OHLCV, separar categorías de flags y no mezclar Nasdaq APA.
+- La disponibilidad de 48 h y el uso no comercial gratuito no acreditan retención raw ni derivada indefinida. No aprobar almacenamiento histórico ni job recurrente.
+- **Bloqueo:** autorización expresa antes de descargar el único fichero de muestra. Sin descargas adicionales, cuentas, contacto, APIs, cuotas ni costes.
+- Procedimiento: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
