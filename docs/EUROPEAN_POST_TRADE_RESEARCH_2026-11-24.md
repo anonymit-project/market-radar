@@ -220,3 +220,125 @@ Sin ejecutar ahora. Cuando se autorice:
 ## Limitaciones de esta revisión
 
 Investigación documental, no validación de datos. No se han descargado muestras ni verificado el contenido de CSV/JSON. No se ha determinado si los archivos de Nasdaq o NGM son completos para cada MIC/acción, si contienen todos los campos requeridos o si la retención raw indefinida está permitida. Los juicios de licencia son interpretaciones de términos públicos, no dictámenes jurídicos.
+
+
+---
+
+## Actualización 25-11-2026 — Nasdaq Nordic/Baltic y NGM: esquema, flags, integridad y derechos
+
+### Resumen ejecutivo
+
+**Recomendación: Nasdaq Nordic Equity merece el primer piloto limitado; NGM no debe pasar todavía a piloto de ingesta.** La recomendación es condicional y no aprueba aún retención histórica indefinida. Nasdaq ofrece una ruta oficial más clara para descargar los trades de la sesión por instrumento, declara gratuito el uso no comercial y dispone de una especificación técnica pública de su producto NLS que demuestra que su infraestructura de negociación maneja ISIN, MIC, timestamps, precio, cantidad, divisa, transaction ID, MMT y cancelaciones/enmiendas. Pero NLS es un feed distinto, no el CSV gratuito: no se puede trasladar su esquema al CSV sin inspeccionarlo.
+
+NGM ofrece CSV gratuito no comercial y ventana de 72 horas, pero su Market Data Policy introduce una ambigüedad material: las secciones 7.3 y 9.6 contemplan relación contractual y reporting para usos Derived Information, mientras que la exención de la sección 8 está redactada para receptores de datos delayed/EOD y para casos de Real-Time Data. No se ha encontrado una autorización inequívoca de automatización non-display y cálculo de OHLCV a partir de la descarga pública retrasada. Además, la retención perpetua tras terminación sólo se concede expresamente para datos recibidos y pagados (25.5), no para descargas gratuitas.
+
+### Comparativa técnica
+
+| Criterio | Nasdaq Nordic/Baltic | NGM |
+|---|---|---|
+| Acceso público | CSV machine-readable; 15 min; ficheros cada minuto; ventana 48 h en Regulatory Reports | CSV; 15 min; ventana últimas 72 h |
+| Sesión por instrumento | Nasdaq declara que el CSV de cada instrumento incluye todos los trades del día actual | No se ha encontrado afirmación equivalente que garantice todos los trades por instrumento |
+| Esquema CSV exacto | No publicado/confirmado en la documentación examinada; no descargar ni inspeccionar muestras en esta fase | No se ha encontrado diccionario de campos ni esquema CSV oficial |
+| ISIN | Exigido por el esquema regulatorio de transparencia de acciones; NLS documenta ISIN como identificador, pero no prueba el campo en el CSV | Exigido por el esquema regulatorio aplicable, pero campo presente en el CSV no verificado |
+| MIC ejecución | Campo regulatorio obligatorio; NLS documenta MIC de ejecución. CSV sin inspeccionar | Campo regulatorio obligatorio; CSV sin inspeccionar |
+| Fecha/hora de ejecución | RTS 1 exige Trading date and time en UTC; NLS documenta fecha y hora de ejecución con granularidad subsegundo. CSV sin inspeccionar | RTS 1 exige Trading date and time en UTC; la página NGM indica UTC para todos los timestamps, aunque las fechas siguen Europe/Stockholm |
+| Precio / cantidad / divisa | RTS 1 exige precio, moneda de precio y cantidad; NLS documenta precio, quantity, price currency y price notation. CSV sin inspeccionar | RTS 1 exige precio, moneda y cantidad; no se ha confirmado su representación exacta en CSV |
+| Transaction ID | RTS 1 lo exige; NLS documenta Trade Match ID. CSV sin inspeccionar | RTS 1 lo exige; presencia y estabilidad en el CSV no verificadas |
+| Flags / correcciones | RTS 1 exige flags aplicables y nuevas publicaciones de cancelación/enmienda. NLS documenta MMT 5.0 y flags CANC/AMND; también trade breaks. No se demuestra que el CSV gratuito exponga estos campos | RTS 1 exige flags y reportes de cancelación/enmienda; no se ha localizado documentación técnica NGM que confirme MMT ni su tratamiento en CSV |
+| Acciones ordinarias | Nordic Equity y Baltic Equity tienen rutas específicas; la documentación Nasdaq identifica Shares como clase separada de ETF/ETP y Funds. Cobertura de todos los listings/MIC y clases no cuantificada | NGM declara operar en Suecia, Noruega, Dinamarca y Finlandia y negociar acciones, pero sus 60.000+ instrumentos incluyen bonos, AIF y derivados. No se ha acreditado el universo exacto de acciones ordinarias |
+| Completitud | Afirmación Nasdaq de «all trades» por instrumento/día en la página de descarga individual; no es garantía de completitud independiente ni de todo el mercado | Sin garantía: su política indica que no garantiza datos completos o libres de errores, aunque hará esfuerzos razonables |
+| OHLCV | Potencialmente reconstruible para el ámbito del venue y trades elegibles, sujeto a campos/flags del CSV | Potencialmente reconstruible, pero falta confirmar esquema y completitud |
+| Retención publicada | 48 h de disponibilidad; no permiso de almacenamiento indefinido | 72 h de disponibilidad; no permiso de almacenamiento indefinido |
+| Uso privado automatizado | Uso no comercial gratuito expresamente declarado; no se ha localizado cláusula pública específica sobre almacenamiento raw indefinido o non-display de este uso | Uso no comercial gratuito en la página pública; la política contractual deja dudas para Derived Information/non-display automatizado |
+| Resultado | **Primer candidato a piloto acotado**, condicionado a revisión de licencia y validación del CSV | **No piloto todavía**; conservar como candidato si se resuelve el alcance de la política |
+
+### 1. Campos regulatorios que deberían existir
+
+El Reglamento Delegado (UE) 2017/587 (RTS 1), en su versión consolidada consultada, define para transparencia post-trade de acciones, entre otros, estos campos:
+- Trading date and time.
+- Instrument identification code (ISIN).
+- Price, Price currency y Price notation.
+- Quantity.
+- Venue of execution.
+- Publication date and time y Venue of publication cuando proceda.
+- Transaction identification code.
+- Flags aplicables.
+
+La norma define formatos de fecha/hora ISO 8601 UTC, códigos ISO 4217 para moneda, ISIN y MIC. La norma también exige publicar un nuevo reporte con flag de cancelación cuando se cancela una operación y, cuando se enmienda, publicar el reporte de cancelación y el nuevo reporte corregido con flag de amendment.
+
+**Límite de inferencia:** la obligación regulatoria permite anticipar el contenido semántico de un feed MiFIR, pero no sustituye al esquema publicado por cada operador ni demuestra cómo se serializan los campos en el CSV descargable. Los campos exactos, cabeceras, nulls, tipos y codificación siguen pendientes para ambos.
+
+### 2. Nasdaq: evidencia técnica y límites
+
+La documentación oficial Nasdaq consultada confirma:
+- Regulatory Reports: archivos CSV machine-readable, 15 minutos de retraso, generados cada minuto, disponibles durante 48 horas.
+- La página de Nordic Equity dice que el CSV por instrumento contiene todos los trades del día actual.
+- Nasdaq publica rutas separadas para Nordic Equity y Baltic Equity; la guía MiFID separa Shares, ETF/ETP, Funds, fixed income, derivatives y APA.
+- La especificación **Nordic Equity Last Sale (NLS) v1.2.10, 14-01-2026** es de otro producto, un feed directo de pago/mercado, y documenta:
+  - ISIN obtenido del Order Book Directory, moneda/precio y notional currency.
+  - Execution date/time, agreement date/time, precio, cantidad, MIC de ejecución, Trade Match ID y MMT Trade Flags.
+  - Timestamp del mensaje en nanosegundos desde medianoche UTC.
+  - MMT 5.0; flags de modificación CANC (cancelación) y AMND (enmienda).
+  - Trade breaks/cancels como mensajes separados; Nasdaq indica que un break es final y no puede reinstalarse en NLS.
+  - Tipos de trade que permiten distinguir operaciones estándar, subastas, dark, routed, portfolio, VWAP, contingent y non-price-forming.
+
+Estos detalles son una prueba de que Nasdaq dispone de semántica y mecanismos de corrección en su ecosistema técnico, **no** prueba de que el CSV público retrasado contenga los mismos campos ni de que transmita los eventos de corrección con la misma granularidad. No diseñar el parser hasta una muestra autorizada posterior.
+
+La cobertura Nasdaq es venue-specific. Los ficheros Nordic/Baltic no son un consolidado de todos los mercados donde negocia una acción. Nasdaq APA es una publicación distinta de operaciones OTC; no sumar APA y venue sin resolver duplicados, MIC de ejecución/publicación y flags.
+
+### 3. NGM: política de datos y riesgo de licencia
+
+La página oficial confirma CSV retrasado 15 minutos, ventana de 72 horas, timestamps UTC y fechas según Europe/Stockholm, con uso no comercial gratuito. NGM opera en Suecia, Noruega, Dinamarca y Finlandia y anuncia más de 60.000 instrumentos, incluidos equities, bonds, AIF y derivatives. Ese total no es el número de acciones ordinarias.
+
+La **Market Data Policy v1.4**, aplicable desde 01-01-2026, requiere una lectura más estricta:
+- Define Derived Information como resultados de manipulación matemática/procesamiento de datos, incluyendo IA/ML, siempre que el resultado no sea idéntico a los datos.
+- La sección 7.2 permite crear, usar, mostrar y distribuir internamente/externamente Derived Information.
+- La sección 7.3 dice que todo uso Non-Display y Derived Information requiere relación contractual directa con NGM y reporting previo.
+- La sección 8 formula el requisito de contrato directo para casos de Real-Time Non-Display/Derived y contempla que no hace falta un Order Form separado cuando el cliente recibe sólo datos Delayed/EOD. Esto crea una ambigüedad de alcance respecto a 7.3.
+- La sección 9.6 incluye cualquier uso de Derived Information entre los supuestos de notificación del Corporate Client.
+- Annex A define Other Usage incluyendo análisis cuantitativo y herramientas impulsadas por IA.
+- La sección 15.7–15.8 exime del pago por Display de datos delayed/EOD salvo comercialización y dice que los datos delayed pre/post-trade están disponibles gratis. No declara de forma igual de explícita que todo uso non-display/derivado automatizado sea gratuito.
+- La sección 16.1 dice que NGM no garantiza que los datos sean completos o libres de errores; se compromete a esfuerzos razonables.
+- La sección 25.5 permite, tras terminación, continuar mostrando perpetuamente los datos recibidos y pagados conforme a la política. No concede expresamente retención perpetua de los datos descargados gratuitamente.
+
+Por tanto, no interpretar «non-commercial use is free» como autorización concluyente para extracción automática persistente, cálculos derivados o archivo histórico indefinido. Sin contactar al proveedor, la documentación pública no resuelve la colisión entre 7.3, 8 y 9.6 ni extiende 25.5 a los ficheros gratuitos.
+
+### 4. Reconstrucción OHLCV y reglas de calidad
+
+Para ambos feeds, sólo podrá construirse OHLCV venue-specific si el CSV realmente contiene al menos ISIN, fecha/hora de ejecución, precio, cantidad y flags aplicables. MIC, divisa e ID de transacción son necesarios para clasificación, normalización y deduplicación fiable.
+
+Reglas mínimas:
+1. Resolver el instrumento con ISIN y mantener MIC de ejecución y MIC de publicación separados.
+2. Separar el feed del venue del APA; no sumar publicaciones duplicadas.
+3. Procesar cancelaciones y enmiendas antes de agregar, manteniendo trazabilidad del original y de sus reemplazos.
+4. Excluir o clasificar por separado operaciones sin precio, non-price-forming, deferred, special, auction, negotiated, portfolio y contingent según reglas documentadas.
+5. Calcular Open/High/Low/Close con el timestamp de ejecución, no el de publicación; volumen como suma de cantidades elegibles, normalizando unidades y moneda.
+6. Comparar número de trades y cierre contra una referencia independiente cuando sea posible.
+7. Etiquetar las barras como Nasdaq Nordic venue-only, Nasdaq Baltic venue-only o NGM venue-only. No llamarlas consolidadas.
+8. Marcar incompletitud si hay huecos de ficheros/minutos, errores de publicación o flags no interpretables. El volumen de un venue no equivale al volumen total de mercado.
+
+### 5. Decisión de piloto
+
+**Nasdaq Nordic Equity: avanzar como primer piloto documental/técnico, pero no descargar todavía.** Razones: acceso público automatizable en CSV, uso no comercial gratuito explícito, afirmación de todos los trades del día por instrumento, clases Shares separadas de ETF/fondos y especificación NLS oficial que reduce el riesgo de que no exista semántica de identificadores/flags en su infraestructura. El piloto posterior deberá verificar el CSV real y sus flags.
+
+**Nasdaq Baltic Equity: mantener dentro de la misma evaluación, pero no mezclarlo con Nordic hasta validar el formato concreto de sus archivos.** La guía oficial menciona XLSX para descarga individual Baltic y CSV para Regulatory Reports; confirmar el endpoint exacto y consistencia de formato en el piloto.
+
+**NGM: no pasar a ingesta todavía.** El plazo de 72 horas es atractivo, pero no compensa la falta de esquema y la ambigüedad de la política contractual para cálculos derivados. Mantenerlo como candidato condicionado, no descartado.
+
+**Condiciones previas al piloto real:** autorización expresa del usuario para descargar un único fichero de una sesión; confirmar que la documentación vigente sigue igual; inspeccionar esquema sin automatizar ni consumir APIs/cuotas; y no conservar raw a largo plazo hasta que el derecho esté claramente respaldado. No crear cuentas, contactar, contratar ni incurrir en costes.
+
+### Fuentes oficiales consultadas
+
+- Nasdaq Regulatory Reports: https://tradereports.nasdaq.com/
+- Nasdaq Nordic Equity Post-Trade: https://tradereports.nasdaq.com/shares/trade-reports/post-trade
+- Nasdaq Baltic Equity Post-Trade: https://tradereports.nasdaq.com/baltic-trade-reports/equity/post-trade
+- Nasdaq MiFID II delayed data guide: https://www.nasdaq.com/market-regulation/nordic/mifid-ii
+- Nasdaq Nordic Equity Last Sale v1.2.10 (14-01-2026): https://www.nasdaq.com/docs/2026/01/14/Nordic-Equity-Last-Sale-1.2.10_0.pdf
+- NGM Delayed Market Data: https://www.ngm.se/en/the-exchange/market-data/delayed
+- NGM Market Data Policy v1.4 (effective 01-01-2026): https://www.ngm.se/hubfs/Market%20Data%20Policy%20ver%201.4%20-%20Final.pdf
+- Commission Delegated Regulation (EU) 2017/587, consolidated text: https://eur-lex.europa.eu/eli/reg/2017/587
+- Commission Delegated Regulation (EU) 2017/583, consolidated text: https://eur-lex.europa.eu/eli/reg_del/2017/583/2026-03-02/eng
+
+### Limitaciones
+
+No se han descargado CSV/XLSX, ni se han inspeccionado muestras, ejecutado endpoints, APIs o scripts. No se ha probado la exhaustividad real, estabilidad de IDs, cobertura por MIC, comportamiento real de correcciones ni reconstrucción OHLCV. No se ha emitido dictamen jurídico. Los campos regulatorios y la especificación NLS no deben confundirse con el esquema de los ficheros gratuitos.
