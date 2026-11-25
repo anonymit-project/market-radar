@@ -348,3 +348,11 @@ No se han descargado CSV/XLSX, ni se han inspeccionado muestras, ejecutado endpo
 Se ha diseñado un piloto mínimo de un instrumento, una sesión completa y un único CSV. Define inspección de cabeceras/tipos, flags, cancelaciones/enmiendas, reconstrucción OHLCV venue-specific, controles de completitud y revisión de retención. Véase [docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md](NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
 
 **No se ha descargado ni inspeccionado ningún CSV.** Los campos RTS 1 y NLS no sustituyen el esquema real del CSV. La ventana de 48 h y el uso no comercial gratuito no acreditan retención raw o derivada indefinida. La única descarga requiere autorización expresa; no se permiten ficheros adicionales, cuentas, contacto, APIs, cuotas ni costes.
+
+## Corrección documental — ventana de disponibilidad Nasdaq (25-11-2026)
+
+La guía general MiFID II consultada indica que los ficheros están disponibles durante 24 horas, mientras que la página específica Nordic Equity Post-Trade muestra 48 horas. Se registra como discrepancia entre páginas oficiales; no asumir una ventana única sin nueva comprobación. La guía MiFID II también describe un CSV individual por instrumento descargable desde «Download CSV» sobre la tabla Trades, que incluye todas las operaciones del día actual. Esta descarga diaria por instrumento es distinta de los ficheros minuto a minuto de Regulatory Reports.
+
+Fuentes: https://www.nasdaq.com/market-regulation/nordic/mifid-ii y https://tradereports.nasdaq.com/shares/trade-reports/post-trade.
+
+El usuario autorizó una única muestra, pero la ficha de Nokia accesible no mostró datos ni enlace de descarga; no se descargó ningún fichero ni se usó API. Detalle y límites: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
