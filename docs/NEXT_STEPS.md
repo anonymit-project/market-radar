@@ -338,3 +338,13 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] Inspeccionar el CSV y emitir informe técnico.
 
 La ficha web de Nokia disponible en el navegador devuelve «Data is currently not available» y no expone el enlace de descarga. No se ha descargado nada ni se ha recurrido a APIs o a los ficheros minuto a minuto. Para mantener el alcance aprobado, el usuario puede adjuntar el único CSV diario obtenido desde el botón oficial de Nasdaq. Véase docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
+
+## Nasdaq Nordic — autorización ampliada a un único CSV de cinco días (25-11-2026)
+
+- [x] Usuario autoriza un único CSV de cinco días para Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL).
+- [ ] Obtener/recibir ese único CSV desde el botón oficial de la ficha de Nokia.
+- [ ] Inspeccionar todas las sesiones incluidas y reconstruir OHLCV por sesión.
+- [ ] Documentar campos, flags, cancelaciones/enmiendas, integridad y limitaciones.
+
+La interfaz accesible no expone el enlace dinámico de descarga, por lo que no se ha descargado el fichero. El usuario puede adjuntar el CSV de cinco días. No ampliar a otros instrumentos, ficheros, APIs ni endpoints. Detalle: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
+
