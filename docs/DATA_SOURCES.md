@@ -821,3 +821,18 @@ La Price List to the Non-Display Agreement v11_01, vigente desde 01-08-2026, pub
 No se debe asumir que pagar 480 €/mes permite Market Radar: esa tarifa es para una categoría de trading basada en Device Access. No se ha encontrado una tarifa pública que habilite claramente Other Application Usage para Xetra Post-Trade. Aunque el feed delayed puede descargarse gratis a 15 minutos, eso no resuelve por sí solo el uso non-display avanzado. Decisión: descartar Xetra para screening automático salvo que aparezca una licencia pública aplicable y asumible. No contactar al proveedor.
 
 Fuentes: https://www.mds.deutsche-boerse.com/resource/blob/5107644/e6ec5d6e4bd221a24fcd29716f0bc215/data/NonDisplay_Price_List_11_01.pdf ; https://www.mds.deutsche-boerse.com/mds-en/real-time-data/Delayed-data ; https://www.mds.deutsche-boerse.com/resource/blob/5322804/5ab2ea48a9787add0f7fc5abbf9e63a4/data/Non-Display%20Guidance%20Note%204_0.pdf
+
+
+## 23. Nasdaq Nordic/Baltic y NGM — profundización documental (25-11-2026)
+
+**Recomendación:** Nasdaq Nordic Equity es el primer candidato para un piloto acotado posterior; NGM queda condicionado por derechos de non-display/derived data. Detalle técnico y jurídico en [EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md](EUROPEAN_POST_TRADE_RESEARCH_2026-11-24.md), actualización 25-11-2026.
+
+- Nasdaq Regulatory Reports: CSV machine-readable, 15 min delayed, ficheros cada minuto, disponibilidad 48 h; Nasdaq afirma que el CSV individual incluye todos los trades del día de negociación. Uso no comercial gratuito. No se ha publicado/especificado en la documentación examinada el esquema exacto del CSV.
+- Nasdaq NLS v1.2.10 (producto distinto) documenta ISIN, MIC, ejecución, precio, cantidad, divisa, transaction ID, MMT 5.0, CANC/AMND y trade breaks. No inferir que el CSV gratuito contiene los mismos campos.
+- RTS 1 establece campos y flags regulatorios para operaciones de acciones, incluyendo ISIN, hora de ejecución UTC, precio, divisa, cantidad, MIC, transaction ID y flags. La obligación de publicar cancelaciones/enmiendas no confirma la serialización exacta del fichero del proveedor.
+- NGM: CSV, 15 min, últimas 72 h, timestamps UTC y uso no comercial gratuito; no hay diccionario CSV ni garantía de todos los trades por instrumento. La política v1.4 contiene ambigüedad entre obligación contractual para todo Derived Information (7.3/9.6) y exención de Order Form para delayed/EOD (8). Annex A incluye análisis cuantitativo y AI dentro de Other Usage. La perpetuidad de 25.5 se limita a datos recibidos y pagados; no acredita archivo perpetuo de descargas gratuitas.
+- Ninguna fuente ha acreditado permiso inequívoco de retención raw indefinida.
+- Ambos son feeds venue-specific; no equivalen a volumen consolidado paneuropeo. OHLCV sólo será admisible tras validar campos, flags, correcciones, duplicados y cobertura.
+- No se han descargado ficheros ni ejecutado APIs, ni contactado a proveedores.
+
+Fuentes: https://tradereports.nasdaq.com/ ; https://www.nasdaq.com/market-regulation/nordic/mifid-ii ; https://www.nasdaq.com/docs/2026/01/14/Nordic-Equity-Last-Sale-1.2.10_0.pdf ; https://www.ngm.se/en/the-exchange/market-data/delayed ; https://www.ngm.se/hubfs/Market%20Data%20Policy%20ver%201.4%20-%20Final.pdf ; https://eur-lex.europa.eu/eli/reg/2017/587 .
