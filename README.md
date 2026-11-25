@@ -50,3 +50,7 @@ Cobertura, precios, cuotas, latencia, endpoints, licencias y permisos deben comp
 
 ## Aviso
 Las señales son hipótesis sujetas a incertidumbre, no garantías de rentabilidad ni asesoramiento personalizado.
+
+## Piloto Nasdaq Nordic (diseño)
+
+- [Diseño del piloto CSV Nasdaq Nordic Equity](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md) — procedimiento, campos, correcciones, OHLCV, calidad y derechos. **No se ha descargado ninguna muestra; requiere autorización expresa.**
