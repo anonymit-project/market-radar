@@ -348,3 +348,8 @@ La ficha web de Nokia disponible en el navegador devuelve «Data is currently no
 
 La interfaz accesible no expone el enlace dinámico de descarga, por lo que no se ha descargado el fichero. El usuario puede adjuntar el CSV de cinco días. No ampliar a otros instrumentos, ficheros, APIs ni endpoints. Detalle: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
 
+### Diagnóstico Nasdaq Nordic ejecutable localmente (25-11-2026)
+- [x] Crear script local de inspección estructural sin dependencias ni red: \`tools/inspect_nasdaq_csv.py\`.
+- [ ] Usuario ejecuta el script sobre el único CSV autorizado y comparte solo \`nasdaq_csv_diagnostic.txt\`.
+- [ ] Adaptar parser al esquema observado; después reconstruir OHLCV por sesión y validar flags, cancelaciones, enmiendas y completitud.
+
