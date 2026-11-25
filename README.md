@@ -54,3 +54,5 @@ Las señales son hipótesis sujetas a incertidumbre, no garantías de rentabilid
 ## Piloto Nasdaq Nordic (diseño)
 
 - [Diseño del piloto CSV Nasdaq Nordic Equity](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md) — procedimiento, campos, correcciones, OHLCV, calidad y derechos. **No se ha descargado ninguna muestra; requiere autorización expresa.**
+
+**Estado del piloto Nasdaq Nordic (25-11-2026):** autorización recibida para un único CSV diario de Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL), pero no se descargó porque la ficha de instrumento consultable no expuso el botón/enlace «Download CSV». No se usaron APIs ni ficheros minuto a minuto. Ver [estado y procedimiento](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
