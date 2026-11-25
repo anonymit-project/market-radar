@@ -261,3 +261,11 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 - La disponibilidad de 48 h y el uso no comercial gratuito no acreditan retención raw ni derivada indefinida. No aprobar almacenamiento histórico ni job recurrente.
 - **Bloqueo:** autorización expresa antes de descargar el único fichero de muestra. Sin descargas adicionales, cuentas, contacto, APIs, cuotas ni costes.
 - Procedimiento: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
+
+## Estado de ejecución — autorización Nasdaq Nordic recibida (25-11-2026)
+
+- El usuario autorizó expresamente un único CSV, un instrumento y una sesión completa.
+- Muestra candidata: Nokia Oyj (NOKIA), ISIN FI0009000681, MIC XHEL; sesión candidata 25-11-2026.
+- No se descargó ningún fichero: la ficha oficial consultada no muestra los datos ni el enlace «Download CSV» en el navegador disponible. No usar APIs ni sustituir el fichero diario por múltiples CSV minuto a minuto.
+- La guía general Nasdaq MiFID II menciona disponibilidad de 24 h, mientras la página específica Nordic Equity Post-Trade indica 48 h. Mantener la discrepancia abierta.
+- Siguiente paso: recibir el CSV diario único descargado desde la ficha oficial o disponer de acceso funcional a su enlace de descarga. No ampliar la autorización.
