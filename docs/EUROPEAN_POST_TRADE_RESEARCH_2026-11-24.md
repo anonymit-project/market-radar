@@ -342,3 +342,9 @@ Reglas mínimas:
 ### Limitaciones
 
 No se han descargado CSV/XLSX, ni se han inspeccionado muestras, ejecutado endpoints, APIs o scripts. No se ha probado la exhaustividad real, estabilidad de IDs, cobertura por MIC, comportamiento real de correcciones ni reconstrucción OHLCV. No se ha emitido dictamen jurídico. Los campos regulatorios y la especificación NLS no deben confundirse con el esquema de los ficheros gratuitos.
+
+## Actualización 25-11-2026 — diseño del piloto Nasdaq Nordic Equity
+
+Se ha diseñado un piloto mínimo de un instrumento, una sesión completa y un único CSV. Define inspección de cabeceras/tipos, flags, cancelaciones/enmiendas, reconstrucción OHLCV venue-specific, controles de completitud y revisión de retención. Véase [docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md](NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
+
+**No se ha descargado ni inspeccionado ningún CSV.** Los campos RTS 1 y NLS no sustituyen el esquema real del CSV. La ventana de 48 h y el uso no comercial gratuito no acreditan retención raw o derivada indefinida. La única descarga requiere autorización expresa; no se permiten ficheros adicionales, cuentas, contacto, APIs, cuotas ni costes.
