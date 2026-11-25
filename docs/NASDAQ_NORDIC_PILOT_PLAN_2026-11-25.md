@@ -149,3 +149,15 @@ La autorización del paso 3 no autoriza descargas adicionales, automatización, 
 ## 12. Estado y conclusión
 
 El piloto está **diseñado, no ejecutado**. Se desconoce el esquema real del CSV y no se ha probado la reconstrucción OHLCV. Nasdaq Nordic Equity sigue como primer candidato técnico, condicionado a muestra autorizada y resolución de retención. No hay aprobación de almacenamiento histórico ni de ingesta recurrente.
+
+## 13. Estado de autorización y primer intento (25-11-2026)
+
+El usuario autorizó expresamente la descarga de **un único CSV** para un instrumento y una sesión completa. La autorización no amplía el alcance a otras descargas, APIs, cuentas, automatización, contacto ni retención histórica.
+
+**Muestra candidata:** Nokia Oyj, ticker NOKIA, Nasdaq Helsinki, ISIN FI0009000681, MIC XHEL. La identificación de instrumento está respaldada por publicaciones oficiales Nasdaq; la página de instrumento encontrada es https://www.nasdaq.com/european-market-activity/shares/nokia?id=TX50063. Sesión candidata: 25-11-2026, la última sesión completa al realizar la comprobación (20:59 CET).
+
+**Bloqueo técnico antes de descargar:** la página de instrumento accesible en la consulta devuelve «Data is currently not available» y no expone el enlace funcional «Download CSV» ni permite comprobar que el fichero ofrecido sea el CSV diario completo. La guía oficial sí describe ese CSV diario individual, pero el navegador disponible no permite activar el control de descarga ni inspeccionar el enlace generado. No se ha usado un endpoint/API alternativo ni se ha descargado ningún fichero. No se sustituirá por los CSV minuto a minuto de Regulatory Reports, porque no equivalen al único fichero de sesión completa solicitado.
+
+**Discrepancia de disponibilidad:** la guía general MiFID II consultada indica 24 horas; la página específica Nordic Equity Post-Trade indica 48 horas. Hasta aclararlo, no asumir una ventana única. Esta discrepancia no afecta a la autorización, pero sí al margen temporal para la muestra.
+
+**Resultado:** autorización concedida; descarga aún no ejecutada. Para continuar sin cambiar el alcance, hace falta acceso al enlace/archivo CSV diario que ofrece el botón oficial «Download CSV» de la ficha de Nokia. Si el usuario descarga ese único fichero desde la ficha oficial y lo adjunta, se podrá inspeccionar el esquema y reconstruir la sesión sin pedirle más datos. No se solicita una descarga adicional.
