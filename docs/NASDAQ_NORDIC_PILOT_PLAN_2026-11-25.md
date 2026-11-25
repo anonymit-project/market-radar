@@ -170,3 +170,17 @@ La descarga no se ha podido ejecutar desde las herramientas disponibles: la fich
 
 La autorización cubre el fichero de cinco días completo, aunque el rango exacto de fechas debe confirmarse leyendo sus registros. No guardar el raw en GitHub ni inferir derechos de retención a partir de esta autorización.
 
+## 15. Diagnóstico local sin compartir el CSV (25-11-2026)
+
+El usuario indica que puede ejecutar Python, pero no puede adjuntar el fichero por el límite de su cuenta. Se añade \`tools/inspect_nasdaq_csv.py\`, herramienta de diagnóstico estructural que:
+- usa únicamente la biblioteca estándar de Python;
+- lee el CSV localmente, sin red ni dependencias;
+- informa cabeceras, tipos aproximados, campos vacíos, cardinalidad y rangos temporales;
+- sugiere campos candidatos por nombre;
+- no imprime filas de operaciones ni precios y no modifica el CSV original.
+
+Ejecución desde la raíz del repositorio:
+\`python tools/inspect_nasdaq_csv.py "ruta/al/CSV.csv"\`
+
+El informe local se guarda como \`nasdaq_csv_diagnostic.txt\`. El usuario puede pegar aquí ese informe (no el CSV). Es una primera fase: después se ajustará el parser al esquema real y se generará un segundo script para reconstruir OHLCV y tratar flags/cancelaciones/enmiendas. No interpretar aún el fichero ni considerar validada la fuente hasta completar esas comprobaciones.
+
