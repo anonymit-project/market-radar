@@ -269,3 +269,11 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 - No se descargó ningún fichero: la ficha oficial consultada no muestra los datos ni el enlace «Download CSV» en el navegador disponible. No usar APIs ni sustituir el fichero diario por múltiples CSV minuto a minuto.
 - La guía general Nasdaq MiFID II menciona disponibilidad de 24 h, mientras la página específica Nordic Equity Post-Trade indica 48 h. Mantener la discrepancia abierta.
 - Siguiente paso: recibir el CSV diario único descargado desde la ficha oficial o disponer de acceso funcional a su enlace de descarga. No ampliar la autorización.
+
+## Decisión — ampliación del piloto Nasdaq Nordic a cinco días (25-11-2026)
+
+- El usuario autoriza **un único CSV de cinco días** para Nokia Oyj (NOKIA), ISIN FI0009000681, MIC XHEL.
+- La autorización anterior de una sesión queda reemplazada por este alcance: un fichero, un instrumento, todas las sesiones que incluya ese CSV.
+- No autoriza ficheros adicionales, otros instrumentos, APIs, endpoints alternativos, automatización, cuentas, contacto ni retención histórica.
+- Descarga pendiente: la ficha web accesible no expone el enlace dinámico. Se puede completar el análisis si el usuario adjunta el fichero oficial descargado.
+
