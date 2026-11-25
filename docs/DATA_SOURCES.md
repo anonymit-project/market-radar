@@ -844,3 +844,9 @@ El procedimiento está en [docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md](NASDAQ_N
 **Resultado:** esquema real desconocido; no se ha descargado ni inspeccionado ningún CSV; no se ha reconstruido OHLCV ni probado completitud. RTS 1 y NLS son referencias semánticas, no prueba del esquema CSV.
 
 **Derechos:** uso no comercial gratuito y ventana de 48 h no prueban permiso para retener raw o derivados indefinidamente. No aprobar archivo histórico ni automatización recurrente. No conservar raw permanentemente; cualquier retención derivada también requiere fundamento. La descarga única queda bloqueada hasta autorización expresa.
+
+## Estado del piloto Nasdaq Nordic tras autorización (25-11-2026)
+
+Autorización recibida para un único CSV diario. Candidato: Nokia Oyj (NOKIA), ISIN FI0009000681, MIC XHEL; sesión candidata 25-11-2026. La guía oficial describe un enlace «Download CSV» en la tabla Trades con todos los trades del día. Sin embargo, la ficha accesible de Nokia (https://www.nasdaq.com/european-market-activity/shares/nokia?id=TX50063) devuelve «Data is currently not available» y no expone el enlace funcional. No se ha descargado ningún fichero ni se ha usado API. No sustituirlo por CSVs minuto a minuto.
+
+La guía general MiFID II indica disponibilidad de 24 h, pero la página específica Nordic Equity Post-Trade indica 48 h; discrepancia pendiente de aclaración.
