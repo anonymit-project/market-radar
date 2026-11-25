@@ -316,3 +316,16 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] NGM sólo reconsiderar para piloto si la documentación pública aclara el alcance de 7.3/8/9.6 y la retención.
 
 **Restricciones:** no contactar proveedores, crear cuentas, descargar datos, ejecutar APIs, consumir cuotas ni incurrir en costes en esta fase documental.
+
+## Piloto Nasdaq Nordic Equity — diseño completado (25-11-2026)
+
+- [x] Leer documentación vigente y comprobar rama/estado del repositorio.
+- [x] Diseñar piloto mínimo de un instrumento, una sesión completa y un único CSV.
+- [x] Definir matriz de campos, tratamiento de cancelaciones/enmiendas, flags, OHLCV y controles de completitud.
+- [x] Separar ventana de disponibilidad de 48 h de los derechos de retención histórica.
+- [ ] **Obtener autorización expresa del usuario** antes de descargar un único CSV.
+- [ ] Tras autorización, confirmar que la ruta ofrece un único fichero de sesión completa; si no, detenerse y pedir nueva autorización antes de ampliar el alcance.
+- [ ] Inspeccionar el CSV y emitir informe técnico. No guardar raw permanentemente ni incorporarlo a GitHub.
+- [ ] Resolver derechos de almacenamiento raw y derivados antes de retención histórica o ingesta recurrente.
+
+**Estado:** sólo diseño documental. Ningún CSV inspeccionado; ninguna descarga/API ejecutada. Detalle: docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md.
