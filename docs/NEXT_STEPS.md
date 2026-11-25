@@ -302,3 +302,17 @@ La investigación documental apunta a EODHD Free como primer candidato (12 llama
 - [ ] No descargar muestras, crear cuentas, ejecutar APIs ni consumir cuotas sin autorización expresa posterior.
 
 **Siguiente prioridad:** Euronext como piloto principal; Nasdaq Nordic/Baltic como segundo candidato; NGM tercero. SIX Historical Prices no se utilizará para generar OHLCV. La validación técnica de cualquier feed queda para una fase posterior y acotada, con autorización expresa.
+
+
+## Actualización 25-11-2026 — Nasdaq Nordic/Baltic y NGM
+
+- [x] Leer documentación vigente y comprobar rama/estado GitHub.
+- [x] Revisar documentación oficial pública de Nasdaq Regulatory Reports, Nasdaq MiFID II, Nasdaq NLS v1.2.10, NGM Delayed Market Data, NGM Market Data Policy v1.4 y RTS 1.
+- [x] Comparar campos regulatorios, timestamps, ISIN/MIC, precio, cantidad, divisa, transaction ID, MMT, cancelaciones/enmiendas, clases de activos, completitud, OHLCV y retención.
+- [x] Registrar limitaciones: no se ha inspeccionado CSV alguno; la especificación NLS no es el esquema CSV gratuito; ninguna fuente acredita retención raw indefinida.
+- [x] Recomendación documental: Nasdaq Nordic Equity primero para piloto acotado posterior; Nasdaq Baltic subcandidato por separado; NGM condicionado por ambigüedad de non-display/derived y retención.
+- [ ] **Pendiente de autorización expresa:** descargar un único fichero de una sesión Nasdaq Nordic Equity para inspección de esquema/flags. No automatizar ni conservar raw históricamente.
+- [ ] Antes de ingesta recurrente, resolver documentalmente derechos de retención raw/derivados y validar integridad/cobertura por MIC.
+- [ ] NGM sólo reconsiderar para piloto si la documentación pública aclara el alcance de 7.3/8/9.6 y la retención.
+
+**Restricciones:** no contactar proveedores, crear cuentas, descargar datos, ejecutar APIs, consumir cuotas ni incurrir en costes en esta fase documental.
