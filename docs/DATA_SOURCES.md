@@ -836,3 +836,11 @@ Fuentes: https://www.mds.deutsche-boerse.com/resource/blob/5107644/e6ec5d6e4bd22
 - No se han descargado ficheros ni ejecutado APIs, ni contactado a proveedores.
 
 Fuentes: https://tradereports.nasdaq.com/ ; https://www.nasdaq.com/market-regulation/nordic/mifid-ii ; https://www.nasdaq.com/docs/2026/01/14/Nordic-Equity-Last-Sale-1.2.10_0.pdf ; https://www.ngm.se/en/the-exchange/market-data/delayed ; https://www.ngm.se/hubfs/Market%20Data%20Policy%20ver%201.4%20-%20Final.pdf ; https://eur-lex.europa.eu/eli/reg/2017/587 .
+
+## 19. Piloto Nasdaq Nordic Equity — diseño previo, sin muestra (25-11-2026)
+
+El procedimiento está en [docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md](NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md). Alcance: un instrumento, una sesión completa y un único CSV Nordic Equity, sólo tras autorización expresa. La matriz incluye ISIN, MIC de ejecución, execution timestamp, precio, divisa/price notation, cantidad/unidad, transaction ID, campos de publicación y flags. Se aplicarán cancelaciones/enmiendas antes de agregar; se separarán categorías especiales y subastas; OHLCV será venue-specific.
+
+**Resultado:** esquema real desconocido; no se ha descargado ni inspeccionado ningún CSV; no se ha reconstruido OHLCV ni probado completitud. RTS 1 y NLS son referencias semánticas, no prueba del esquema CSV.
+
+**Derechos:** uso no comercial gratuito y ventana de 48 h no prueban permiso para retener raw o derivados indefinidamente. No aprobar archivo histórico ni automatización recurrente. No conservar raw permanentemente; cualquier retención derivada también requiere fundamento. La descarga única queda bloqueada hasta autorización expresa.
