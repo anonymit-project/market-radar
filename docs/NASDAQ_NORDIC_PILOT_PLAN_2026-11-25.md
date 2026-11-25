@@ -1,6 +1,6 @@
 # Nasdaq Nordic Equity — diseño del piloto CSV OHLCV
 
-**Estado: DISEÑO DOCUMENTAL. No autorizado descargar muestras.**  
+**Estado: AUTORIZADO un único CSV de cinco días para un instrumento (25-11-2026). Descarga pendiente de acceso al fichero.**  
 Fecha: 25-11-2026  
 Rama: `research/explorer-design-2026-11-24`
 
@@ -161,3 +161,12 @@ El usuario autorizó expresamente la descarga de **un único CSV** para un instr
 **Discrepancia de disponibilidad:** la guía general MiFID II consultada indica 24 horas; la página específica Nordic Equity Post-Trade indica 48 horas. Hasta aclararlo, no asumir una ventana única. Esta discrepancia no afecta a la autorización, pero sí al margen temporal para la muestra.
 
 **Resultado:** autorización concedida; descarga aún no ejecutada. Para continuar sin cambiar el alcance, hace falta acceso al enlace/archivo CSV diario que ofrece el botón oficial «Download CSV» de la ficha de Nokia. Si el usuario descarga ese único fichero desde la ficha oficial y lo adjunta, se podrá inspeccionar el esquema y reconstruir la sesión sin pedirle más datos. No se solicita una descarga adicional.
+
+## 14. Ampliación expresa de alcance: CSV de cinco días (25-11-2026)
+
+El usuario confirma que Nasdaq no ofrece la descarga de un día, pero sí la de cinco días, y autoriza expresamente descargar **un único CSV de cinco días** para el mismo instrumento Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL). Esta autorización sustituye el requisito de una sesión única y permite inspeccionar todas las sesiones contenidas en ese único fichero; no autoriza otros instrumentos, otros ficheros, APIs, endpoints alternativos, automatización ni retención histórica.
+
+La descarga no se ha podido ejecutar desde las herramientas disponibles: la ficha consultable de Nokia no expone el control ni el enlace dinámico de descarga. No se debe fabricar o adivinar el endpoint. Para completar el piloto sin ampliar permisos, el usuario puede adjuntar aquí el CSV de cinco días descargado desde la ficha oficial. Al recibirlo, registrar fechas efectivas, tamaño y hash, inspeccionar el esquema y reconstruir OHLCV por sesión.
+
+La autorización cubre el fichero de cinco días completo, aunque el rango exacto de fechas debe confirmarse leyendo sus registros. No guardar el raw en GitHub ni inferir derechos de retención a partir de esta autorización.
+
