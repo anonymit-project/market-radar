@@ -362,3 +362,23 @@ La interfaz accesible no expone el enlace dinámico de descarga, por lo que no s
 - [x] Corregir el inspector para omitir la directiva inicial.
 - [ ] Usuario repite el diagnóstico con la versión corregida; no interpretar aún el fichero ni reconstruir OHLCV.
 
+
+
+## Nasdaq Nordic — validar CSV de barras diarias (26-11-2026)
+
+- [x] Recibir el segundo diagnóstico local del único CSV autorizado de Nokia.
+- [x] Identificar esquema aparente de seis filas y once campos; hipótesis: barras diarias preagregadas, no trades individuales.
+- [x] Añadir `tools/validate_nasdaq_daily_bars.py` para validación local estructural y aritmética sin exponer valores.
+- [ ] El usuario descarga/actualiza el script desde la rama de investigación y lo ejecuta sobre el mismo CSV autorizado.
+- [ ] El usuario comparte únicamente `nasdaq_daily_bars_validation.txt`; nunca el CSV bruto.
+- [ ] Interpretar anomalías y determinar si las barras son internamente coherentes.
+- [ ] Investigar documentalmente la semántica oficial de OHLC, Average price, Total volume, Turnover, Trades, Bid y Ask, sin contactar al proveedor.
+- [ ] Mantener bloqueada cualquier ingesta recurrente o retención histórica hasta resolver derechos y alcance de cobertura.
+
+**Comando Windows:**
+
+```powershell
+python tools/validate_nasdaq_daily_bars.py "C:\Users\crist\Downloads\nokia_20261125_210111.csv"
+```
+
+**Restricciones:** mismo fichero, mismo instrumento y autorización ya concedida. No nuevas descargas, instrumentos, APIs, cuentas, contacto, cuotas ni costes.
