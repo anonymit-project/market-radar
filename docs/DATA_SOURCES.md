@@ -850,3 +850,15 @@ El procedimiento está en [docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md](NASDAQ_N
 Autorización recibida para un único CSV diario. Candidato: Nokia Oyj (NOKIA), ISIN FI0009000681, MIC XHEL; sesión candidata 25-11-2026. La guía oficial describe un enlace «Download CSV» en la tabla Trades con todos los trades del día. Sin embargo, la ficha accesible de Nokia (https://www.nasdaq.com/european-market-activity/shares/nokia?id=TX50063) devuelve «Data is currently not available» y no expone el enlace funcional. No se ha descargado ningún fichero ni se ha usado API. No sustituirlo por CSVs minuto a minuto.
 
 La guía general MiFID II indica disponibilidad de 24 h, pero la página específica Nordic Equity Post-Trade indica 48 h; discrepancia pendiente de aclaración.
+
+
+## Nasdaq Nordic — CSV de barras Nokia: origen no identificado (26-11-2026)
+
+El CSV local validado en el piloto de Nokia (seis filas diarias; Date, Bid, Ask, OHLC, Average price, Total volume, Turnover y Trades) no debe confundirse con el CSV MiFID de operaciones individuales:
+- La documentación oficial MiFID II indica que el enlace `Download CSV` sobre la tabla `Trades` descarga todas las operaciones del día actual, con 15 minutos de retraso: https://www.nasdaq.com/market-regulation/nordic/mifid-ii
+- La ficha de Nokia presenta por separado `Historical Prices Chart` y `Trades`: https://www.nasdaq.com/european-market-activity/shares/nokia?id=TX50063
+- Por la estructura del fichero, la hipótesis más plausible es una exportación del histórico del gráfico. No se ha podido confirmar qué control generó el fichero ni qué producto upstream lo alimenta.
+
+La página Nordic End of Day Reports describe último/máximo/mínimo, volumen, turnover y mejor bid/ask al cierre; Nasdaq Member Rules define Average Traded Price como media ponderada de operaciones de un order book. Son referencias de contexto, no un diccionario de campos aplicable automáticamente al CSV. No inferir que Average price sea VWAP ni que los campos de volumen/turnover tengan unidad, moneda o cobertura conocidas.
+
+**Estado:** coherencia interna del fichero superada; procedencia, semántica y derechos específicos no identificados. No aprobar para señales basadas en volumen, automatización o retención histórica.
