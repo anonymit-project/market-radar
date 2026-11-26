@@ -277,3 +277,7 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 - No autoriza ficheros adicionales, otros instrumentos, APIs, endpoints alternativos, automatización, cuentas, contacto ni retención histórica.
 - Descarga pendiente: la ficha web accesible no expone el enlace dinámico. Se puede completar el análisis si el usuario adjunta el fichero oficial descargado.
 
+### Nasdaq Nordic CSV — diagnóstico local (26-11-2026)
+
+El primer informe local de \`nokia_20261125_210111.csv\` no es válido para inferir el esquema: el fichero comienza con la directiva Excel \`sep=;\`, que el inspector inicial interpretó como cabecera. Se corrigió \`tools/inspect_nasdaq_csv.py\` para omitirla. Hasta recibir el segundo informe, no asumir cabeceras, campos, número real de trades ni posibilidad de reconstruir OHLCV. El CSV permanece en el equipo del usuario y no se incorpora al repositorio.
+
