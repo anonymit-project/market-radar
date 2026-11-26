@@ -353,3 +353,6 @@ La interfaz accesible no expone el enlace dinámico de descarga, por lo que no s
 - [ ] Usuario ejecuta el script sobre el único CSV autorizado y comparte solo \`nasdaq_csv_diagnostic.txt\`.
 - [ ] Adaptar parser al esquema observado; después reconstruir OHLCV por sesión y validar flags, cancelaciones, enmiendas y completitud.
 
+- [x] Corregir el inspector para omitir la directiva inicial \`sep=;\` de Excel; el primer diagnóstico la había interpretado como cabecera.
+- [ ] Repetir diagnóstico con la versión corregida y revisar nombres de columnas, tipos y rango temporal.
+
