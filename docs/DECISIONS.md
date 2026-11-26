@@ -292,3 +292,13 @@ El primer informe local de \`nokia_20261125_210111.csv\` no es válido para infe
 - No considerar Nasdaq validado: faltan resultado del segundo script, documentación semántica de campos/unidades, prueba de cobertura y aclaración de retención.
 - Cualquier resultado se etiquetará como venue-specific; no llamarlo volumen consolidado.
 - Se mantiene el alcance: un único CSV de cinco días de Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL). Sin otros instrumentos/ficheros, APIs, cuentas, contacto, cuotas ni costes.
+
+## Nasdaq Nordic — resultado de validación local (26-11-2026)
+
+- El único CSV autorizado de Nokia contiene seis filas de barras/estadísticas diarias aparentes. El validador local detectó cero anomalías críticas estructurales o aritméticas: fechas/números parseables, OHLC coherente, Average price dentro del rango, Bid <= Ask, volumen no negativo y Trades entero/no negativo.
+- La validación es **coherencia interna básica**, no prueba exactitud, completitud, cobertura consolidada ni ausencia de sesiones omitidas.
+- La documentación oficial de productos Nasdaq Nordic EOD confirma que su cartera de datos incluye estadísticas diarias como high/low, VWAP, average price, trade count, volume y bid/ask al cierre. No se ha identificado de forma concluyente el producto/licencia exacto que originó el CSV del usuario; por tanto no se atribuyen a sus campos definiciones ni derechos de otro producto.
+- No llamar VWAP a `Average price` ni interpretar unidad de `Total volume`, moneda de `Turnover` o ámbito de `Bid/Ask` sin documentación específica.
+- **Decisión:** piloto técnico local superado sólo en coherencia estructural/aritmética, con limitaciones. Nasdaq Nordic sigue sin aprobarse para producción, señales basadas en volumen, automatización o retención histórica. No contactar, usar APIs/cuotas ni descargar muestras adicionales.
+
+Registro: 26-11-2026.
