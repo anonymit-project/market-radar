@@ -184,3 +184,9 @@ Ejecución desde la raíz del repositorio:
 
 El informe local se guarda como \`nasdaq_csv_diagnostic.txt\`. El usuario puede pegar aquí ese informe (no el CSV). Es una primera fase: después se ajustará el parser al esquema real y se generará un segundo script para reconstruir OHLCV y tratar flags/cancelaciones/enmiendas. No interpretar aún el fichero ni considerar validada la fuente hasta completar esas comprobaciones.
 
+### Corrección del diagnóstico: directiva \`sep=\` (26-11-2026)
+
+El primer informe local detectó 2 columnas llamadas \`sep=\` y campo vacío, con 7 filas. Esto indica que el CSV comienza con la directiva de Excel \`sep=;\`; el inspector inicial la interpretó erróneamente como cabecera. No es evidencia de que el fichero carezca de datos de operaciones.
+
+Se ha corregido \`tools/inspect_nasdaq_csv.py\` para reconocer y omitir esa primera línea y utilizar el separador declarado. El usuario debe repetir el diagnóstico con la versión actualizada. No se ha compartido ni solicitado el contenido bruto del CSV.
+
