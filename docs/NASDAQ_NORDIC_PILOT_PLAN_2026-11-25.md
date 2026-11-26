@@ -190,3 +190,9 @@ El primer informe local detectó 2 columnas llamadas \`sep=\` y campo vacío, co
 
 Se ha corregido \`tools/inspect_nasdaq_csv.py\` para reconocer y omitir esa primera línea y utilizar el separador declarado. El usuario debe repetir el diagnóstico con la versión actualizada. No se ha compartido ni solicitado el contenido bruto del CSV.
 
+### Resultado del primer diagnóstico local (26-11-2026)
+
+El informe del usuario corresponde a \`nokia_20261125_210111.csv\`, tamaño 632 bytes, UTF-8 con BOM, separador \`; \` (directiva inicial \`sep=;\`), 7 filas contabilizadas por el inspector antiguo y 2 columnas aparentes (\`sep=\` y campo vacío). El resultado **no describe el esquema real**: el inspector trató la directiva Excel \`sep=;\` como cabecera y desplazó la lectura una línea.
+
+Se ha actualizado el inspector para omitir esa directiva y respetar el separador declarado. El diagnóstico anterior queda invalidado; no extraer conclusiones sobre campos, número de operaciones o validez del fichero hasta repetirlo con la versión corregida. Próximo paso: el usuario vuelve a ejecutar el script actualizado sobre el mismo CSV autorizado y comparte únicamente el informe de diagnóstico, nunca el CSV bruto.
+
