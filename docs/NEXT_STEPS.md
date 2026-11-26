@@ -382,3 +382,14 @@ python tools/validate_nasdaq_daily_bars.py "C:\Users\crist\Downloads\nokia_20261
 ```
 
 **Restricciones:** mismo fichero, mismo instrumento y autorización ya concedida. No nuevas descargas, instrumentos, APIs, cuentas, contacto, cuotas ni costes.
+
+## Nasdaq Nordic — siguiente paso tras validación local (26-11-2026)
+
+- [x] Ejecutar el validador local sobre el único CSV autorizado.
+- [x] Revisar coherencia estructural y aritmética: cero anomalías críticas detectadas.
+- [x] Contrastar a nivel general la oferta oficial de productos EOD Nasdaq Nordic.
+- [ ] Identificar el producto/página exactos de origen del CSV y localizar especificación pública que defina sus cabeceras, unidades, moneda, ámbito de mercado y reglas de agregación.
+- [ ] Confirmar si las fechas están en orden descendente o en otro orden; observación menor, no bloqueante por sí sola.
+- [ ] Mantener bloqueado el uso de volumen/turnover como señal, y toda ingesta recurrente/retención histórica, hasta resolver semántica, cobertura y derechos.
+
+**Estado:** validación técnica básica superada con limitaciones; Nasdaq no aprobado como proveedor. No solicitar al usuario el CSV bruto ni ampliar la muestra. No contactar con Nasdaq, crear cuentas, consumir cuotas ni descargar más datos.
