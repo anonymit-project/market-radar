@@ -281,3 +281,14 @@ Descartar Xetra como fuente del screening automatizado en la fase actual. Aunque
 
 El primer informe local de \`nokia_20261125_210111.csv\` no es válido para inferir el esquema: el fichero comienza con la directiva Excel \`sep=;\`, que el inspector inicial interpretó como cabecera. Se corrigió \`tools/inspect_nasdaq_csv.py\` para omitirla. Hasta recibir el segundo informe, no asumir cabeceras, campos, número real de trades ni posibilidad de reconstruir OHLCV. El CSV permanece en el equipo del usuario y no se incorpora al repositorio.
 
+
+
+### Nasdaq Nordic — interpretación provisional del CSV Nokia (26-11-2026)
+
+- El segundo diagnóstico del único CSV autorizado muestra seis filas y campos `Date`, OHLC, `Average price`, `Total volume`, `Turnover`, `Trades`, `Bid` y `Ask`.
+- **Hipótesis preferente:** el fichero contiene barras/estadísticas diarias preagregadas, no un tape de operaciones. No se puede reconstruir ni auditar correcciones individuales a partir de este esquema aparente.
+- No interpretar `Bid`/`Ask` como IDs; son candidatos a cotizaciones.
+- Añadido `tools/validate_nasdaq_daily_bars.py` para controles locales de consistencia, sin red y sin imprimir valores de mercado.
+- No considerar Nasdaq validado: faltan resultado del segundo script, documentación semántica de campos/unidades, prueba de cobertura y aclaración de retención.
+- Cualquier resultado se etiquetará como venue-specific; no llamarlo volumen consolidado.
+- Se mantiene el alcance: un único CSV de cinco días de Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL). Sin otros instrumentos/ficheros, APIs, cuentas, contacto, cuotas ni costes.
