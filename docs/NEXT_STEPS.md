@@ -393,3 +393,15 @@ python tools/validate_nasdaq_daily_bars.py "C:\Users\crist\Downloads\nokia_20261
 - [ ] Mantener bloqueado el uso de volumen/turnover como señal, y toda ingesta recurrente/retención histórica, hasta resolver semántica, cobertura y derechos.
 
 **Estado:** validación técnica básica superada con limitaciones; Nasdaq no aprobado como proveedor. No solicitar al usuario el CSV bruto ni ampliar la muestra. No contactar con Nasdaq, crear cuentas, consumir cuotas ni descargar más datos.
+
+
+## Nasdaq Nordic — identificación del origen del CSV (26-11-2026)
+
+- [x] Contrastar el CSV agregado con la descripción oficial de la descarga MiFID `Download CSV` sobre la tabla `Trades`.
+- [x] Confirmar que Nasdaq describe esa descarga como todas las operaciones del día actual, retrasadas 15 minutos; el fichero de seis filas diarias no encaja con esa descripción.
+- [x] Revisar la ficha oficial de Nokia, que separa `Historical Prices Chart` y `Trades`, y la descripción de Nordic End of Day Reports.
+- [ ] Si el usuario recuerda el control exacto usado, registrar si fue exportación de `Historical Prices Chart` o descarga de `Trades`; no pedir el CSV bruto ni otra descarga.
+- [ ] Mantener origen exacto y diccionario de campos como no identificados hasta disponer de evidencia directa.
+- [ ] No usar volumen/turnover para señales ni aprobar automatización/retención histórica.
+
+**Conclusión:** hipótesis más probable: exportación de histórico de precios de la ficha Nokia, no el CSV MiFID de operaciones. No se ha podido confirmar públicamente el producto upstream. No ampliar el piloto ni realizar nuevas descargas, llamadas o contactos.
