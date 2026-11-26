@@ -51,11 +51,9 @@ Cobertura, precios, cuotas, latencia, endpoints, licencias y permisos deben comp
 ## Aviso
 Las señales son hipótesis sujetas a incertidumbre, no garantías de rentabilidad ni asesoramiento personalizado.
 
-## Piloto Nasdaq Nordic (diseño)
+## Piloto Nasdaq Nordic
 
-- [Diseño del piloto CSV Nasdaq Nordic Equity](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md) — procedimiento, campos, correcciones, OHLCV, calidad y derechos. **No se ha descargado ninguna muestra; requiere autorización expresa.**
+- [Diseño y resultados del piloto CSV Nasdaq Nordic Equity](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
 
-**Estado del piloto Nasdaq Nordic (25-11-2026):** autorización recibida para un único CSV diario de Nokia Oyj (NOKIA, ISIN FI0009000681, MIC XHEL), pero no se descargó porque la ficha de instrumento consultable no expuso el botón/enlace «Download CSV». No se usaron APIs ni ficheros minuto a minuto. Ver [estado y procedimiento](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
-
-**Piloto Nasdaq Nordic:** el único CSV autorizado de Nokia contiene seis barras/estadísticas diarias aparentes. El validador local no detectó anomalías críticas estructurales ni aritméticas; esto no acredita exactitud, completitud, cobertura, semántica de volumen/turnover ni derechos de retención. Nasdaq no queda aprobado para producción ni ingesta recurrente. Ver [plan y límites](docs/NASDAQ_NORDIC_PILOT_PLAN_2026-11-25.md).
+**Estado (26-11-2026):** se ha validado localmente un único CSV de Nokia con seis filas diarias agregadas y sin anomalías críticas estructurales/aritméticas. Su origen exacto no está identificado: la estructura no encaja con el CSV MiFID de operaciones individuales descrito por Nasdaq y sólo cabe plantear como hipótesis una exportación del histórico de precios de la ficha. Semántica, cobertura y derechos específicos siguen sin confirmar. Nasdaq no queda aprobado para producción, señales de volumen, automatización ni retención histórica.
 
