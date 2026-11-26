@@ -356,3 +356,9 @@ La interfaz accesible no expone el enlace dinámico de descarga, por lo que no s
 - [x] Corregir el inspector para omitir la directiva inicial \`sep=;\` de Excel; el primer diagnóstico la había interpretado como cabecera.
 - [ ] Repetir diagnóstico con la versión corregida y revisar nombres de columnas, tipos y rango temporal.
 
+### Nasdaq Nordic — primer informe inválido por directiva sep= (26-11-2026)
+- [x] Recibir informe local del fichero Nokia de 632 bytes.
+- [x] Identificar que el inspector antiguo leyó \`sep=;\` como cabecera; las 2 columnas informadas no son el esquema real.
+- [x] Corregir el inspector para omitir la directiva inicial.
+- [ ] Usuario repite el diagnóstico con la versión corregida; no interpretar aún el fichero ni reconstruir OHLCV.
+
