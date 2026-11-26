@@ -302,3 +302,14 @@ El primer informe local de \`nokia_20261125_210111.csv\` no es válido para infe
 - **Decisión:** piloto técnico local superado sólo en coherencia estructural/aritmética, con limitaciones. Nasdaq Nordic sigue sin aprobarse para producción, señales basadas en volumen, automatización o retención histórica. No contactar, usar APIs/cuotas ni descargar muestras adicionales.
 
 Registro: 26-11-2026.
+
+
+## Nasdaq Nordic — origen del CSV no identificado (26-11-2026)
+
+- La página oficial MiFID II explica que el `Download CSV` encima de la tabla `Trades` de una acción descarga todas las operaciones del día actual, con 15 minutos de retraso. El CSV del piloto tiene seis filas diarias agregadas; por tanto, no se ha demostrado que sea esa descarga y su estructura no encaja con la descripción del fichero de operaciones.
+- La ficha de Nokia tiene componentes separados de histórico de precios y de operaciones. Es plausible que el fichero se exportara desde `Historical Prices Chart`, pero no está confirmado.
+- La documentación de Nordic End of Day Reports y la definición de Average Traded Price en las reglas Nasdaq aportan contexto, pero no identifican el producto ni el diccionario de campos del CSV concreto.
+- **Decisión:** clasificar el origen exacto y la semántica de las columnas como no identificados. No etiquetar `Average price` como VWAP ni asumir unidad/moneda/ámbito de volumen/turnover. No aplicar términos de licencia de otro producto Nasdaq al fichero.
+- El resultado del piloto se limita a coherencia estructural/aritmética básica. Nasdaq no queda aprobado para OHLCV de producción, señales basadas en volumen, automatización ni retención histórica.
+
+Registro: 26-11-2026.
