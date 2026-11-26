@@ -230,3 +230,28 @@ El informe se guarda como `nasdaq_daily_bars_validation.txt`. El usuario compart
 Un resultado sin anomalías críticas sólo demuestra coherencia interna básica. No valida que `Total volume` sea acciones, que `Turnover` use una moneda/unidad concreta, que `Average price` sea VWAP, que el fichero cubra todas las operaciones del mercado ni que las barras sean volumen consolidado. Tampoco resuelve derechos de retención histórica ni autoriza ingesta recurrente.
 
 **Estado:** esquema aparente identificado; validación semántica y aritmética pendiente de ejecutar localmente.
+
+## 17. Validación local de barras diarias y revisión documental (26-11-2026)
+
+El usuario ejecutó `tools/validate_nasdaq_daily_bars.py` localmente sobre el mismo y único CSV autorizado (`nokia_20261125_210111.csv`) y compartió sólo el informe agregado; el raw no se ha recibido ni incorporado al repositorio.
+
+**Resultado observado:**
+- Seis filas, once columnas esperadas; ninguna columna obligatoria ausente ni filas sobrantes.
+- Fechas legibles, únicas y dentro del rango 2026-11-18 a 2026-11-25; no están en orden ascendente. El informe no permite concluir si el orden es descendente, por lo que queda como observación menor.
+- Todos los campos numéricos se parsearon sin errores ni vacíos.
+- Cero anomalías en controles OHLC, Average price dentro del rango, Bid/Ask, volumen no negativo, Trades entero/no negativo, precios positivos y volumen cero con operaciones positivas.
+- Resultado del validador: **SIN ANOMALÍAS CRÍTICAS DETECTADAS**.
+
+Esto acredita coherencia estructural y aritmética básica de las seis filas, no exactitud, completitud, cobertura de mercado, ausencia de sesiones omitidas ni calidad de una serie histórica. No inferir sesiones ausentes por huecos de días naturales.
+
+**Contraste documental oficial:**
+- La página de Nasdaq Nordic/Baltic Equity Data describe su producto End-of-Day como incluyendo cierre, VWAP, máximos/mínimos, número de operaciones, precio medio, volúmenes e información de mercado/bolsa: https://www.nasdaq.com/products/data/equities/nordic-baltic
+- La página Nordic End of Day Reports describe información de operaciones (último, máximo/mínimo, volumen y turnover) y mejor bid/ask al cierre; declara que la licencia EOD permite uso interno sin restricciones, pero no redistribuir el fichero completo tal como se recibe: https://www.nasdaq.com/products/data/nordic-baltic/nordic-end-of-day-reports
+- Estas descripciones hacen plausible que el CSV contenga estadísticas EOD preagregadas, pero **no identifican el producto/licencia concreto del fichero del usuario** ni prueban que sus campos tengan exactamente esas definiciones. No trasladar automáticamente los términos del producto Nordic End of Day Reports al CSV descargado.
+
+**Conclusión y estado:**
+- Piloto técnico local: **validación estructural/aritmética superada con limitaciones**.
+- No se ha reconstruido OHLCV desde trades; el fichero ya parece contener barras/estadísticas agregadas.
+- Quedan sin resolver la definición y unidad de Total volume, moneda/unidad de Turnover, definición exacta de Average price (no etiquetar como VWAP sin prueba), alcance de Bid/Ask y cobertura por venue/MIC.
+- No queda aprobado Nasdaq como fuente de producción, ni la retención histórica, automatización o ingesta recurrente. No se ha contactado con Nasdaq ni se han usado APIs/cuotas ni descargado más ficheros.
+- Próximo paso: identificar con certeza la página/producto y términos de origen del CSV, y buscar documentación pública específica de las cabeceras/unidades. Si no puede identificarse públicamente, mantener la semántica como no confirmada y no usar volumen/turnover en señales cuantitativas.
