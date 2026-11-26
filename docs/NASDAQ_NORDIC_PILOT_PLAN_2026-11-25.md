@@ -255,3 +255,21 @@ Esto acredita coherencia estructural y aritmética básica de las seis filas, no
 - Quedan sin resolver la definición y unidad de Total volume, moneda/unidad de Turnover, definición exacta de Average price (no etiquetar como VWAP sin prueba), alcance de Bid/Ask y cobertura por venue/MIC.
 - No queda aprobado Nasdaq como fuente de producción, ni la retención histórica, automatización o ingesta recurrente. No se ha contactado con Nasdaq ni se han usado APIs/cuotas ni descargado más ficheros.
 - Próximo paso: identificar con certeza la página/producto y términos de origen del CSV, y buscar documentación pública específica de las cabeceras/unidades. Si no puede identificarse públicamente, mantener la semántica como no confirmada y no usar volumen/turnover en señales cuantitativas.
+
+
+## 18. Identificación de origen: discrepancia con el CSV MiFID de operaciones (26-11-2026)
+
+La revisión de la documentación oficial específica de descarga aclara un punto importante:
+- La página oficial **MiFID II Best Execution and Delayed Data** indica que, para acciones, el enlace `Download CSV` situado encima de la tabla `Trades` descarga **todas las operaciones del día de negociación actual**, con 15 minutos de retraso. Los ficheros regulatorios por minuto también son post-trade, retrasados y separados por clase de activo: https://www.nasdaq.com/market-regulation/nordic/mifid-ii (sección Nordic Equity Delayed Data).
+- La ficha oficial de Nokia identifica secciones distintas: `Historical Prices Chart`, `Order Depth`, `Key Data` y `Trades`: https://www.nasdaq.com/european-market-activity/shares/nokia?id=TX50063
+- El fichero inspeccionado por el usuario tiene seis filas con una fila por fecha aparente y campos OHLC, Average price, Total volume, Turnover y Trades. **No tiene el formato/cardinalidad esperados de un CSV de operaciones individuales del día** descrito por Nasdaq.
+
+**Conclusión:** no está demostrado que el CSV proceda del enlace MiFID `Download CSV` de la tabla `Trades`; de hecho, su estructura no encaja con esa descripción. La hipótesis más probable es una exportación del componente `Historical Prices Chart` de la ficha de instrumento, pero la documentación pública accesible no permite confirmar qué botón/control produjo el fichero ni identificar el producto de datos upstream. Por ello, el origen exacto queda **no identificado**. No clasificarlo como Nordic End of Day Reports, MiFID post-trade ni HistoricalView sin evidencia adicional.
+
+### Semántica: qué se puede afirmar y qué no
+- La página de producto Nasdaq Nordic End of Day Reports describe ficheros de los mercados Helsinki, Iceland, Stockholm y Copenhagen con último/máximo/mínimo, volumen, turnover y mejor bid/ask al cierre; publica además que la licencia de ese producto permite uso interno sin restricciones y redistribución de contenido, pero no del fichero completo tal como se recibe: https://www.nasdaq.com/products/data/nordic-baltic/nordic-end-of-day-reports
+- Nasdaq Nordic Member Rules v5.3 (01-09-2026) define `Average Traded Price` como la media ponderada de todos los trades registrados en un order book concreto: https://www.nasdaq.com/docs/2026/09/01/Nasdaq-Nordic-Member-Rules-version-5.3-%28effective-as-of-September-1%2C-2026%29.pdf
+- Estas definiciones dan contexto sobre productos/estadísticas Nasdaq, pero **no son un diccionario de datos del CSV**. No prueban que `Average price` sea el campo `Average Traded Price`, que sea VWAP, ni qué conjunto de operaciones alimenta el volumen/turnover de la fila. Tampoco se ha acreditado moneda/unidad ni alcance de MIC para el fichero concreto.
+- El producto Nordic End of Day Reports y la descarga MiFID son productos/rutas distintos; no trasladar sus condiciones de licencia al fichero de origen desconocido.
+
+**Resultado de la investigación documental:** se identifica la discrepancia con el CSV MiFID de trades y se acota la hipótesis de origen a la exportación de histórico de la ficha, pero no se logra una atribución concluyente. El piloto conserva sólo la validación interna superada; el fichero no se puede aprobar como fuente de OHLCV para producción ni como base para señales de volumen.
