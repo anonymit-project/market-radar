@@ -196,3 +196,37 @@ El informe del usuario corresponde a \`nokia_20261125_210111.csv\`, tamaño 632 
 
 Se ha actualizado el inspector para omitir esa directiva y respetar el separador declarado. El diagnóstico anterior queda invalidado; no extraer conclusiones sobre campos, número de operaciones o validez del fichero hasta repetirlo con la versión corregida. Próximo paso: el usuario vuelve a ejecutar el script actualizado sobre el mismo CSV autorizado y comparte únicamente el informe de diagnóstico, nunca el CSV bruto.
 
+
+
+## 16. Segundo diagnóstico local: CSV de barras diarias (26-11-2026)
+
+El usuario ejecutó el inspector corregido sobre el mismo y único CSV autorizado. El informe estructural devuelve seis filas y once columnas:
+
+`Date`, `Bid`, `Ask`, `Opening price`, `High price`, `Low price`, `Closing price`, `Average price`, `Total volume`, `Turnover`, `Trades`.
+
+El rango temporal observado es 2026-11-18 a 2026-11-25. Los seis valores de cada columna están informados como no vacíos y distintos. El fichero parece contener **barras/estadísticas diarias ya agregadas**, no operaciones individuales. Es una inferencia basada en los nombres y cardinalidad; todavía no se ha inspeccionado el significado oficial de los campos ni sus valores.
+
+Consecuencias:
+- Se abandona para este fichero la hipótesis de reconstruir OHLCV desde el tape de operaciones.
+- No es posible evaluar cancelaciones, enmiendas, trade breaks, secuencia intradía ni deduplicación de trades individuales.
+- `Bid` y `Ask` son candidatos a cotizaciones, no identificadores.
+- OHLCV podría estar ya suministrado por Nasdaq, pero su semántica, unidad, moneda y alcance siguen pendientes.
+- Seis filas no demuestran que estén presentes todas las sesiones esperadas ni que el volumen sea consolidado.
+
+### Segundo script local
+
+Se añade `tools/validate_nasdaq_daily_bars.py`, sólo biblioteca estándar, sin red y de lectura local. Comprueba campos requeridos, parseo numérico/fechas, duplicados y orden de fechas, coherencia OHLC, Average Price dentro del rango, Bid/Ask, valores negativos y consistencia básica entre volumen y número de operaciones. El informe no imprime precios, volúmenes, turnover ni filas individuales.
+
+Ejecución desde la carpeta del repositorio:
+
+```powershell
+python tools/validate_nasdaq_daily_bars.py "C:\Users\crist\Downloads\nokia_20261125_210111.csv"
+```
+
+El informe se guarda como `nasdaq_daily_bars_validation.txt`. El usuario compartirá sólo ese informe, nunca el CSV bruto.
+
+### Criterio de interpretación
+
+Un resultado sin anomalías críticas sólo demuestra coherencia interna básica. No valida que `Total volume` sea acciones, que `Turnover` use una moneda/unidad concreta, que `Average price` sea VWAP, que el fichero cubra todas las operaciones del mercado ni que las barras sean volumen consolidado. Tampoco resuelve derechos de retención histórica ni autoriza ingesta recurrente.
+
+**Estado:** esquema aparente identificado; validación semántica y aritmética pendiente de ejecutar localmente.
