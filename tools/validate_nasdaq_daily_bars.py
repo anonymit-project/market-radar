@@ -35,8 +35,8 @@ def parse_number(raw):
         else:
             value = value.replace(",", "")
     elif "," in value:
-        tail = value.rsplit(",", 1)[1]
-        value = value.replace(",", "." if len(tail) not in (3,) else "")
+        # With a semicolon-delimited source, a lone comma is treated as decimal.
+        value = value.replace(",", ".")
     try:
         result = Decimal(value)
         return result if result.is_finite() else None
@@ -194,8 +194,12 @@ def main():
         report.append("")
         for label, count in checks.items():
             report.append(f"- {label}: anomalías={count}")
+        missing_required = sum(blanks.get(name, 0) for name in
+                               ("opening price", "high price", "low price",
+                                "closing price", "average price", "total volume", "trades"))
+        report.append("Campos numéricos obligatorios vacíos: " + str(missing_required))
         critical = (date_invalid + duplicate_dates + malformed +
-                    sum(invalid.values()) +
+                    sum(invalid.values()) + missing_required +
                     checks["OHLC: High >= max(Open, Close) y Low <= min(Open, Close)"] +
                     checks["OHLC: High >= Low"] +
                     checks["Volumen negativo"] +
