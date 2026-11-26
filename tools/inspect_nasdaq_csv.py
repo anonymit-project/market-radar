@@ -66,12 +66,24 @@ def inspect(path):
     for encoding in encodings:
         try:
             with open(path, "r", encoding=encoding, newline="") as handle:
-                sample = handle.read(65536)
-                handle.seek(0)
-                try:
-                    dialect = csv.Sniffer().sniff(sample, delimiters=",;|\t")
-                except csv.Error:
+                first_line = handle.readline()
+                has_sep_directive = first_line.lower().startswith("sep=")
+                if has_sep_directive:
+                    delimiter = first_line[4:].strip()
+                    if len(delimiter) != 1:
+                        raise ValueError("Directiva sep= no válida.")
+                    handle.seek(0)
+                    next(handle)
                     dialect = csv.excel
+                    dialect.delimiter = delimiter
+                else:
+                    handle.seek(0)
+                    sample = handle.read(65536)
+                    handle.seek(0)
+                    try:
+                        dialect = csv.Sniffer().sniff(sample, delimiters=",;|\t")
+                    except csv.Error:
+                        dialect = csv.excel
                 reader = csv.DictReader(handle, dialect=dialect)
                 if not reader.fieldnames:
                     raise ValueError("No se ha encontrado una cabecera CSV.")
@@ -105,6 +117,7 @@ def inspect(path):
                 report.append("Fichero: " + os.path.basename(path))
                 report.append("Tamaño: " + str(os.path.getsize(path)) + " bytes")
                 report.append("Codificación detectada: " + encoding)
+                report.append("Directiva sep= inicial: " + ("sí" if has_sep_directive else "no"))
                 report.append("Separador detectado: " + repr(dialect.delimiter))
                 report.append("Filas de datos: " + str(row_count))
                 report.append("Columnas: " + str(len(headers)))
@@ -114,6 +127,8 @@ def inspect(path):
                 for h in headers:
                     values = []
                     with open(path, "r", encoding=encoding, newline="") as second:
+                        if has_sep_directive:
+                            next(second)
                         r = csv.DictReader(second, dialect=dialect)
                         for item in r:
                             values.append((item.get(h) or "").strip())
